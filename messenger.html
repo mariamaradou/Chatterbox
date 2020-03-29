@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<meta charset="=UTF-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<style>
+table.main {
+    background-image: url(clouds.jpg);
+    border: 0.8rem outset rgb(102, 102, 255);
+    border-radius: 12px;
+  margin: 2rem;
+  padding: 1rem;
+  outline-offset: 0.5rem;}
+
+  div{width: 150px;
+    height: 300px;
+    word-wrap: break-word;
+    background-color: rgb(247, 230, 255);}
+
+    td.inside {
+    border: hidden;
+    border-color: rgb(198,287,147) ;
+    padding: 3px 2px;}
+    
+    td{ color:black;
+        padding: 20px 20px;
+        border: hidden;
+        border-radius: 11px;
+        }
+
+    td.a {text-shadow: 1px 1px 7px #1b1b1b;
+        color:#252222
+            }
+    
+    td.b{ border-color:rgb(190, 190, 190);
+            
+            border-top-color:rgb(190, 190, 190);
+            border-right: hidden;
+        }
+    td.c { border-bottom: hidden;} 
+
+    td.b1 {border-left:hidden;}   
+    
+    td.d { background-color: rgb(247, 230, 255);
+            
+            overflow:scroll;
+            
+            overflow-x: hidden;}
+    
+    .text { display: inline-block;}
+
+    .send{ margin-left:120px; 
+        opacity: 1;
+        position: relative;
+	overflow: hidden;
+	z-index: -1;}
+
+    .send + label {font-weight: 0;
+    color: black;
+    background-color: rgb(102, 102, 255);
+    display: inline-block;}
+
+    .send + label:hover { background-color: rgb(230, 179, 255); }
+
+    .inputfile, .photo,.voice, .settings, .call, .videocall  { 
+    
+	opacity: 1;
+	overflow: visible;
+	position: absolute;
+	z-index: -1;
+    }
+
+    .inputfile + label, .photo + label, .voice + label, .settings + label, .call + label, .videocall + label  {
+    
+    
+    font-weight: 0;
+    color: black;
+    background-color: rgb(102, 102, 255);
+    display: inline-block;
+}
+
+
+.inputfile + label:hover, .photo + label:hover, .voice + label:hover, .settings + label:hover, .call + label:hover, .videocall + label:hover  {
+    background-color: rgb(230, 179, 255); }
+
+
+</style>
+
+<body>
+    <table class="main">
+       
+    <h1>Welcome to PigeON!</h1>
+
+    
+    
+    <tr>
+    <td class="a"><h1> Online Friends</h1></td>
+    <td ></td>
+    <td  ></td>
+    <td  class="b1" valign="bottom" align="right">
+        <input type="button" class="settings" id="settings" value="Settings" >
+        <label for="settings"><i class="material-icons">settings</i></label>
+        <input type="button" class="call" id="call" value="Call">
+        <label for="call"><i class="material-icons">call</i></label>
+        <input type="button" class="videocall" id="videocall" value="Videocall">
+        <label for="videocall"><i class="material-icons">video_call</i></label></td>
+    <td class="a"><h1>About User</h1></td>
+    </tr>
+    <tr>
+    <td class="c"></td>
+    
+    <td class="d" colspan="3" ><div>Messages will be displayed here!!! :) </div></td>
+    <td rowspan="2"></td>
+    <tr>
+    <td>
+        <table id="inside">
+            <tr><td class="inside" style="border: hidden;"><h3> Status</h3></td>
+                <form action="/action_page.php">
+            <td class="inside" style="border: hidden;"><input type="radio" id="online" name="status" value="online"> 
+            <label for="online">pigeON</label></td></tr>
+            <tr><td class="inside" style="border: hidden;"></td>
+            <td class="inside" style="border: hidden;"><input type="radio" id="offline" name="status" value="offline"> 
+            <label for="offline">pigeOFF</label></td>
+        </form></tr>
+
+
+
+        </table>
+    
+    </td>
+    <td colspan="3"><form> <input type="text" class= "text" id="typewrite"  placeholder="Write a message..." style="width: 100%;"><br>
+        <input type="file" name="file" id="file" class="inputfile" multiple />
+        <label for="file"><i class="material-icons">attach_file</i></label>
+        <input type="file" class="photo" id="photo" value="Photo" multiple >
+        
+    
+        <label for="photo"> <i class="material-icons">photo_camera</i></label>
+        <input type="button" class="voice" id="voice" value="Voice">
+        <label for="voice"> <i class="material-icons">mic</i></label>
+        <input type="button" class="send" id= "send" value="Send">
+        <label for="send"> <i class="material-icons">send</i></label>
+        
+        
+        
+    </td>
+   
+        
+    </tr>
+   
+
+</table>
+</body>
+</html>
