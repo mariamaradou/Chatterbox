@@ -44,13 +44,14 @@
     
     
     h2{ margin-left: 30%;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         display: flex;
-        text-shadow: 1px 1px 7px #1b1b1b;
-        color:#252222;
+        text-shadow: 1px 2px #413649;
+        color:#1b1b1b;
         
         
         }
-    h3{ font-size: inherit;
+    h3{ font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         display: flex;
         margin-left: 10%;}
 
@@ -59,8 +60,8 @@
                     min-height: 450px;
                     border-radius: 30px;
                     
-                    
                     background-color: white;
+                    background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(237, 188, 247, 0.603)); 
                     
             }
 
@@ -83,10 +84,11 @@
             }
 
             div.box ::-webkit-scrollbar-thumb {
+                
                 border-radius: 8px;
                 background: #c2c9d2;
             }
-        div.box:nth-child(2) { flex-direction: column;
+        div.col:nth-child(2) { flex-direction: column;
                             display: flex;
         
                             width: 100%;
@@ -104,7 +106,7 @@
 
     .text { display: inline-block;
         display: flex;
-        border: inset rgba(164, 133, 194, 0.76);
+        border: inset rgba(74, 53, 95, 0.76);
         
         padding: 0px 0px 40px 10px;
         border-radius: 20px;
@@ -138,6 +140,10 @@
     
     }
 
+    label.status {font-family: 'Courier New', Courier, monospace;
+            text-shadow: 0px 1px 1px black;
+            font-size: 20px;}
+
     
 
     .inputfile + label, .photo + label, .voice + label, .settings + label, .call + label, .videocall + label  {
@@ -162,6 +168,7 @@ div.buttonsup { position: static;
 
    div.buttonsdown {margin-top: -17px;
     display: flex;}
+    
 </style>
 
 
@@ -175,10 +182,9 @@ div.buttonsup { position: static;
         <h3>Status</h3>
         <div class="status">
         <div class="online"><input type="radio" id="online" class="online" name="status" value="online" checked> 
-        <label for="online">pigeON</label></div>
-        <div class="offline">
-        <input type="radio" id="offline" class="offline" name="status" value="offline"> 
-        <label for="offline">pigeOFF</label></div>
+        <label for="online" class="status">Online</label></div>
+        <div class="offline"><input type="radio" id="offline" class="offline" name="status" value="offline"> 
+        <label for="offline" class="status">Offline</label></div>
     </div></div>
     <div class="col">
     <div class="buttonsup" style="margin-top: 39px ;">
