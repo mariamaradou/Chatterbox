@@ -8,7 +8,7 @@ body {
     margin: 0;
     font: 1.8em / 1.8 Arial, Helvetica, sans-serif;
     font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
-    background-image: url(clouds.jpg); /* Set the background image */
+    background-image: url(../clouds.jpg); /* Set the background image */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */
