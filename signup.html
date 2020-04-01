@@ -1,0 +1,48 @@
+<html lang="el">
+
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title> Εγγραφείτε στο PigeON! </title>
+            <link rel="stylesheet" href="signup.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
+    </head>
+    
+    <body>
+        <div id="whole">
+            <h1>Εγγραφή στο PigeON!</h1>
+            <h3 class="logo">Λογότυπο</h3> <!--Να προστεθεί η εικόνα-->
+            <hr>
+            
+            <form action="" method="POST">
+                <input type="text" size="30" maxlength=50 name="ononma" placeholder="Όνοματεπώνυμο"><br>
+                <input type="text" size="30" maxlength=50 name="username" placeholder="Όνομα χρήστη"><br>
+                <input type="email" size="30" maxlength=50 name="email" placeholder="Email"><br>
+                <input type="password" size="30" name="userpassword" placeholder="Κωδικός πρόσβασης"><br>
+                <label for="check">Ημερομηνία γέννησης</label><br>
+                <input type="date" name="date"><br>
+                <label>Φύλο</label><br>
+                    <label class="container"><input type="radio" name="fylo" value="Male">Άνδρας</label>
+                    <label class="container"><input type="radio" name="fylo" value="Female">Γυναίκα</label>
+                    <label class="container"><input type="radio" name="fylo" value="Other">Άλλο</label><br>
+                
+                <br><input id="button" type="submit" value="Εγγραφή">
+                
+        <div id="formlinks">
+            <p>Έχετε ήδη λογαριασμό; <a href="">Συνδεθείτε</a></p> <!--Να προστεθεί το link της σύνδεσης-->
+            <p>Αν εγγραφείτε, δηλώνετε ότι συμφωνείτε με τους <a href="">Όρους χρήσης</a>.</p> <!--Να προστεθεί το link-->
+        </div>
+            </form>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="">Γλώσσα (Language)</a></li> <!--Να προστεθεί το link-->
+                <li><a href="">Πληροφορίες</a></li> <!--Να προστεθεί το link-->
+                <li><a href="">Όροι χρήσης</a></li> <!--Να προστεθεί το link-->
+                <li><a href="">Cookies</a></li> <!--Να προστεθεί το link-->
+            </ul>
+        </nav>
+
+    </body>
+</html>
