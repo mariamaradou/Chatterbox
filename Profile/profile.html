@@ -1,0 +1,51 @@
+<html lang="el">
+
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title> Προφίλ χρήστη </title>
+            <link rel="stylesheet" href="profile.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
+    </head>
+    
+    <body>
+        <div>
+            <figure>
+                <img src="../avatar.png" width="100" height="100" alt="Εικόνα προφίλ" title="Εικόνα προφίλ">
+                <figcaption>Εικόνα προφίλ</figcaption>
+            </figure>
+            <a href="" style="color: rgba(var(--fe0,0,55,107),1);">Αλλαγή κωδικού πρόσβασης</a> <!--Να προστεθεί το link-->
+            <h3>Όνομα Χρήστη</h3>
+            <p>Εταιρεία</p>
+            <p>Email</p>
+            <p>Τόπος κατοικίας</p>
+            <p>Δημόσιο κλειδί PGP</p>
+            <p>Ημερομηνία Γέννησης</p>
+            <p>Περιγραφή</p>
+            <input type="button" class="settings" id="settings" value="Settings" >
+        <br><label for="settings"><i class="material-icons">Επεξεργασία προφίλ</i></label><br>
+        
+        <form>
+            <label for="favcolor">Χρώμα συνομιλιών:</label>
+            <input type="color" id="favcolor" name="favcolor">
+        </form>
+        <input type="text" class="ProfileDescription" placeholder="Προσθέστε περιγραφή...">
+        <form>
+            <label for="relationshipstatus">Προσωπική κατάσταση:</label>
+            <select name="relationshipstatus">
+                <option value="none">---</option>
+                <option value="single">Ελεύθερος/η</option>
+                <option value="inrelationship">Σε σχέση</option>
+                <option value="engaged">Αρραβωνιασμένος/η</option>
+                <option value="married">Παντρεμένος/η</option>
+                <option value="other">Άλλο</option>
+            </select>
+        </form>
+
+
+    </div>
+
+
+    </body>
+
+</html>
