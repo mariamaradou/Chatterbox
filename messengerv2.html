@@ -6,44 +6,44 @@
 <style>
 
    
-    @media screen and (max-height: 1080px) {
-      #bar {
-         width: 100%;
-         height: 100%;
-         overflow: hidden;
-      }
+    @media  (max-width: 300px) {
+        div.col {
+          flex:100%;
+         max-width: 100%;
+         height: 630px; }
+         
+     }
+
+     @media  (max-width: 300px) {
+     .profileimage img {
+          flex:25%;
+         max-width: 25%;
+          }
+         
+     }
 
       
-   }
+   
     div.main {
                 display: flex;
-                flex-wrap: nowrap;
-                width: 100%;
-                height: 100%;
-                
-                background-image:url(https://up1046879.blob.core.windows.net/%24web/clouds.jpg?sv=2019-02-02&ss=bqtf&srt=sco&sp=rwdlacup&se=2020-03-29T23:30:02Z&sig=ZGL0bX5kIInq56%2Byhj%2FcK6ZfLXdyrlNDJr%2BTEt8MKRM%3D&_=1585495806845);
+                flex-wrap: wrap;
+                background-image:url(clouds.jpg);
                 background-size: 100% 100%;
-                min-width: 800px;
-                min-height: 650px;
-                
-                
-                
-                
-
-                
-                }
+                height: 620px;
+               
+                 }
 
     div.col {flex-direction: column;
-        display: flex;
-        width: 50%;
-                height: 100%;
+            flex: 25%;
+            max-width: 25%;
+            height: 630px;
             
                 
             }
     
     
     
-    h2{ margin-left: 30%;
+    h2{ margin-left: 22%;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         display: flex;
         text-shadow: 1px 2px #413649;
@@ -56,14 +56,18 @@
         margin-left: 10%;}
 
     div.box {border: outset 5px rgba(164, 133, 194, 0.76);
-                min-width: 200px;
-                    min-height: 450px;
-                    border-radius: 30px;
-                    
-                    background-color: white;
-                    background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(237, 188, 247, 0.603)); 
-                    
+                flex: 100%;
+                max-width: 100%;
+                height: 410px;
+                border-radius: 30px;
+                 display: flex;   
+                background-color: white;
+                background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(237, 188, 247, 0.603)); 
+                justify-content: center;
+                     
             }
+
+           
 
             .text::-webkit-scrollbar {
                 width: 8px;
@@ -89,14 +93,13 @@
                 background: #c2c9d2;
             }
         div.col:nth-child(2) { flex-direction: column;
-                            display: flex;
-        
-                            width: 100%;
+                            flex: 50%;
+                            max-width: 50%;
                             height: 100%;}
     
     div.status  {flex-direction: column;
-    
-        display: flex;
+                height: 40%;
+                display: flex;
                 margin-left: 5%;
                 }
     div.offline{ margin-top: 10px;
@@ -125,7 +128,7 @@
     .send + label {font-weight: 0;
     color: black;
     
-    display: inline-block;
+    display: flex;
     border-radius: 5px;
     
     }
@@ -149,7 +152,7 @@
 
     
 
-    .inputfile + label, .photo + label, .voice + label, .settings + label, .call + label, .videocall + label  {
+    .inputfile + label, .photo + label, .voice + label, .settings + label, .call + label, .videocall + label {
     
     border-radius: 5px;
     font-weight: 0;
@@ -159,7 +162,7 @@
 }
 
 
-.inputfile + label:hover, .photo + label:hover, .voice + label:hover, .settings + label:hover, .call + label:hover, .videocall + label:hover  {
+.inputfile + label:hover, .photo + label:hover, .voice + label:hover, .settings + label:hover, .call + label:hover, .videocall + label:hover   {
     background-color: rgb(230, 179, 255); }
 
 div.buttonsup { position: static;
@@ -171,6 +174,19 @@ div.buttonsup { position: static;
 
    div.buttonsdown {margin-top: -17px;
     display: flex;}
+    .profileimage >input {display: none;
+
+                        }
+    .profileimage {display: flex;
+                    justify-content: center;
+                    width: 66%;}
+
+    .profileimage  label {width: 66%;}
+    .profileimage img{ display: flex;
+                        width: 90%;
+                        margin-top: 20px;}
+    
+   
     
 </style>
 
@@ -178,8 +194,17 @@ div.buttonsup { position: static;
 <html>
     
     <div class="main">
-    <div class="col"><h2>Friends</h2>
-    <div class="box" ></div>
+    <div class="col"><h2>User</h2>
+    <div class="box" ><div class="profileimage">
+        <label for="filephoto">
+            
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAANlBMVEX////Fx8nBw8Xd3uDi4+TGyMr6+vry8/PLzc/t7u7k5ebg4eL39/jo6erJy8309PXY2dvR09QXDCJbAAAEXElEQVR4nO2d2XarMAxFy1CmMOX/f/ZC4FKSUIJtCR26zn7qQxdlL8uyLWz364sQQgghhBBCLkWWN9UtSZJb1eSZ9ctIkzV9EQ9EE+OPRd/8Gc0uaRe3NXHcJp31ywlQtVt2i2VbWb9gGFm/pzdL9teN1iN+l3ZMj/k9HFPrl/Wg2+1/b4rt5XLOzcXv4XizfmU3ClfBQbGwfmkHame9idr6xY+Suzfg3Iyl9asfo/QVvIpigOA1FL1DdFbMrQU+kYUJDoro6eY7UHDAWmGfe7hgdLeW2KMKjdER5ElqcCecFXG7YiEiGEWw87dGpgmHRkRd+Av5jYrWKtvc5AyjxFpmE6kYHYFsxFRQELMRRQURZzZBS4p34sZa6A2J+doavDFRtgmHRkSroYqN9gtoo750kOItMcSbEG1IDKxdbBpilWwqccEowlom9gqGWB1RamW45tta6gn5bgiWaoTKFy+GSMWMWsUQqTisMFiADRfCC4vZEGl5QUMa0tCev59LdcZDqC02KoZQdQwFQax5qUIRA63aligY9tZST8iX2rAGC5XlE9Ti6UtkD8Yr1kovyHdErG6oMG+DmtE8EBYEGw1HpMMULUjFp6ZQRZoZ2ZIp1oRmQjTXgA33M62gIVa9+z+CjYjZhJILDMReOCKWTrFW92sSIUW8sXBBJtlgppkJkTjFjdERgW3QyJugRw4eqtwB6+P2BqGTN9SBYkVYtkHOMgshipcQDFFsrV/9KHe/dHOlU6ReGTUGnsq841EhRl1P/EbtdFh9PK4OVgA+gNN59audVZ/IDiec+A71qdCB/JBjXADW1Q7z2TG+X9lvJEt3ck78nV41Pp+o0/vGJUNxXKTXy5+/k1d98bgf6kFU9NXVg3ObrK67uv4TgUkIIYQQQsCp87KpqtSdqmrKHHu1sVo/HFjab6wWodcdZVJ4em27FgnUvrayF7T7sexBJDsNvUXS/ntw6XHLpZNkYduQpWNl28uxtXPslNtvcSyMYjX8k/1xR4vPUuVpehOnh6rU9qfDxCffq3RSD3xSPPMLse89waGcNmlVOU95hLM2f5sJnqXY2Qmes6tP5QoMB0X9jx4KR7icUN81pXFY1A3lvYsO/9FBC93LTVVOpbuievRS47IkdxQnNwqnfX1Q3B9mrbagJSh5jW4YWnvEMGJ0ROmAqciF6zIojRjWs5k1KjMblVt2fFE56a1xNaI/GqUppCZUyTVQQaoSphr3s4QgX3rDmJL+ID85xQpShY5oWH7aRrwoBTShmRBfYKAlGvlUY1+feUW6XoOWSuWTqbXPBsKGaIlGfrig4fnQkIY0tIeGNKShPTSkIQ3toSENafjy13yPyXx45t5DTzWsygHhD6jx+My9zR9nGk7lZ2nD8Zl72wRpSEMa0pCGNKQhDWlIQxrSkIY0pCENaUhDGtKQhjSkIQ1pSEMa0pCGNKTh74aygucbJnvUH3/Dg4fhp18ghBBCCCGEkJP4B3ymXHSpa16yAAAAAElFTkSuQmCC"/>
+            </label>
+            <input type="file"  class="filephoto">
+        </div> </div>
+        
+        
+    
     
     
         <h3>Status</h3>
@@ -214,7 +239,26 @@ div.buttonsup { position: static;
         <input type="button" class="send" id= "send" value="Send">
         <label for="send"> <i class="material-icons">send</i></label></div></div>
     <div class="col"><h2>User</h2>
-    <div class="box" ></div></div>
-    </div>
+     
+        <div class="box" >
+            <div class="profileimage">
+            <label for="filephoto">
+                
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAANlBMVEX////Fx8nBw8Xd3uDi4+TGyMr6+vry8/PLzc/t7u7k5ebg4eL39/jo6erJy8309PXY2dvR09QXDCJbAAAEXElEQVR4nO2d2XarMAxFy1CmMOX/f/ZC4FKSUIJtCR26zn7qQxdlL8uyLWz364sQQgghhBBCLkWWN9UtSZJb1eSZ9ctIkzV9EQ9EE+OPRd/8Gc0uaRe3NXHcJp31ywlQtVt2i2VbWb9gGFm/pzdL9teN1iN+l3ZMj/k9HFPrl/Wg2+1/b4rt5XLOzcXv4XizfmU3ClfBQbGwfmkHame9idr6xY+Suzfg3Iyl9asfo/QVvIpigOA1FL1DdFbMrQU+kYUJDoro6eY7UHDAWmGfe7hgdLeW2KMKjdER5ElqcCecFXG7YiEiGEWw87dGpgmHRkRd+Av5jYrWKtvc5AyjxFpmE6kYHYFsxFRQELMRRQURZzZBS4p34sZa6A2J+doavDFRtgmHRkSroYqN9gtoo750kOItMcSbEG1IDKxdbBpilWwqccEowlom9gqGWB1RamW45tta6gn5bgiWaoTKFy+GSMWMWsUQqTisMFiADRfCC4vZEGl5QUMa0tCev59LdcZDqC02KoZQdQwFQax5qUIRA63aligY9tZST8iX2rAGC5XlE9Ti6UtkD8Yr1kovyHdErG6oMG+DmtE8EBYEGw1HpMMULUjFp6ZQRZoZ2ZIp1oRmQjTXgA33M62gIVa9+z+CjYjZhJILDMReOCKWTrFW92sSIUW8sXBBJtlgppkJkTjFjdERgW3QyJugRw4eqtwB6+P2BqGTN9SBYkVYtkHOMgshipcQDFFsrV/9KHe/dHOlU6ReGTUGnsq841EhRl1P/EbtdFh9PK4OVgA+gNN59audVZ/IDiec+A71qdCB/JBjXADW1Q7z2TG+X9lvJEt3ck78nV41Pp+o0/vGJUNxXKTXy5+/k1d98bgf6kFU9NXVg3ObrK67uv4TgUkIIYQQQsCp87KpqtSdqmrKHHu1sVo/HFjab6wWodcdZVJ4em27FgnUvrayF7T7sexBJDsNvUXS/ntw6XHLpZNkYduQpWNl28uxtXPslNtvcSyMYjX8k/1xR4vPUuVpehOnh6rU9qfDxCffq3RSD3xSPPMLse89waGcNmlVOU95hLM2f5sJnqXY2Qmes6tP5QoMB0X9jx4KR7icUN81pXFY1A3lvYsO/9FBC93LTVVOpbuievRS47IkdxQnNwqnfX1Q3B9mrbagJSh5jW4YWnvEMGJ0ROmAqciF6zIojRjWs5k1KjMblVt2fFE56a1xNaI/GqUppCZUyTVQQaoSphr3s4QgX3rDmJL+ID85xQpShY5oWH7aRrwoBTShmRBfYKAlGvlUY1+feUW6XoOWSuWTqbXPBsKGaIlGfrig4fnQkIY0tIeGNKShPTSkIQ3toSENafjy13yPyXx45t5DTzWsygHhD6jx+My9zR9nGk7lZ2nD8Zl72wRpSEMa0pCGNKQhDWlIQxrSkIY0pCENaUhDGtKQhjSkIQ1pSEMa0pCGNKTh74aygucbJnvUH3/Dg4fhp18ghBBCCCGEkJP4B3ymXHSpa16yAAAAAElFTkSuQmCC"/>
+                </label>
+                <input id="filephoto"  type="file"/>
+            </div> </div>
+    
+    
+    </div></div>
+
+    
+
+
+
+
+
+
+</div>
 
 </html>
