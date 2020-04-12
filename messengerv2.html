@@ -1,18 +1,20 @@
 <!DOCTYPE html>
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <style>
 
    
-    @media  (max-width: 300px) {
+   /* @media  (max-width: 300px) {
         div.col {
           flex:100%;
          max-width: 100%;
          height: 630px; }
          
-     }
+     } 
 
      @media  (max-width: 300px) {
      .profileimage img {
@@ -20,23 +22,27 @@
          max-width: 25%;
           }
          
-     }
+     } */
 
-      
+      body {background-repeat: no-repeat;
+        background-image:url(clouds.jpg);
+        background-size: cover;
+        background-position: center;
+        
+        
+        }
    
     div.main {
                 display: flex;
                 flex-wrap: wrap;
-                background-image:url(clouds.jpg);
-                background-size: 100% 100%;
-                height: 620px;
+                
                
-                 }
+                 } 
 
     div.col {flex-direction: column;
             flex: 25%;
-            max-width: 25%;
-            height: 630px;
+            max-width: 25%; 
+            height: 600px; 
             
                 
             }
@@ -57,8 +63,8 @@
 
     div.box {border: outset 5px rgba(164, 133, 194, 0.76);
                 flex: 100%;
-                max-width: 100%;
-                height: 410px;
+                max-width: 100%; 
+                height: 410px; 
                 border-radius: 30px;
                  display: flex;   
                 background-color: white;
@@ -67,7 +73,9 @@
                      
             }
 
-           
+            
+
+            
 
             .text::-webkit-scrollbar {
                 width: 8px;
@@ -82,16 +90,7 @@
             }
 
 
-            div.box ::-webkit-scrollbar {
-                width: 8px;
-                height: 8px;
-            }
-
-            div.box ::-webkit-scrollbar-thumb {
-                
-                border-radius: 8px;
-                background: #c2c9d2;
-            }
+            
         div.col:nth-child(2) { flex-direction: column;
                             flex: 50%;
                             max-width: 50%;
@@ -115,40 +114,37 @@
         border-radius: 20px;
         }
     
-    .send { opacity: 1;
-	overflow: visible;
-	position: absolute;
-	z-index: -1;
     
     
-    
-    
-    }
 
-    .send + label {font-weight: 0;
+    .send + label {border-radius: 5px;
+    font-weight: 0;
     color: black;
+    background-color: rgb(136, 91, 173);
+    display: inline-block;
     
-    display: flex;
-    border-radius: 5px;
     
-    }
+    
+    } 
 
     .send + label:hover { background-color: rgb(230, 179, 255);
-    }
+    } 
     
-    .inputfile, .photo,.voice, .settings, .call, .videocall { 
+    .inputfile, .photo,.voice, .settings, .call, .videocall, .send { 
     
 	opacity: 1;
 	overflow: visible;
 	position: absolute;
-	z-index: -1;
+    width: 3px;
+	visibility: hidden;
 
     
     }
 
     label.status {font-family: 'Courier New', Courier, monospace;
             text-shadow: 0px 1px 1px black;
-            font-size: 20px;}
+            font-size: 20px;
+            }
 
     
 
@@ -167,13 +163,15 @@
 
 div.buttonsup { position: static;
                 margin-left: 3px;
-                display: flex;
+                
                  }
     
    
 
    div.buttonsdown {margin-top: -17px;
-    display: flex;}
+   height: 28px;
+   
+    } 
     .profileimage >input {display: none;
 
                         }
@@ -186,13 +184,42 @@ div.buttonsup { position: static;
                         width: 90%;
                         margin-top: 20px;}
     
-   
+   .online {display: flex;
+            }
+    
+    #mylist {width: 100%;
+                font-size: 20px;
+                overflow: scroll;
+                
+                margin: 9px 2px 9px 0px;
+                
+                }
+               p {width: 50%;
+                overflow-y:wrap;
+                word-wrap: break-word;
+                padding-bottom: 40px;
+                padding-left: 7px;
+                   border-radius: 4px;
+                }
+
+                div.mylist::-webkit-scrollbar {
+                width: 8px;
+                height: 5px;
+                padding-top: 10px;
+            }
+
+            div.mylist::-webkit-scrollbar-thumb {
+                
+                border-radius: 20px;
+                background: #c2c9d2;
+            }
+
     
 </style>
 
 
 <html>
-    
+    <body>
     <div class="main">
     <div class="col"><h2>User</h2>
     <div class="box" ><div class="profileimage">
@@ -217,17 +244,22 @@ div.buttonsup { position: static;
     <div class="col">
     <div class="buttonsup" style="margin-top: 39px ;">
         
-        <input type="button" class="settings" id="settings" value="Settings" >
-        <label for="settings"><i class="material-icons">settings</i></label>
-        <input type="button" class="call" id="call" value="Call">
-        <label for="call"><i class="material-icons">call</i></label>
-        <input type="button" class="videocall" id="videocall" value="Videocall">
-        <label for="videocall"><i class="material-icons">video_call</i></label>
+        <input type="button" class="settings" id="Settings" value="Settings" >
+        <label for="Settings"><i class="material-icons">settings</i></label>
+        <input type="button" class="call" id="Call" value="Call">
+        <label for="Call"><i class="material-icons">call</i></label>
+        <input type="button" class="videocall" id="Videocall" value="Videocall">
+        <label for="Videocall"><i class="material-icons">video_call</i></label>
     </div>   
-    <div class="box"></div>
+    <div class="box" id="Messagebox"> 
+        <div id="mylist" class="mylist"  >
+
+        </div></div>
+    <script src="javamessenger.js"></script>
     
-    <textarea rows="2" cols="20" wrap="hard" class= "text" id="typewrite"  placeholder="Write a message..." style="width: 100%;" ></textarea><br>
-    <div class="buttonsdown">
+    
+    <textarea rows="2" cols="20" wrap="hard" class= "text" id="typewrite"  placeholder="Write a message..." value="" style="width: 100%;" ></textarea><br>
+    <div class="buttonsdown"> 
     <input type="file" name="file" id="file" class="inputfile" multiple />
         <label for="file"><i class="material-icons">attach_file</i></label>
         <input type="file" class="photo" id="photo" value="Photo" multiple >
@@ -236,8 +268,11 @@ div.buttonsup { position: static;
         <label for="photo"> <i class="material-icons">photo_camera</i></label>
         <input type="button" class="voice" id="voice" value="Voice">
         <label for="voice"> <i class="material-icons">mic</i></label>
-        <input type="button" class="send" id= "send" value="Send">
-        <label for="send"> <i class="material-icons">send</i></label></div></div>
+        <input type="button" onclick="moveMessage()" class="send" id= "SEND" value="Send" >
+        <!--<script src="pressenter.js"></script> -->
+        
+        <label for="SEND" ><i class="material-icons" >send</i></label>
+        </div></div>
     <div class="col"><h2>User</h2>
      
         <div class="box" >
@@ -260,5 +295,5 @@ div.buttonsup { position: static;
 
 
 </div>
-
+</body>
 </html>
