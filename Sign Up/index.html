@@ -3,18 +3,17 @@
     <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title> Εγγραφείτε στο PigeON! </title>
-            <link rel="stylesheet" href="signup.css">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
+            <title>PigeON!</title>
+            <link rel="stylesheet" href="index.css">
     </head>
     
     <body>
-        <div id="whole">
-            <h1>Εγγραφή στο PigeON!</h1>
+        <div class="login-page">
+            <h1>Συνδεθείτε στο PigeON!</h1>
             <h3 class="logo">Λογότυπο</h3> <!--Να προστεθεί η εικόνα-->
             <hr>
             
-            <form action="" method="POST">
+            <form class="register-form">
                 <input type="text" size="30" maxlength=50 name="ononma" placeholder="Όνοματεπώνυμο"><br>
                 <input type="text" size="30" maxlength=50 name="username" placeholder="Όνομα χρήστη"><br>
                 <input type="email" size="30" maxlength=50 name="email" placeholder="Email"><br>
@@ -26,13 +25,26 @@
                     <label class="container"><input type="radio" name="fylo" value="Female">Γυναίκα</label>
                     <label class="container"><input type="radio" name="fylo" value="Other">Άλλο</label><br>
                 
-                <br><input id="button" type="submit" value="Εγγραφή">
+                    <br><button>Εγγραφή</button>
                 
-        <div id="formlinks">
-            <p>Έχετε ήδη λογαριασμό; <a href="">Συνδεθείτε</a></p> <!--Να προστεθεί το link της σύνδεσης-->
-            <p>Αν εγγραφείτε, δηλώνετε ότι συμφωνείτε με τους <a href="">Όρους χρήσης</a>.</p> <!--Να προστεθεί το link-->
-        </div>
+                <div id="formlinks">
+                    <p class="message">Έχετε ήδη λογαριασμό; <a href="#">Συνδεθείτε</a></p> <!--Να προστεθεί το link της σύνδεσης-->
+                    <p>Αν εγγραφείτε, δηλώνετε ότι συμφωνείτε με τους <a href="">Όρους χρήσης</a>.</p> <!--Να προστεθεί το link-->
+                </div>
             </form>
+
+            <form class="login-form">
+                <input type="email" size="30" maxlength=50 name="email" placeholder="Email"><br>
+                <input type="password" size="30" name="userpassword" placeholder="Κωδικός πρόσβασης"><br>
+    
+                <br><button>Σύνδεση</button><br><br>
+                <a id="forgotpasswd" href="">Ξεχάσατε τον κωδικό πρόσβασης;</a></p> <!--Να προστεθεί το link-->
+                
+                <div id="formlinks">
+                <p class="message">Δεν έχετε λογαριασμό; <a href="#">Εγγραφή</a></p>
+                </div>
+            </form>
+
         </div>
 
         <nav>
@@ -43,6 +55,13 @@
                 <li class="listi"><a href="">Cookies</a></li> <!--Να προστεθεί το link-->
             </ul>
         </nav>
+
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+        <script>
+            $('.message a').click(function(){
+                $('form').animate({height:"toggle", opacity:"toggle"}, "slow");
+            });
+        </script>
 
     </body>
 </html>

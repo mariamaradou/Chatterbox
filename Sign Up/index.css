@@ -15,22 +15,52 @@ body {
     text-align: center;
 }
 
-#whole{
+.login-page{
     max-width: 500px;
     margin-top: .5em;
 }
 
-a:link {
+a {
     text-decoration: none;
-    /*color: #0095f6;
-    color: rgba(var(--d69,0,149,246),1); */
+    color: royalblue;
 }
 
-a:visited{
-    /*color: #00376b;
-    color: rgba(var(--fe0,0,55,107),1); */
-    text-decoration: none;
+.form{
+    position: relative;
+    z-index: 1;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center; 
 }
+
+form button{
+    font-family: "Roboto", sans-serif;
+    background-color: rgb(223, 104, 24);
+    color: white;
+    text-align: center;
+    padding: 10px 30px;
+    margin: auto;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover, .form button:active{
+    background-color: rgb(156, 74, 20);
+}
+
+form .message{
+    margin:15px 0 0;
+    color: aliceblue;
+    font-size: 14px;
+}
+
+
+.register-form{
+    display: none;
+}
+
 
 hr {
     display: block;
@@ -62,15 +92,6 @@ input{
     height: 35px;
 }
 
-#button{ /*Κουμπί "Εγγραφή" */
-    background-color: rgb(223, 104, 24);
-    color: white;
-    text-align: center;
-    padding: 10px 30px;
-    margin: auto;
-    border-radius: 6px;
-    border: none;
-}
 
 #formlinks{
     margin-top: 20px;
