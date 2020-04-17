@@ -132,3 +132,7 @@ nav li{
 .text{
     max-width: 90%;
 }
+
+input[type="radio"]{
+    vertical-align: middle;
+}
