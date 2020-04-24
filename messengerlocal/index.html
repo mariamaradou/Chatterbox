@@ -37,6 +37,54 @@
          document.getElementById('typewrite').value="";}
       }
 
+      function typing() {
+        
+          var typingInfo="yes";
+          socket.emit('typingInfo', {typingNow: typingInfo, user: user});
+      }
+
+      function notTyping () {
+        
+        var typingInfo="no";
+        socket.emit('typingInfo', {typingNow: typingInfo, user: user});
+        
+      }
+
+      socket.on('typing',function(data){
+        var list = document.getElementsByTagName("UL")[0];
+        
+         if(user) { if(data.typingNow==="yes"){
+            console.log(data.typingNow)
+
+             for(i=0; i< list.getElementsByTagName("LI").length; i++){
+                        
+                        if(list.getElementsByTagName("LI")[i].innerHTML===data.user){
+                           
+                            list.getElementsByTagName("LI")[i].style.color="IndianRed";
+                        }
+                        
+                    }
+                    } 
+
+     
+        if(data.typingNow==="no") { 
+            console.log(data.typingNow)
+            for(i=0; i<list.getElementsByTagName("LI").length; i++){
+                if(list.getElementsByTagName("LI")[i].innerHTML===data.user){
+                   list.getElementsByTagName("LI")[i].style.color="black";
+                }
+            }                
+
+
+            } 
+        
+        }
+        
+           }) 
+
+           
+
+
       function enterMessage() {
   var key = window.event.keyCode;
 
@@ -60,17 +108,18 @@
       socket.on('newmsg', function(data) {
          if(user) {
             
-            
+            var messagesound= document.getElementById("myAudio"); 
+           messagesound.play();
             var Value= data.user + ': ' + data.message ; // ONOMA KAI MINIMA
             var p=document.createElement("p");
             var text=document.createTextNode(Value); //apothikeuw to text
             p.appendChild(text);
            document.getElementById("mylist").appendChild(p); 
-
+            
            window.setInterval(function() {
          var elem = document.getElementById("mylist");
           elem.scrollTop = elem.scrollHeight;
-           }, 4000);
+           }, 3000);
 
 
 
@@ -98,12 +147,11 @@
          
             })
             
-                
-              
+                   
             socket.on('statusnew',function(data){
                 if(user){
                     if(data.currentStatus==="offline"){
-                    alert(data.user + " " + "is busy")
+                    
                     
                     var list = document.getElementsByTagName("UL")[0];
                     for(i=0; i< list.getElementsByTagName("LI").length; i++){
@@ -117,7 +165,7 @@
                     console.log(data.currentStatus)  }
                 
                 
-                    else { alert(data.user + " " + "is available");
+                    else { 
                     var list = document.getElementsByTagName("UL")[0];
                     for(i=0; i< list.getElementsByTagName("LI").length; i++){
                         
@@ -163,7 +211,19 @@
          
             }  
         
-     
+            socket.on('disconnection',function(data){ 
+                
+                
+                var list = document.getElementsByTagName("UL")[0];
+                 for(i=0; i< list.getElementsByTagName("LI").length; i++){
+                        
+                        if(list.getElementsByTagName("LI")[i].innerHTML=== data){
+                            console.log(list.getElementsByTagName("LI")[i].innerHTML)
+                            list.removeChild(list.getElementsByTagName("LI")[i]);
+                        }
+                        
+                    } })
+            
     
 
    </script>
@@ -383,18 +443,23 @@ div.buttonsup { position: static;
             }
 
             ul.onusers {
-               width: 100%;
+                width: 100%;
                overflow: scroll;
+               
                
             }
 
-           ul li { font-size: 25px;
-                  
+           ul li { 
+                  font-size: 1.5em;
                   font-weight: bold;
                   margin-top: 7px;
-                  opacity: initial}
+                  opacity: initial;
+                  }
             
-           p {font-size: 25px;}
+            
+           p {flex: 70%;
+           width: 70%;
+           display: flex;}
     </style>
 <title>Messenger</title>
 </head>
@@ -446,7 +511,7 @@ div.buttonsup { position: static;
     </div>   
     <div class="box" id="Messagebox"> 
         <div id="mylist" class="mylist"  >
-
+        <div id="type-container"></div>
         </div></div>
     
     
@@ -458,12 +523,16 @@ div.buttonsup { position: static;
          Let me chat!
       </button>
       </div>
-    <textarea rows="2" cols="20" wrap="hard" class= "text" id="typewrite" onkeypress="enterMessage();" placeholder="Write a message..." value="" style="width: 100%;" ></textarea><br>
+    <textarea rows="2" cols="20" wrap="hard" class= "text" id="typewrite" onkeypress="enterMessage();" onkeydown="typing()" onkeyup="notTyping();"placeholder="Write a message..." value="" style="width: 100%;" ></textarea><br>
     <div class="buttonsdown"> 
     <input type="file" name="file" id="file" class="inputfile" multiple />
         <label for="file"><i class="material-icons">attach_file</i></label>
         <input type="file" class="photo" id="photo" value="Photo" multiple >
-        
+        <audio id="myAudio">
+            <source src="https://actions.google.com/sounds/v1/cartoon/pop.ogg" type="audio/ogg">
+           
+            Your browser does not support the audio element.
+          </audio>
     
         <label for="photo"> <i class="material-icons">photo_camera</i></label>
         <input type="button" class="voice" id="voice" value="Voice">
