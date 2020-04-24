@@ -14,10 +14,11 @@ app.get('/', function(req, res) {
 users = [];
 io.on('connection', function(socket) {
    console.log('A user connected');
+   var userId;
    socket.on('setUsername', function(data) {
       
       console.log(data);
-      
+      userId=data;
       if(users.indexOf(data) > -1) {
          //send data with socket.emit
          socket.emit('userExists', data + ' username is taken! Try some other username.');
@@ -46,6 +47,9 @@ io.on('connection', function(socket) {
     
  })
 
+socket.on('typingInfo',function(data) {
+   io.sockets.emit('typing',data);
+})
 /* app.set('view engine', hbs);
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -57,7 +61,11 @@ app.post('/send',(req,res) => {
    console.log(req.body);
 }); */
 
+socket.on('disconnect', function(data) {
+   console.log('A user disconnected'); 
 
+   io.sockets.emit('disconnection', userId);
+  })
 
 });
 
