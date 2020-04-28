@@ -7,6 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+
 <html>
    <head>
       <title>Chatterbox</title>
@@ -125,22 +126,48 @@
             
            
             
-           document.getElementById("mylist").appendChild(p);
+           
            if(user===data.user) {
+               var pu=document.createElement("p");
+               var valueu=" ";
+               var textu=document.createTextNode(valueu);
+               pu.appendChild(textu);
                 console.log(user)
-                p.style.justifyContent = "flex-start";
+                document.getElementById("mylist").appendChild(p);
+                document.getElementById("userslist").appendChild(pu);
+                $(Messagebox).ready(function() { 
+            
+            $(Messagebox).scrollTop($(mylist).height()); 
+        
+    });
             }
-            else {p.style.justifyContent = "flex-end"}
+            else {
+                var elseu=document.createElement("p");
+               var valueelseu="";
+               var textelseu=document.createTextNode(valueelseu);
+               elseu.appendChild(textelseu);
+                
+                document.getElementById("userslist").appendChild(p);
+                document.getElementById("mylist").appendChild(elseu);
+                $(document).ready(function() { 
+            
+            $(Messagebox).scrollTop($(userslist).height()); 
+        
+    });}
            
 
             for( i=0; i<n; i++){
                 
             }
-           window.setInterval(function() {
-         var elem = document.getElementById("mylist");
+           /* window.setInterval(function() {
+         var elem = document.getElementsById("userslist");
+            
           elem.scrollTop = elem.scrollHeight;
-           }, 3000);
-
+          
+           }, 3000);*/
+          
+        
+     
 
 
             }
@@ -330,7 +357,8 @@
     background-color: #67e6f1; }
 
 
-    #Messagebox {height: 359px;}
+    #Messagebox {height: 359px;
+    overflow: scroll;}
 
     #typewrite {margin-right: 10px;}
 
@@ -343,9 +371,9 @@
         
     }
 
-    #onlineFriends {background-color:#9fedd7;
-       
-   }
+    #onlineFriends {background-color:#9fedd7; }
+
+    
 
    hr {-moz-border-bottom-colors: none;
         
@@ -356,24 +384,26 @@
   border-style: solid none;
   border-width: 1px 0;}
 
-  #mylist {   
-                width: 100%;
+  /* #mylist {   
+                width: 50%;
                 font-size: 15px;
                 overflow: scroll;
                 height:359px;
                 
                 flex-wrap: wrap;
                 
-                }
+                } */
+
+
                
 
-                div.mylist::-webkit-scrollbar {
+               div.messagebox::-webkit-scrollbar {
                 width: 8px;
                 height: 5px;
                 padding-top: 10px;
             }
 
-            div.mylist::-webkit-scrollbar-thumb {
+           div.messagebox::-webkit-scrollbar-thumb {
                 
                 border-radius: 20px;
                 background: #c2c9d2;
@@ -405,11 +435,15 @@
                   }
             
             
-          #mylist> p {
-           
+          #mylist> p { min-height:20px;
+           word-wrap: break-word;
           width: 100%;
           }
            
+        #userslist>p {min-height: 20px;
+        word-wrap: break-word;
+          width: 100%;
+        }
             
     </style>
 <title>Messenger</title>
@@ -476,10 +510,12 @@
                     <label for="Videocall"><i class="material-icons">video_call</i></label>
                 </div>   
                 <hr>
-                <div class="box" id="Messagebox"> 
-                    <div id="mylist" class="mylist"  ></div>
+                <div class="messagebox container-fluid" id="Messagebox"> 
                     
-                </div>
+                        <div class="row">
+                    <div id="mylist" class="col-sm-6"  ></div>
+                    <div id="userslist" class="col-sm-6"></div>
+                </div></div>
                 
                 
                 <div id = "error-container"></div>
