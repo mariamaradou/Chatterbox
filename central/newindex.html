@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>  
+        <meta charset="UTF-8">
+        <title>Chatterbox</title>
+        <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="newindex.css">
+        <script src="newindex.js"></script>
+        <script src = "/socket.io/socket.io.js"></script>
+        
+   </head>
+
+
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-2" id="user" >
+                    <h2 class="text-center">Me</h2>
+                    <hr>
+                    <div class="AboutMe">
+                        <div class="profileimage text-center" >
+                        
+                            <!--<form action="/uploadProfilePicture" 
+                            enctype="multipart/form-data" method="POST"> -->
+                            <label for="filephoto" style="cursor: pointer;">    
+                            <img id="photoimage" class="img-circle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAANlBMVEX////Fx8nBw8Xd3uDi4+TGyMr6+vry8/PLzc/t7u7k5ebg4eL39/jo6erJy8309PXY2dvR09QXDCJbAAAEXElEQVR4nO2d2XarMAxFy1CmMOX/f/ZC4FKSUIJtCR26zn7qQxdlL8uyLWz364sQQgghhBBCLkWWN9UtSZJb1eSZ9ctIkzV9EQ9EE+OPRd/8Gc0uaRe3NXHcJp31ywlQtVt2i2VbWb9gGFm/pzdL9teN1iN+l3ZMj/k9HFPrl/Wg2+1/b4rt5XLOzcXv4XizfmU3ClfBQbGwfmkHame9idr6xY+Suzfg3Iyl9asfo/QVvIpigOA1FL1DdFbMrQU+kYUJDoro6eY7UHDAWmGfe7hgdLeW2KMKjdER5ElqcCecFXG7YiEiGEWw87dGpgmHRkRd+Av5jYrWKtvc5AyjxFpmE6kYHYFsxFRQELMRRQURZzZBS4p34sZa6A2J+doavDFRtgmHRkSroYqN9gtoo750kOItMcSbEG1IDKxdbBpilWwqccEowlom9gqGWB1RamW45tta6gn5bgiWaoTKFy+GSMWMWsUQqTisMFiADRfCC4vZEGl5QUMa0tCev59LdcZDqC02KoZQdQwFQax5qUIRA63aligY9tZST8iX2rAGC5XlE9Ti6UtkD8Yr1kovyHdErG6oMG+DmtE8EBYEGw1HpMMULUjFp6ZQRZoZ2ZIp1oRmQjTXgA33M62gIVa9+z+CjYjZhJILDMReOCKWTrFW92sSIUW8sXBBJtlgppkJkTjFjdERgW3QyJugRw4eqtwB6+P2BqGTN9SBYkVYtkHOMgshipcQDFFsrV/9KHe/dHOlU6ReGTUGnsq841EhRl1P/EbtdFh9PK4OVgA+gNN59audVZ/IDiec+A71qdCB/JBjXADW1Q7z2TG+X9lvJEt3ck78nV41Pp+o0/vGJUNxXKTXy5+/k1d98bgf6kFU9NXVg3ObrK67uv4TgUkIIYQQQsCp87KpqtSdqmrKHHu1sVo/HFjab6wWodcdZVJ4em27FgnUvrayF7T7sexBJDsNvUXS/ntw6XHLpZNkYduQpWNl28uxtXPslNtvcSyMYjX8k/1xR4vPUuVpehOnh6rU9qfDxCffq3RSD3xSPPMLse89waGcNmlVOU95hLM2f5sJnqXY2Qmes6tP5QoMB0X9jx4KR7icUN81pXFY1A3lvYsO/9FBC93LTVVOpbuievRS47IkdxQnNwqnfX1Q3B9mrbagJSh5jW4YWnvEMGJ0ROmAqciF6zIojRjWs5k1KjMblVt2fFE56a1xNaI/GqUppCZUyTVQQaoSphr3s4QgX3rDmJL+ID85xQpShY5oWH7aRrwoBTShmRBfYKAlGvlUY1+feUW6XoOWSuWTqbXPBsKGaIlGfrig4fnQkIY0tIeGNKShPTSkIQ3toSENafjy13yPyXx45t5DTzWsygHhD6jx+My9zR9nGk7lZ2nD8Zl72wRpSEMa0pCGNKQhDWlIQxrSkIY0pCENaUhDGtKQhjSkIQ1pSEMa0pCGNKTh74aygucbJnvUH3/Dg4fhp18ghBBCCCGEkJP4B3ymXHSpa16yAAAAAElFTkSuQmCC" />
+                            </label>
+                        
+                            <input id="filephoto"  type="file"  accept="image/*" onchange="getImage(event)" />
+                            <input type="submit" value="submit"> 
+                            <!--</form> -->
+                        </div> 
+                        <div style="margin-top: 5px;">
+                            <p style="font-weight:800;"><i> I believe in:</i> </p>
+                            <p style="font-weight:800;"> <i> Age:</i></p>
+                            <p style="font-weight:800;"> <i> Gender:</i></p>
+                            <p style="font-weight:800;"> <i> Interests:</i></p>
+                        </div>     
+                    </div>
+                    <h3>Status</h3>
+                    <div class="status">
+                        <!--<form method="POST" action="/send">-->
+                        <div class="online"><input type="radio" id="online" class="online" name="status" value="online" onclick="setOnline()" checked> 
+                            <label for="online" class="status">Available</label></div>
+                        <div class="offline"><input type="radio" id="offline" class="offline" name="status" value="offline" onclick="setOffline()"> 
+                            <label for="offline" class="status">Busy</label></div>
+                            <!--<button class="submit" type="submit" value="Submit">Enter</button>-->
+                            <!--</form>-->
+                    </div>
+                </div>
+
+
+
+
+
+                <!--ΑΝΤΑΛΛΑΓΗ ΜΗΝΥΜΑΤΩΝ-->
+                <div class="col-sm-8" id="messageExchange">
+                
+                    <div class="buttonsup" >
+                        <input type="button" class="settings" id="Settings" value="Settings" >
+                        <label for="Settings"><i class="material-icons">settings</i></label>
+                        <input type="button" class="call" id="Call" value="Call">
+                        <label for="Call"><i class="material-icons">call</i></label>
+                        <input type="button" class="videocall" id="Videocall" value="Videocall">
+                        <label for="Videocall"><i class="material-icons">video_call</i></label>
+                    </div>   
+                    <hr>
+                    <div class="messagebox container-fluid" id="Messagebox"> 
+                        <div class="row">
+                            <div id="mylist" class="col-sm-6"  ></div>
+                            <div id="userslist" class="col-sm-6"></div>
+                    </div>
+                </div>
+                
+                
+                <div id = "error-container"></div>
+                <div id="chatting">
+                    <input id = "name" type = "text" name = "name" value = "" placeholder = "Enter your name!">
+                    <button type = "button" name = "button" onclick = "setUsername()">Let me chat!</button>
+                </div>
+
+                <audio id="myAudio">
+                    <source src="https://actions.google.com/sounds/v1/cartoon/pop.ogg" type="audio/ogg">
+                    Your browser does not support the audio element.
+                </audio>
+
+                <textarea rows="2" cols="20" wrap="hard" class= "text" id="typewrite" onkeypress="enterMessage();" onkeydown="typing()" onkeyup="notTyping();"placeholder="Write a message..." value="" style="width: 100%;" ></textarea><br>
+                <div class="buttonsdown"> 
+                    <input type="file" name="file" id="files" class="inputfile" multiple />
+                        <label for="files"><i class="material-icons">attach_file</i></label>
+                        <input type="file" name="photofile" class="photofile" id="Photo" value="Photo" multiple >
+                        <label for="Photo"> <i class="material-icons">photo</i></label>
+                        <input type="button" class="voice" id="voice" value="Voice">
+                        <label for="voice"> <i class="material-icons">mic</i></label>
+                        <input type="button" onclick="sendMessage()" class="send" id= "SEND" value="Send" >
+                        <!--<script src="pressenter.js"></script> -->
+                        <label for="SEND" ><i class="material-icons" >send</i></label>
+                </div>
+
+            </div>
+            <div class="col-sm-2" id="onlineFriends" >
+                <h2 class="text-center">Online</h2>  
+                <hr>      
+                <div class="box" id="OnlineUsers">
+                    <ul id="usersonline" class="onusers"  ></ul>   
+                </div>
+            </div>
+               
+               
+            </div>
+        </div>
+                
+    </body>
+</html>
