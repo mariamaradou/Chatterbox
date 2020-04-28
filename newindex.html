@@ -123,7 +123,9 @@
             var p=document.createElement("p");
             var text=document.createTextNode(Value); //apothikeuw to text
             p.appendChild(text);
-            
+            p.style.border="thick solid #026670";
+            p.style.backgroundColor="#026670";
+            p.style.borderRadius="25px";
            
             
            
@@ -134,6 +136,7 @@
                pu.appendChild(textu);
                 console.log(user)
                 document.getElementById("mylist").appendChild(p);
+               
                 document.getElementById("userslist").appendChild(pu);
                 $(Messagebox).ready(function() { 
             
@@ -436,11 +439,13 @@
             
             
           #mylist> p { min-height:20px;
+            color:azure;
            word-wrap: break-word;
           width: 100%;
           }
            
         #userslist>p {min-height: 20px;
+        color:azure;
         word-wrap: break-word;
           width: 100%;
         }
