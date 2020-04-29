@@ -1,15 +1,26 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var multer = require('multer');
+
+var express = require('express');
+
+
+/*var multer = require('multer');
 const path = require("path");
 const hbs=require('hbs');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser'); */
 
 
-app.get('/', function(req, res) {
-   res.sendfile('index.html');
-});
+/*app.get('/', function(req, res) {
+   res.sendfile('newindex.html');
+ 
+   
+}); */
+
+
+app.use(express.static('public'));
+
+
 
 users = [];
 io.on('connection', function(socket) {
@@ -33,6 +44,7 @@ io.on('connection', function(socket) {
    socket.on('msg', function(data) {
       //Send message to everyone
       io.sockets.emit('newmsg', data);
+      console.log(data)
    })
 
   /* socket.on('profilepic',function(data) {
