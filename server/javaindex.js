@@ -79,7 +79,7 @@
         }) 
 
         // AUDIO RECORDING
-        navigator.mediaDevices.getUserMedia({audio:true})
+       /* navigator.mediaDevices.getUserMedia({audio:true})
         .then(stream => {handlerFunction(stream)})
       
       
@@ -96,7 +96,7 @@
                   
                 }
               }
-            }
+            }  
                   function sendData(data) {}
       
          function mouseDown(e) {
@@ -121,7 +121,7 @@
             
             
             socket.emit('msg', {message: 'sound', user: user}); 
-        }
+        } */
 
    function enterMessage() {
 var key = window.event.keyCode;
@@ -170,13 +170,13 @@ else {
            
            
           function getSound() { 
-          messageRec.play();}
+          messageRec.play();} 
 
            }
 
            
            
-           console.log(messageRec.src)*/
+           console.log(messageRec.src) */
 
         
         if(user===data.user) {
@@ -222,15 +222,7 @@ else {
  });}
         
 
-         for( i=0; i<n; i++){
-             
-         }
-        /* window.setInterval(function() {
-      var elem = document.getElementsById("userslist");
-         
-       elem.scrollTop = elem.scrollHeight;
-       
-        }, 3000);*/
+        
        
      
   
