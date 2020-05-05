@@ -2,6 +2,7 @@
 
    var socket = io();
    var l;
+   var textmessage;
 
    function setUsername() {
       socket.emit('setUsername', document.getElementById('name').value);
@@ -79,49 +80,8 @@
      
         }) 
 
-        // AUDIO RECORDING
-       /* navigator.mediaDevices.getUserMedia({audio:true})
-        .then(stream => {handlerFunction(stream)})
-      
-      
-              function handlerFunction(stream) {
-              rec = new MediaRecorder(stream);
-              rec.ondataavailable = e => {
-                audioChunks.push(e.data);
-                if (rec.state == "inactive"){
-                  let blob = new Blob(audioChunks,{type:'audio/mpeg-3'});
-                  recordedAudio.src = URL.createObjectURL(blob);
-                  console.log(blob);
-                 
-                  recordedAudio.controls=true;
-                  recordedAudio.autoplay=true; 
-                  sendData(blob)
-                  
-                }
-              }
-            }  
-                  function sendData(data) {}
-      
-         function mouseDown(e) {
-            console.log('I was clicked')
-            record.disabled = true;
-           
-            record.disabled=false;
-            audioChunks = [];
-            rec.start();
-          }
-          function mouseUp(e) {
-            console.log("I was clicked")
-            record.disabled = false;
-            stop.disabled=true;
-           
-            rec.stop();
-          
-            
-          }
-
-         */ 
-        var sound;
+    
+        
 function mouseDown(){
         var constraints = { audio: true };
 navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
@@ -200,15 +160,33 @@ else {
         
         
          var Value= data.user + ': ' + data.message ; // ONOMA KAI MINIMA
+       var str=data.user.length;
+        
+       
         
          var p=document.createElement("p");
+         p.setAttribute("class","messages");
+         length=document.getElementsByClassName("messages").length;
+         console.log(length)
+        
+         textmessage=true;
          var text=document.createTextNode(Value); //apothikeuw to text
          p.appendChild(text);
-         p.style.border="thick solid #026670";
-         p.style.backgroundColor="#026670";
-         p.style.borderRadius="25px";
+         
+         p.style.fontWeight="545";
+         
+         p.style.borderRadius="25px"; 
          
         if(user===data.user) {
+            if (checkBox.checked == true){
+                p.style.backgroundColor="#9e7bb0";
+                p.style.border="thick solid #9e7bb0";
+                p.style.color="black";
+            }
+            else {p.style.backgroundColor="#026670";
+            p.style.border="thick solid #026670";
+            p.style.color="white";} 
+            
             
             var div=document.createElement("div");
             var valueu="";
@@ -242,7 +220,16 @@ else {
       sound=false;
          }
          else {
-          
+            if (checkBox.checked == true){
+                p.style.backgroundColor="#af86c4";
+                p.style.border="thick solid #af86c4";
+                p.style.color="black";
+            }
+            else {p.style.backgroundColor="#026670";
+            p.style.border="thick solid #026670";
+            p.style.color="white";} 
+            textmessage=true;
+            
             var elseu=document.createElement("div");
             var valueelseu="";
             var textelseu=document.createTextNode(valueelseu);
@@ -271,8 +258,7 @@ else {
          $(Messagebox).scrollTop($(userslist).height()); 
      
  }); }
-        sound=false;
-        console.log(sound)
+        
          }
           })
 
@@ -369,16 +355,100 @@ else {
          function setLarge(){ var n=document.getElementById("Messagebox"); 
                             n.style.fontSize="23px"}
 
-            function nightMode() { var checkBox = document.getElementById("checkBox");
+            function nightMode() { 
+            var checkBox = document.getElementById("checkBox");
            var online=document.getElementById("onlineFriends");
            var messagebox=document.getElementById("messageExchange");
+           var user=document.getElementById("user");
+           var files=document.getElementById("Files");
+           var photos=document.getElementById("Photos");
+           var record=document.getElementById("record");
+           var send=document.getElementById("Send");
+           var settings=document.getElementById("SETTINGS");
+           var call=document.getElementById("CALL");
+           var videocall=document.getElementById("VIDEOCALL");
+           var typewrite=document.getElementById("typewrite");
+           
+           var li=document.getElementById("usersonline");
+           console.log(textmessage)
+           if( textmessage==true){
+           var text=document.getElementsByClassName("messages");}
+           
             if (checkBox.checked == true){
-              
-              messagebox.style.backgroundColor="#2E4053";
+                 li.style.color="c2c7cc";
+                 if(textmessage==true){
+                    console.log(textmessage)
+                    
+                    for (var i = 0; i < text.length; i++) {
+                        text[i].style.backgroundColor="#9e7bb0";
+                        text[i].style.borderColor="#9e7bb0";
+                        text[i].style.color="black";
+                        text[i].style.color="black";
+                    }
+                   }
+                   
+                settings.style.backgroundColor="#9e7bb0";
+                call.style.backgroundColor="#9e7bb0";
+                videocall.style.backgroundColor="#9e7bb0";
+                typewrite.style.borderColor="#9e7bb0";
+                files.style.backgroundColor="#9e7bb0";
+                photos.style.backgroundColor="#9e7bb0";
+                record.style.backgroundColor="#9e7bb0";
+                send.style.backgroundColor="#9e7bb0";
+                user.style.backgroundColor="#1d2936"
+              online.style.backgroundColor="#1d2936"
+              messagebox.style.backgroundColor="#141d26";
+              user.style.color="#c2c7cc";
+              online.style.color="#c2c7cc";
+                
+              $(document).ready(function(){
+                $(".Label").hover(function(){
+                  $(this).css("background-color", "#644375");
+                  }, function(){
+                  $(this).css("background-color", "#9e7bb0");
+                });
+              });
+
+
             } else {
+                $(document).ready(function(){
+                    $(".Label").hover(function(){
+                      $(this).css("background-color", "#04b5a4");
+                      }, function(){
+                      $(this).css("background-color", "#098792");
+                    });
+                  });
+                 
+                typewrite.style.borderColor="#098792";
+                settings.style.backgroundColor="#098792";
+                if(textmessage==true){
+                    for (var i = 0; i < text.length; i++) {
+                        text[i].style.backgroundColor="#098792";
+                        text[i].style.borderColor="#098792";
+                        text[i].style.color="white";
+                        text[i].style.color="white";
+                    }
+                    
+                   }
+                
+                call.style.backgroundColor="#098792";
+                videocall.style.backgroundColor="#098792";
+                files.style.backgroundColor="#098792";
+                photos.style.backgroundColor="#098792";
+                record.style.backgroundColor="#098792";
+                send.style.backgroundColor="#098792";
+                user.style.color="black";
+                online.style.color="black";
+                user.style.backgroundColor="#FCE181";
                 online.style.backgroundColor="#9fedd7";
                 messagebox.style.backgroundColor="#FEF9C7";
             }}
+
+            function soundOnOff(){
+                if (checkBoxtwo.checked == true){
+                document.getElementsByTagName("audio")[0].muted=true;}
+                else{document.getElementsByTagName("audio")[0].muted=false;}
+            }
      
          socket.on('disconnection',function(data){ 
              
