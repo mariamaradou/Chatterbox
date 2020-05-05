@@ -9,9 +9,7 @@
 <script src = "socket.io/socket.io.js"></script>
 <script src="javanewindex.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Caveat+Brush&family=Delius&family=Nanum+Pen+Script&family=Permanent+Marker&family=Righteous&display=swap" rel="stylesheet">
-<html>
-   <head>
-      <title>Chatterbox</title>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;700&family=Delius+Unicase:wght@700&family=Open+Sans:wght@300&display=swap" rel="stylesheet">      <title>Chatterbox</title>
       <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAQEBARAQEBAQEBAQAAAAAAAAAAABEBAQAQEAARAAEBAQEQAQEAAREBARABAQABAAAQEBEQEQEAAAAAAQAAAAAAAAAAAQEBAQEBAQEAEBAQEBAQEBAAAAAAAAAAD//wAA//8AAP//AAD//wAAqqoAAFVVAAD//wAAla4AAHVNAABxTQAAd6gAAJf9AAD//wAAVVUAAKqqAAD//wAA" rel="icon" type="image/x-icon" />
      
    </head>
@@ -44,7 +42,7 @@
                         max-height:120px;
                         margin-top: 10px;}
 
-    .AboutMe { height: 386px; 
+    .AboutMe { height: 420px; 
                 word-wrap: break-word;}
 
     div.buttonsup { position: static;
@@ -78,7 +76,7 @@
 
     
     }
-
+    
     label.status {font-family: Arial, Helvetica, sans-serif;
            
             font-size: 18px;
@@ -131,7 +129,9 @@
   -moz-border-top-colors: none;
   border-color: rgba(80, 79, 79, 0.075) -moz-use-text-color rgb(66, 64, 64);
   border-style: solid none;
-  border-width: 1px 0;}
+  border-width: 1px 0;
+  margin-top: 10px;
+  margin-bottom: 10px;}
 
   audio{ width:100%;
   height: 30px;}
@@ -173,37 +173,31 @@
             ul {word-wrap: break-word;}
 
            ul li { 
-                  font-size: 15px;
+                  font-size: 23px;
                   font-weight: bold;
                   margin-top: 7px;
                   opacity: initial;
                   }
             
             
-          #mylist> p { min-height:20px;
-            color:azure;
-           word-wrap: break-word;
-           max-width:100%;
-           max-width:720px;
-         
-          }
+          
            
-           #mylist> audio  { min-height:20px;
+           #mylist> audio,  #userslist> audio { min-height:20px;
             color:azure;
            word-wrap: break-word;
            max-width:60%;
            
          
           }
-        #userslist>p, #userslist>audio {min-height: 20px;
-        color:azure;
+        #userslist>p, #userslist>p {min-height: 20px;
+        
         max-width:720px;
         word-wrap: break-word;
           max-width: 100%;
         }
 
-        h2{font-family: 'Righteous', cursive;
-font-family: 'Permanent Marker', cursive;}
+        h2{font-family: 'Delius', cursive;
+        font-weight: bold;}
 
         /*.grid-item {display:grid;
             grid-template-rows: auto;
@@ -316,13 +310,13 @@ input[type=checkbox]:checked + .slider:before {
                 
                 
                 </div>
-                    <h3 style="font-family: 'Delius', cursive; ">Status</h3>
+                    <hr>
                     <div class="status">
                     <!--<form method="POST" action="/send">-->
                     <div class="online"><input type="radio" id="online" class="online" name="status" value="online" onclick="setOnline()" checked> 
-                    <label for="online" class="status" style="font-family: 'Delius', cursive;">Available</label></div>
+                    <label for="online" class="status" style="font-family: 'Open Sans', sans-serif;">Available</label></div>
                     <div class="offline"><input type="radio" id="offline" class="offline" name="status" value="offline" onclick="setOffline()"> 
-                    <label for="offline" class="status" style="font-family: 'Delius', cursive; ">Busy</label></div>
+                    <label for="offline" class="status" style="font-family: 'Open Sans', sans-serif; ">Busy</label></div>
                     <!--<button class="submit" type="submit" value="Submit">Enter</button>-->
                     <!--</form>-->
                 </div>
@@ -334,11 +328,11 @@ input[type=checkbox]:checked + .slider:before {
                 <div class="buttonsup" >
                     
                     <input type="button" class="settings" id="Settings" value="Settings" >
-                    <label for="Settings"><i class="material-icons"  data-toggle="modal" data-target="#myModal">settings</i></label>
+                    <label for="Settings" id="SETTINGS" class="Label"><i class="material-icons"  data-toggle="modal" data-target="#myModal">settings</i></label>
                     <input type="button" class="call" id="Call" value="Call">
-                    <label for="Call"><i class="material-icons">call</i></label>
+                    <label for="Call" id="CALL" class="Label"><i class="material-icons">call</i></label>
                     <input type="button" class="videocall" id="Videocall" value="Videocall">
-                    <label for="Videocall"><i class="material-icons">video_call</i></label>
+                    <label for="Videocall" id="VIDEOCALL" class="Label"><i class="material-icons">video_call</i></label>
                 </div>   
                 <hr>
                 <div class="messagebox grid-container" id="Messagebox"> 
@@ -364,15 +358,15 @@ input[type=checkbox]:checked + .slider:before {
                 <textarea rows="2" cols="20" wrap="hard" class= "text" id="typewrite" onkeypress="enterMessage();" onkeydown="typing()" onkeyup="notTyping();"placeholder="Write a message..." value="" style="width: 100%;" ></textarea><br>
                 <div class="buttonsdown"> 
                 <input type="file" name="file" id="files" class="inputfile" multiple />
-                    <label for="files"><i class="material-icons">attach_file</i></label>
+                    <label for="files" class="Label" id="Files"><i class="material-icons">attach_file</i></label>
                     <input type="file" name="photofile" class="photofile" id="Photo" value="Photo" multiple >
-                     <label for="Photo"> <i class="material-icons">photo</i></label>
+                     <label for="Photo" class="Label" id="Photos"> <i class="material-icons">photo</i></label>
                     <input type="button"   class="voice" id="voice" value="Voice">
-                    <label for="voice" id="record" onmouseup="mouseUp()" onmousedown="mouseDown()"> <i class="material-icons">mic</i></label>
+                    <label for="voice" class="Label" id="record" onmouseup="mouseUp()" onmousedown="mouseDown()"> <i class="material-icons">mic</i></label>
                     <input type="button" onclick="sendMessage()" class="send" id= "SEND" value="Send" >
                     <!--<script src="pressenter.js"></script> -->
                     
-                    <label for="SEND" ><i class="material-icons" >send</i></label>
+                    <label for="SEND" id="Send" class="Label"><i class="material-icons" >send</i></label>
                     <div id="audiolist">
                      </div>
                     
@@ -413,13 +407,17 @@ input[type=checkbox]:checked + .slider:before {
           <h4 class="modal-title">Settings</h4>
         </div>
         <div class="modal-body">
-          <p>Text size:</p>
-          <input type="radio" id="small" name="size" onclick="setSmall()" checked>Small
-          <input type="radio" id="medium" name="size" onclick="setMedium()">Medium
-          <input type="radio" id="large" name="size" onclick="setLarge()">Large
+          <b>Text size:</b>
+          <input type="radio" id="small" name="size" onclick="setSmall()" checked>Small      
+          <input type="radio" id="medium" name="size" onclick="setMedium()">Medium    
+          <input type="radio" id="large" name="size" onclick="setLarge()">Large    
           <br><br>
-          Nightmode:<label class="switch">
+          <b>Nightmode:</b> <label class="switch">
             <input type="checkbox" id="checkBox" onclick="nightMode()">
+            <span class="slider round"></span>
+          </label><br><br>
+          <b>Sound:</b> <label class="switch">
+            <input type="checkbox" id="checkBoxtwo" onclick="soundOnOff()">
             <span class="slider round"></span>
           </label>
         </div>
