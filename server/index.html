@@ -8,11 +8,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src = "socket.io/socket.io.js"></script>
 <script src="javanewindex.js"></script>
-
-
-<html>
-   <head>
-      <title>Chatterbox</title>
+<link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Caveat+Brush&family=Delius&family=Nanum+Pen+Script&family=Permanent+Marker&family=Righteous&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;700&family=Delius+Unicase:wght@700&family=Open+Sans:wght@300&display=swap" rel="stylesheet">      <title>Chatterbox</title>
+      <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEBAQEBARAQEBAQEBAQAAAAAAAAAAABEBAQAQEAARAAEBAQEQAQEAAREBARABAQABAAAQEBEQEQEAAAAAAQAAAAAAAAAAAQEBAQEBAQEAEBAQEBAQEBAAAAAAAAAAD//wAA//8AAP//AAD//wAAqqoAAFVVAAD//wAAla4AAHVNAABxTQAAd6gAAJf9AAD//wAAVVUAAKqqAAD//wAA" rel="icon" type="image/x-icon" />
      
    </head>
   
@@ -44,7 +42,7 @@
                         max-height:120px;
                         margin-top: 10px;}
 
-    .AboutMe {height: 386px;
+    .AboutMe { height: 420px; 
                 word-wrap: break-word;}
 
     div.buttonsup { position: static;
@@ -78,7 +76,7 @@
 
     
     }
-
+    
     label.status {font-family: Arial, Helvetica, sans-serif;
            
             font-size: 18px;
@@ -100,15 +98,18 @@
     background-color: #67e6f1; }
 
 
-    #Messagebox {height: 359px;
+    #Messagebox { height: 359px; 
     overflow: scroll;
     display: grid;
     grid-template-columns: auto auto;
+    
+    
     }
 
     #typewrite {margin-right: 10px;}
 
-    #OnlineUsers {height: 502px;}
+    #OnlineUsers {height: 502px; 
+    }
 
     #messageExchange { background-color: #FEF9C7;
     }
@@ -128,17 +129,13 @@
   -moz-border-top-colors: none;
   border-color: rgba(80, 79, 79, 0.075) -moz-use-text-color rgb(66, 64, 64);
   border-style: solid none;
-  border-width: 1px 0;}
+  border-width: 1px 0;
+  margin-top: 10px;
+  margin-bottom: 10px;}
 
-  /* #mylist {   
-                width: 50%;
-                font-size: 15px;
-                overflow: scroll;
-                height:359px;
-                
-                flex-wrap: wrap;
-                
-                } */
+  audio{ width:100%;
+  height: 30px;}
+
 
 
                
@@ -173,29 +170,105 @@
                
             }
 
+            ul {word-wrap: break-word;}
+
            ul li { 
-                  font-size: 1.5em;
+                  font-size: 23px;
                   font-weight: bold;
                   margin-top: 7px;
                   opacity: initial;
                   }
             
             
-          #mylist> p { min-height:20px;
+          
+           
+           #mylist> audio,  #userslist> audio { min-height:20px;
             color:azure;
            word-wrap: break-word;
-           max-width: 720px;
-          width: 100%; 
-          }
+           max-width:60%;
            
-        #userslist>p {min-height: 20px;
-        color:azure;
+         
+          }
+        #userslist>p, #userslist>p {min-height: 20px;
+        
         max-width:720px;
         word-wrap: break-word;
-          width: 100%;
+          max-width: 100%;
         }
 
-       
+        h2{font-family: 'Delius', cursive;
+        font-weight: bold;}
+
+        /*.grid-item {display:grid;
+            grid-template-rows: auto;
+            grid-template-columns: auto;
+            max-width: 100%;
+            max-height:40px;
+            
+            word-wrap: break-word;
+                    }*/
+
+       div.container {height:100px;}
+
+       .switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 15px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input[type=checkbox]:checked + .slider {
+  background-color: #2196F3;
+}
+
+input[type=checkbox]:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input[type=checkbox]:checked + .slider:before {
+  -webkit-transform: translateX(21px);
+  -ms-transform: translateX(21px);
+  transform: translateX(21px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
             
     </style>
 <title>Messenger</title>
@@ -237,13 +310,13 @@
                 
                 
                 </div>
-                    <h3>Status</h3>
+                    <hr>
                     <div class="status">
                     <!--<form method="POST" action="/send">-->
                     <div class="online"><input type="radio" id="online" class="online" name="status" value="online" onclick="setOnline()" checked> 
-                    <label for="online" class="status">Available</label></div>
+                    <label for="online" class="status" style="font-family: 'Open Sans', sans-serif;">Available</label></div>
                     <div class="offline"><input type="radio" id="offline" class="offline" name="status" value="offline" onclick="setOffline()"> 
-                    <label for="offline" class="status">Busy</label></div>
+                    <label for="offline" class="status" style="font-family: 'Open Sans', sans-serif; ">Busy</label></div>
                     <!--<button class="submit" type="submit" value="Submit">Enter</button>-->
                     <!--</form>-->
                 </div>
@@ -255,11 +328,11 @@
                 <div class="buttonsup" >
                     
                     <input type="button" class="settings" id="Settings" value="Settings" >
-                    <label for="Settings"><i class="material-icons">settings</i></label>
+                    <label for="Settings" id="SETTINGS" class="Label"><i class="material-icons"  data-toggle="modal" data-target="#myModal">settings</i></label>
                     <input type="button" class="call" id="Call" value="Call">
-                    <label for="Call"><i class="material-icons">call</i></label>
+                    <label for="Call" id="CALL" class="Label"><i class="material-icons">call</i></label>
                     <input type="button" class="videocall" id="Videocall" value="Videocall">
-                    <label for="Videocall"><i class="material-icons">video_call</i></label>
+                    <label for="Videocall" id="VIDEOCALL" class="Label"><i class="material-icons">video_call</i></label>
                 </div>   
                 <hr>
                 <div class="messagebox grid-container" id="Messagebox"> 
@@ -278,24 +351,25 @@
                      Let me chat!
                   </button>
                   </div>
-                  <audio id="myAudio">
-                    <source src="https://actions.google.com/sounds/v1/cartoon/pop.ogg" type="audio/ogg">
+                  <audio id="myAudio" src="https://actions.google.com/sounds/v1/cartoon/pop.ogg" type="audio/ogg">
                    
                     Your browser does not support the audio element.
                   </audio>
                 <textarea rows="2" cols="20" wrap="hard" class= "text" id="typewrite" onkeypress="enterMessage();" onkeydown="typing()" onkeyup="notTyping();"placeholder="Write a message..." value="" style="width: 100%;" ></textarea><br>
                 <div class="buttonsdown"> 
                 <input type="file" name="file" id="files" class="inputfile" multiple />
-                    <label for="files"><i class="material-icons">attach_file</i></label>
+                    <label for="files" class="Label" id="Files"><i class="material-icons">attach_file</i></label>
                     <input type="file" name="photofile" class="photofile" id="Photo" value="Photo" multiple >
-                     <label for="Photo"> <i class="material-icons">photo</i></label>
+                     <label for="Photo" class="Label" id="Photos"> <i class="material-icons">photo</i></label>
                     <input type="button"   class="voice" id="voice" value="Voice">
-                    <label for="voice" id="record" onmouseup="mouseUp()" onmousedown="mouseDown()"> <i class="material-icons">mic</i></label>
+                    <label for="voice" class="Label" id="record" onmouseup="mouseUp()" onmousedown="mouseDown()"> <i class="material-icons">mic</i></label>
                     <input type="button" onclick="sendMessage()" class="send" id= "SEND" value="Send" >
                     <!--<script src="pressenter.js"></script> -->
                     
-                    <label for="SEND" ><i class="material-icons" >send</i></label>
-                    <audio id=recordedAudio></audio>
+                    <label for="SEND" id="Send" class="Label"><i class="material-icons" >send</i></label>
+                    <div id="audiolist">
+                     </div>
+                    
                     
                    
                     
@@ -314,9 +388,46 @@
                            
                        </div> </div>
                
-               
-               </div></div>
+                       <!--<div class="container" style="display:none">
+                        <video class="video-large" autoplay></video>
+                        
+                        </div> -->
+                   
+                      
+               </div>
              
+                <!-- Settings -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Settings</h4>
+        </div>
+        <div class="modal-body">
+          <b>Text size:</b>
+          <input type="radio" id="small" name="size" onclick="setSmall()" checked>Small      
+          <input type="radio" id="medium" name="size" onclick="setMedium()">Medium    
+          <input type="radio" id="large" name="size" onclick="setLarge()">Large    
+          <br><br>
+          <b>Nightmode:</b> <label class="switch">
+            <input type="checkbox" id="checkBox" onclick="nightMode()">
+            <span class="slider round"></span>
+          </label><br><br>
+          <b>Sound:</b> <label class="switch">
+            <input type="checkbox" id="checkBoxtwo" onclick="soundOnOff()">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
           
           
           
