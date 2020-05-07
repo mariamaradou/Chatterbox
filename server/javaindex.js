@@ -3,7 +3,7 @@
    var socket = io();
    var l;
    var textmessage;
-
+    var profilePicture;
    function setUsername() {
       socket.emit('setUsername', document.getElementById('name').value);
    };
@@ -69,14 +69,11 @@
          console.log(data.typingNow)
          for(i=0; i<list.getElementsByTagName("LI").length; i++){
              if(list.getElementsByTagName("LI")[i].innerHTML===data.user){
-                list.getElementsByTagName("LI")[i].style.color="black";
-             }
-         }                
-
-
-         } 
-     
-     }
+                 if(checkBox.checked==true){
+                list.getElementsByTagName("LI")[i].style.color="white";}
+                else{ list.getElementsByTagName("LI")[i].style.color="black";}
+             } }                
+                    } }
      
         }) 
 
@@ -116,17 +113,16 @@ socket.on('voice', function(arrayBuffer) {
     var audio = document.createElement('audio');
     audio.src = window.URL.createObjectURL(blob);
     document.getElementById("audiolist").appendChild(audio);
-    console.log("here")
+    
    audio.setAttribute("class", "myAudioClip")
-     /*var div = document.getElementById(id);
-    div.appendChild(audio); */
+    
     
     audio.setAttribute("controls", "controls");
     audio.play();
     
+    });
+
     
-         
-});
 
    function enterMessage() {
 var key = window.event.keyCode;
@@ -193,7 +189,10 @@ else {
             var textu=document.createTextNode(valueu);
             div.appendChild(textu);
             if(Value!== data.user + ': ' + 'audio'){
-             document.getElementById("mylist").appendChild(p);}
+             document.getElementById("mylist").appendChild(p);
+            }
+            
+            
              var offsetHeight=p.offsetHeight + 10;
              
             div.style.height=offsetHeight + "px";
@@ -211,6 +210,26 @@ else {
                 document.getElementById("userslist").appendChild(spaces);
 
             }
+            if(Value=== data.user + ': ' + 'image'){
+                p.style.display="none";
+                var imageElement = document.getElementsByClassName("myImage")[document.getElementsByClassName("myImage").length-1];
+                document.getElementById("mylist").appendChild(imageElement);
+                imageElement.style.width="150px";
+                imageElement.style.height="150px";
+                imageElement.style.borderRadius="20px";
+                console.log("image sent")
+                var spaceme='';
+                var textspace=document.createTextNode(spaceme);
+                var spaces=document.createElement("div");
+                spaces.appendChild(textspace)
+                spaces.style.height="70px";
+                document.getElementById("userslist").appendChild(spaces);
+            }
+            if(Value=== data.user + ': ' + 'profile'){
+                p.style.display="none";}
+
+
+
                 
              
             
@@ -236,6 +255,7 @@ else {
             elseu.appendChild(textelseu);
             if(Value!== data.user + ': ' + 'audio'){
              document.getElementById("userslist").appendChild(p); }
+            
              var offsetHeightu=p.offsetHeight + 10;
      elseu.style.height=offsetHeightu + "px";
              document.getElementById("mylist").appendChild(elseu);
@@ -248,8 +268,24 @@ else {
                 spaces.appendChild(textspace)
                 spaces.style.height="30px";
                 document.getElementById("mylist").appendChild(spaces);
-                
-}
+                }
+                if(Value=== data.user + ': ' + 'image'){
+                    p.style.display="none";
+                    var imageElement = document.getElementsByClassName("myImage")[document.getElementsByClassName("myImage").length-1];
+                    document.getElementById("userslist").appendChild(imageElement);
+                    imageElement.style.width="150px";
+                imageElement.style.height="150px";
+                imageElement.style.borderRadius="20px";
+                var spaceme='';
+                var textspace=document.createTextNode(spaceme);
+                var spaces=document.createElement("div");
+                spaces.appendChild(textspace)
+                spaces.style.height="70px";
+                document.getElementById("mylist").appendChild(spaces);
+                    console.log("image sent")
+                }
+                if(Value=== data.user + ': ' + 'profile'){
+                    p.style.display="none";}
                 
                 
                   
@@ -273,7 +309,19 @@ else {
       
          var li=document.createElement("li");
          var userlist=document.createTextNode(nameOfUser); //apothikeuw to text
+        
          li.appendChild(userlist);
+         var y=document.createElement("FIGURE");
+         li.appendChild(y);
+        var imgf=document.createElement("IMG");
+        imgf.setAttribute("id",data);
+        imgf.src= src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAANlBMVEX////Fx8nBw8Xd3uDi4+TGyMr6+vry8/PLzc/t7u7k5ebg4eL39/jo6erJy8309PXY2dvR09QXDCJbAAAEXElEQVR4nO2d2XarMAxFy1CmMOX/f/ZC4FKSUIJtCR26zn7qQxdlL8uyLWz364sQQgghhBBCLkWWN9UtSZJb1eSZ9ctIkzV9EQ9EE+OPRd/8Gc0uaRe3NXHcJp31ywlQtVt2i2VbWb9gGFm/pzdL9teN1iN+l3ZMj/k9HFPrl/Wg2+1/b4rt5XLOzcXv4XizfmU3ClfBQbGwfmkHame9idr6xY+Suzfg3Iyl9asfo/QVvIpigOA1FL1DdFbMrQU+kYUJDoro6eY7UHDAWmGfe7hgdLeW2KMKjdER5ElqcCecFXG7YiEiGEWw87dGpgmHRkRd+Av5jYrWKtvc5AyjxFpmE6kYHYFsxFRQELMRRQURZzZBS4p34sZa6A2J+doavDFRtgmHRkSroYqN9gtoo750kOItMcSbEG1IDKxdbBpilWwqccEowlom9gqGWB1RamW45tta6gn5bgiWaoTKFy+GSMWMWsUQqTisMFiADRfCC4vZEGl5QUMa0tCev59LdcZDqC02KoZQdQwFQax5qUIRA63aligY9tZST8iX2rAGC5XlE9Ti6UtkD8Yr1kovyHdErG6oMG+DmtE8EBYEGw1HpMMULUjFp6ZQRZoZ2ZIp1oRmQjTXgA33M62gIVa9+z+CjYjZhJILDMReOCKWTrFW92sSIUW8sXBBJtlgppkJkTjFjdERgW3QyJugRw4eqtwB6+P2BqGTN9SBYkVYtkHOMgshipcQDFFsrV/9KHe/dHOlU6ReGTUGnsq841EhRl1P/EbtdFh9PK4OVgA+gNN59audVZ/IDiec+A71qdCB/JBjXADW1Q7z2TG+X9lvJEt3ck78nV41Pp+o0/vGJUNxXKTXy5+/k1d98bgf6kFU9NXVg3ObrK67uv4TgUkIIYQQQsCp87KpqtSdqmrKHHu1sVo/HFjab6wWodcdZVJ4em27FgnUvrayF7T7sexBJDsNvUXS/ntw6XHLpZNkYduQpWNl28uxtXPslNtvcSyMYjX8k/1xR4vPUuVpehOnh6rU9qfDxCffq3RSD3xSPPMLse89waGcNmlVOU95hLM2f5sJnqXY2Qmes6tP5QoMB0X9jx4KR7icUN81pXFY1A3lvYsO/9FBC93LTVVOpbuievRS47IkdxQnNwqnfX1Q3B9mrbagJSh5jW4YWnvEMGJ0ROmAqciF6zIojRjWs5k1KjMblVt2fFE56a1xNaI/GqUppCZUyTVQQaoSphr3s4QgX3rDmJL+ID85xQpShY5oWH7aRrwoBTShmRBfYKAlGvlUY1+feUW6XoOWSuWTqbXPBsKGaIlGfrig4fnQkIY0tIeGNKShPTSkIQ3toSENafjy13yPyXx45t5DTzWsygHhD6jx+My9zR9nGk7lZ2nD8Zl72wRpSEMa0pCGNKQhDWlIQxrSkIY0pCENaUhDGtKQhjSkIQ1pSEMa0pCGNKTh74aygucbJnvUH3/Dg4fhp18ghBBCCCGEkJP4B3ymXHSpa16yAAAAAElFTkSuQmCC";
+        imgf.setAttribute("class","hoverPhoto")
+        imgf.style.height="150px";
+        imgf.style.width="150px";
+        y.appendChild(imgf);
+
+        
         
         document.getElementById("usersonline").appendChild(li); 
 
@@ -336,17 +384,73 @@ else {
 
       }
       
-      
-      
-         var getImage = function(event) {
+      var getImage = function(event) {
 
+        var profilepic = document.getElementById('photoimage');
+        profilepic.src = URL.createObjectURL(event.target.files[0]);
+        console.log(profilepic.src)
+        console.log(user)
+         socket.emit('profile',{image: profilepic.src, user:user });
+         socket.emit('msg', {message: 'profile', user: user}); 
+          
+    }  
 
-     var profilepic = document.getElementById('photoimage');
-     profilepic.src = URL.createObjectURL(event.target.files[0]);
-      
+         var sendImage = function(event) {
+           
+         var picture=document.createElement("IMG");
+        picture.src = URL.createObjectURL(event.target.files[0]);
+        console.log(picture.src)
+        
+         socket.emit('image', { user: user});
+         socket.emit('msg', {message: 'image', user: user}); 
+          
+    }  
 
+      socket.on('fileimage', function(blob){
+        
+        var image = document.createElement('IMG'); 
+        console.log(blob)
+        image.src = blob;
+        document.getElementById("imagelist").appendChild(image);
+    
+        image.setAttribute("class", "myImage") 
+        document.getElementById("imagelist").style.display="none";
+   
+    
+      })
+
+      socket.on('profimage', function(blob){
+        
+        var image = document.createElement('IMG'); 
+        console.log(blob.user)
+        image.src = blob.image;
+        
+        document.getElementById("proflist").appendChild(image);
+        
+        image.setAttribute("id", blob.user) //PROAIRETIKO
+       image.setAttribute("class","profileImage")
+        profilePicture=true;
+        document.getElementById("proflist").style.display="none";
+       var j;
+       var k;
+       for(j=0; j<document.getElementsByClassName("profileImage").length;j++){
+           for(k=0;k<document.getElementsByClassName("hoverPhoto").length; k++){
+               if(document.getElementsByClassName("profileImage")[j].id===document.getElementsByClassName("hoverPhoto")[k].id){
+                document.getElementsByClassName("hoverPhoto")[k].src=document.getElementsByClassName("profileImage")[j].src
+                document.getElementsByClassName("hoverPhoto")[k].style.width="150px";
+                document.getElementsByClassName("hoverPhoto")[k].style.height="150px";
+                break;
+
+               }
+           }
+       }
+        
+        
+        
+    
+      })
       
-         }  
+        
 
          function setSmall(){ var n=document.getElementById("Messagebox"); 
                                 n.style.fontSize="14px"}
@@ -370,7 +474,7 @@ else {
            var typewrite=document.getElementById("typewrite");
            
            var li=document.getElementById("usersonline");
-           console.log(textmessage)
+           
            if( textmessage==true){
            var text=document.getElementsByClassName("messages");}
            
@@ -386,7 +490,14 @@ else {
                         text[i].style.color="black";
                     }
                    }
-                   
+                   var list = document.getElementsByTagName("UL")[0];
+                   for(i=0; i<list.getElementsByTagName("LI").length; i++){
+                    
+                        if(checkBox.checked==true){
+                       list.getElementsByTagName("LI")[i].style.color="white";}
+                       
+                                   
+                            }
                 settings.style.backgroundColor="#9e7bb0";
                 call.style.backgroundColor="#9e7bb0";
                 videocall.style.backgroundColor="#9e7bb0";
@@ -413,30 +524,38 @@ else {
             } else {
                 $(document).ready(function(){
                     $(".Label").hover(function(){
-                      $(this).css("background-color", "#04b5a4");
+                      $(this).css("background-color", " #67e6f1");
                       }, function(){
-                      $(this).css("background-color", "#098792");
+                      $(this).css("background-color", "#026670");
                     });
                   });
-                 
-                typewrite.style.borderColor="#098792";
-                settings.style.backgroundColor="#098792";
+                  var list = document.getElementsByTagName("UL")[0];
+                   for(i=0; i<list.getElementsByTagName("LI").length; i++){
+                    
+                        
+                       list.getElementsByTagName("LI")[i].style.color="black";}
+                       
+                                   
+                            
+                typewrite.style.borderColor="#026670";
+                settings.style.backgroundColor="#026670";
                 if(textmessage==true){
+                    li.style.color="black";
                     for (var i = 0; i < text.length; i++) {
-                        text[i].style.backgroundColor="#098792";
-                        text[i].style.borderColor="#098792";
+                        text[i].style.backgroundColor="#026670";
+                        text[i].style.borderColor="#026670";
                         text[i].style.color="white";
                         text[i].style.color="white";
                     }
                     
                    }
                 
-                call.style.backgroundColor="#098792";
-                videocall.style.backgroundColor="#098792";
-                files.style.backgroundColor="#098792";
-                photos.style.backgroundColor="#098792";
-                record.style.backgroundColor="#098792";
-                send.style.backgroundColor="#098792";
+                call.style.backgroundColor="#026670";
+                videocall.style.backgroundColor="#026670";
+                files.style.backgroundColor="#026670";
+                photos.style.backgroundColor="#026670";
+                record.style.backgroundColor="#026670";
+                send.style.backgroundColor="#026670";
                 user.style.color="black";
                 online.style.color="black";
                 user.style.backgroundColor="#FCE181";
