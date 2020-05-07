@@ -71,6 +71,17 @@ socket.on('radio', function(blob) {
    console.log(blob)
 });
 
+socket.on('image', function(blob) {
+   io.sockets.emit('fileimage', blob);
+   console.log(blob)
+})
+
+socket.on('profile', function(blob) {
+   io.sockets.emit('profimage', blob);
+   console.log(blob)
+   
+})
+
 socket.on('disconnect', function(data) {
    console.log('A user disconnected'); 
 
