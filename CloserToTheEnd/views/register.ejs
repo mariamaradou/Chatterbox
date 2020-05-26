@@ -1,0 +1,63 @@
+﻿<html lang="el">
+
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Chatterbox!</title>
+            <script src = "/socket.io/socket.io.js"></script>
+           
+           <!-- <script src="scripts/javanewindex.js"></script>-->
+            <link rel="stylesheet" href="css/register.css">
+    </head>
+    
+    <body>
+        <div class="login-page">
+            <h1>Εγγραφείτε στο Chatterbox!</h1>
+            <h3 class="logo">Λογότυπο</h3> <!--Να προστεθεί η εικόνα-->
+            <hr>
+            
+            <form class="register-form" action="/register" method="POST">
+                <!--<input class="text" type="text" size="30" maxlength=50 name="onoma" placeholder="Όνοματεπώνυμο" required><br>
+                <input class="text" type="text" size="30" maxlength=50 id="name" name="name" placeholder="Όνομα χρήστη" required><br>
+                <input class="text" type="email" size="30" maxlength=50 id="email" name="email" placeholder="Email" required><br>
+                <input class="text" type="password" size="30" id="password" name="password" placeholder="Κωδικός πρόσβασης" required><br>-->
+                <input class="text" type="text" id="name" name="name" placeholder="Όνομα χρήστη" required ><br>
+                <input type="email" id="email" name="email" placeholder="Email" required><br>
+                <input type="password" id="password" name="password" placeholder="Κωδικός πρόσβασης" required>
+                
+               <!-- <label class="text" for="check">Ημερομηνία γέννησης</label><br>
+                <input type="date" name="date" min="1930-01-01"><br><br>
+                <label>Φύλο</label><br>
+                    <label class="container"><input type="radio" name="fylo" value="Male">Άνδρας</label>
+                    <label class="container"><input type="radio" name="fylo" value="Female">Γυναίκα</label>
+                    <label class="container"><input type="radio" name="fylo" value="Other">Άλλο</label><br>-->
+                
+                    <br><button class="btn btn4" type="submit" onclick="setUsername()">Εγγραφή</button>
+                
+                <div class="formlinks">
+                    <p class="message">Έχετε ήδη λογαριασμό; <a href="/login">Συνδεθείτε</a></p> <!--Να προστεθεί το link της σύνδεσης-->
+                    <p>Αν εγγραφείτε, δηλώνετε ότι συμφωνείτε με τους <a href="">Όρους χρήσης</a>.</p> <!--Να προστεθεί το link-->
+                </div>
+            </form>
+
+        </div>
+
+        <nav class="navbar">
+            <ul>
+                <li class="listi"><a href="">Γλώσσα (Language)</a></li> <!--Να προστεθεί το link-->
+                <li class="listi"><a href="">Πληροφορίες</a></li> <!--Να προστεθεί το link-->
+                <li class="listi"><a href="">Όροι χρήσης</a></li> <!--Να προστεθεί το link-->
+                <li class="listi"><a href="">Cookies</a></li> <!--Να προστεθεί το link-->
+            </ul>
+        </nav>
+        <!--
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+        <script>
+            $('.message a').click(function(){
+                $('form').animate({height:"toggle", opacity:"toggle"}, "slow");
+            });
+        </script>
+        -->
+
+    </body>
+</html>
