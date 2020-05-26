@@ -1,0 +1,237 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+//Δηλώσεις για το passport
+const express = require('express');
+const app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+const bcrypt = require('bcrypt');      // module κρυπτογράφησης
+const passport = require('passport');
+const flash = require('express-flash');
+const session = require('express-session');
+const methodOverride = require('method-override');
+var os = require('os');
+var nodeStatic = require('node-static');
+var fileServer = new(nodeStatic.Server)();
+var Flash = require('connect-flash');
+var smt=false;
+var main=false;
+var userName;
+app.use(express.static('views'));
+
+const initializePassport = require('./passport-config')
+initializePassport(
+  passport,
+  email => users.find(user => user.email === email),
+  id => users.find(user => user.id === id)
+)
+
+ users = [];
+
+app.set('view-engine', 'ejs');
+app.use(express.urlencoded({ extended: false }));
+app.use(flash());
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(methodOverride('_method'));
+
+app.get('/', checkAuthenticated, (req, res) => {
+  main=true;
+  res.render('index.ejs', { name: req.user.name })
+  console.log(req.user.name)
+//req.Flash('username' ,req.user.name )
+ // users = [];
+  
+
+}); 
+
+app.get('/login', checkNotAuthenticated, (req, res) => {
+  res.render('login.ejs')
+});
+
+app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login',
+  failureFlash: true
+  
+}));
+
+app.get('/register', checkNotAuthenticated, (req, res) => {
+  res.render('register.ejs')
+});
+
+app.post('/register', checkNotAuthenticated, async (req, res) => {
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10)
+    //Θα αντικατασταθεί από την επόμενη εντολή
+    users.push({
+      id: Date.now().toString(),
+      name: req.body.name,
+      email: req.body.email,
+      password: hashedPassword
+    });
+    //console.log(users[0].name)
+    smt=true;
+    res.redirect('/login')
+  } catch {
+    res.redirect('/register')
+  }
+})
+
+app.delete('/logout', (req, res) => {
+  req.logOut()
+  res.redirect('/login')
+});
+
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+
+  res.redirect('/login')
+
+}
+
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+  next()
+}
+
+Users=[];
+ io.on('connection', function(socket) {
+   //if(smt==true){
+    
+   console.log('A user connected');
+   var userId;
+   socket.on('setUsername', function(data) {
+      
+      console.log(data);
+      userId=data;
+      if(users.indexOf(data) > -1) {
+         //send data with socket.emit
+         socket.emit('userExists', data + ' username is taken! Try some other username.');
+         
+      } else {
+         Users.push(data);
+         socket.emit('userSet', {username: data});
+         //send username to everyone
+         io.sockets.emit('newuser',data)
+      }
+   });
+ 
+  //}
+ 
+
+ 
+   function log() {
+      var array = ['Message from server:'];
+      array.push.apply(array, arguments);
+      socket.emit('log', array);
+    }
+  
+    socket.on('message', function(message) {
+      log('Client said: ', message);
+      // for a real app, would be room-only (not broadcast)
+      socket.broadcast.emit('message', message);
+    });
+  
+    socket.on('create or join', function(room) {
+      log('Received request to create or join room ' + room);
+  
+      var clientsInRoom = io.sockets.adapter.rooms[room];
+      var numClients = clientsInRoom ? Object.keys(clientsInRoom.sockets).length : 0;
+      log('Room ' + room + ' now has ' + numClients + ' client(s)');
+  
+      if (numClients === 0) {
+        socket.join(room);
+        log('Client ID ' + socket.id + ' created room ' + room);
+        socket.emit('created', room, socket.id);
+  
+      } else  {
+        log('Client ID ' + socket.id + ' joined room ' + room);
+        io.sockets.in(room).emit('join', room);
+        socket.join(room);
+        socket.emit('joined', room, socket.id);
+        io.sockets.in(room).emit('ready');
+      } 
+    });
+  
+    socket.on('ipaddr', function() {
+      var ifaces = os.networkInterfaces();
+      for (var dev in ifaces) {
+        ifaces[dev].forEach(function(details) {
+          if (details.family === 'IPv4' && details.address !== '127.0.0.1') {
+            socket.emit('ipaddr', details.address);
+          }
+        });
+      }
+    });
+  
+    socket.on('bye', function(room){
+      console.log('received bye');
+      
+     socket.emit('bye', room)
+     
+    });
+   socket.on('msg', function(data) {
+      //Send message to everyone
+      io.sockets.emit('newmsg', data);
+      console.log(data)
+
+      
+   })
+
+ 
+
+ socket.on('status',function(data){
+    io.sockets.emit('statusnew',data);
+    
+ })
+
+ //VIDEOCALL
+
+ 
+
+socket.on('typingInfo',function(data) {
+   io.sockets.emit('typing',data);
+})
+
+
+socket.on('radio', function(blob) {
+   // can choose to broadcast it to whoever you want
+   io.sockets.emit('voice', blob);
+   console.log(blob)
+});
+
+socket.on('image', function(blob) {
+   io.sockets.emit('fileimage', blob);
+   console.log(blob)
+})
+
+socket.on('profile', function(blob) {
+   io.sockets.emit('profimage', blob);
+   console.log(blob)
+   
+})
+
+ socket.on('disconnect', function(data) {
+   console.log('A user disconnected'); 
+
+   io.sockets.emit('disconnection', userId);
+  })
+
+}); 
+
+
+http.listen(3000, function() {
+  console.log('listening on localhost:3000');
+});
