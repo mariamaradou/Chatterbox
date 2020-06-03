@@ -6,7 +6,9 @@
     var profilePicture;
     var once=false;
     var user;
+    var date;
        
+
        console.log(document.getElementsByTagName("h2")[0].innerHTML)
     socket.emit('setUsername', document.getElementsByTagName("h2")[0].innerHTML);
  
@@ -17,6 +19,29 @@
   
      });
   
+     function getDate(){
+        var d = new Date();
+        var n = d.getDay();
+        var h=d.getHours();
+        var m=d.getMinutes();
+        if(n==0){
+            n='Sunday';
+        }
+        else if(n==1){n='Monday';}
+        else if(n==2){n='Tuesday';}
+        else if(n==3){n='Wednesday';}
+        else if(n==4){n='Thursday';}
+        else if(n==5){n='Friday';}
+        else{n='Saturday';}
+
+        if(m<10){
+            m='0' + m;
+        }
+
+        date= n + " " + 'at' + " " + h + ":" + m;
+
+        
+       }
   
      function sendMessage() {
         
@@ -49,13 +74,15 @@
   
      socket.on('typing',function(data){
        var list = document.getElementsByTagName("UL")[0];
-       
+       console.log(user)
+       console.log(data.user)
+       console.log(user)
         if(user) { if(data.typingNow==="yes"){
            console.log(data.typingNow)
   
             for(i=0; i< list.getElementsByTagName("LI").length; i++){
                        
-                       if(list.getElementsByTagName("LI")[i].innerHTML===data.user){
+                       if(list.getElementsByTagName("LI")[i].innerText===data.user){
                           
                            list.getElementsByTagName("LI")[i].style.color="IndianRed";
                        }
@@ -67,7 +94,7 @@
        if(data.typingNow==="no") { 
            console.log(data.typingNow)
            for(i=0; i<list.getElementsByTagName("LI").length; i++){
-               if(list.getElementsByTagName("LI")[i].innerHTML===data.user){
+               if(list.getElementsByTagName("LI")[i].innerText===data.user){
                    if(checkBox.checked==true){
                   list.getElementsByTagName("LI")[i].style.color="white";}
                   else{ list.getElementsByTagName("LI")[i].style.color="black";}
@@ -152,9 +179,10 @@
            
           messagesound.play();
   
+          getDate();
           
-          
-           var Value= data.user + ': ' + data.message ; // ONOMA KAI MINIMA
+           var Value= data.user + ': ' + data.message ;
+           var Date=date; // ONOMA KAI MINIMA
          var str=data.user.length;
           
          
@@ -165,10 +193,22 @@
            console.log(length)
           
            textmessage=true;
-           var text=document.createTextNode(Value); //apothikeuw to text
+           var text=document.createTextNode(Value);
+           var datetext=document.createTextNode(Date);
+           var spandate=document.createElement("span");
+           spandate.appendChild(datetext) //apothikeuw to text
+           var br=document.createElement('br');
+           p.appendChild(spandate)
+           spandate.style.padding='30%'
+           p.appendChild(br);
            p.appendChild(text);
+           p.style.paddingLeft="10px"
            
+           
+           spandate.style.fontSize='82%';
+           spandate.style.opacity='85%';
            p.style.fontWeight="545";
+           
            
            p.style.borderRadius="25px"; 
            
@@ -182,47 +222,30 @@
               p.style.border="thick solid #026670";
               p.style.color="white";} 
               
-              
-              var div=document.createElement("div");
-              var valueu="";
-              var textu=document.createTextNode(valueu);
-              div.appendChild(textu);
               if(Value!== data.user + ': ' + 'audio'){
                document.getElementById("mylist").appendChild(p);
               }
               
-              
-               var offsetHeight=p.offsetHeight + 10;
-               
-              div.style.height=offsetHeight + "px";
-               document.getElementById("userslist").appendChild(div);
                 if(Value=== data.user + ': ' + 'audio'){
                  
                  console.log('audio')
                   var audioElement = document.getElementsByClassName("myAudioClip")[document.getElementsByClassName("myAudioClip").length-1];
+                  
                   document.getElementById("mylist").appendChild(audioElement);
-                  var spaceme='';
-                  var textspace=document.createTextNode(spaceme);
-                  var spaces=document.createElement("div");
-                  spaces.appendChild(textspace)
-                  spaces.style.height="30px";
-                  document.getElementById("userslist").appendChild(spaces);
-  
+                  document.getElementById("mylist").appendChild(document.createElement("br"));
+                
               }
               if(Value=== data.user + ': ' + 'image'){
                   p.style.display="none";
                   var imageElement = document.getElementsByClassName("myImage")[document.getElementsByClassName("myImage").length-1];
+                  
                   document.getElementById("mylist").appendChild(imageElement);
-                  imageElement.style.width="150px";
-                  imageElement.style.height="150px";
+                  document.getElementById("mylist").appendChild(document.createElement("br"));
+                  imageElement.style.widthMax="50%";
+                 imageElement.style.height="150px";
                   imageElement.style.borderRadius="20px";
                   console.log("image sent")
-                  var spaceme='';
-                  var textspace=document.createTextNode(spaceme);
-                  var spaces=document.createElement("div");
-                  spaces.appendChild(textspace)
-                  spaces.style.height="70px";
-                  document.getElementById("userslist").appendChild(spaces);
+                 
               }
               if(Value=== data.user + ': ' + 'profile'){
                   p.style.display="none";}
@@ -247,40 +270,30 @@
               p.style.border="thick solid #026670";
               p.style.color="white";} 
               textmessage=true;
+             p.style.marginLeft="50%";
               
-              var elseu=document.createElement("div");
-              var valueelseu="";
-              var textelseu=document.createTextNode(valueelseu);
-              elseu.appendChild(textelseu);
               if(Value!== data.user + ': ' + 'audio'){
-               document.getElementById("userslist").appendChild(p); }
               
-               var offsetHeightu=p.offsetHeight + 10;
-       elseu.style.height=offsetHeightu + "px";
-               document.getElementById("mylist").appendChild(elseu);
+              document.getElementById("mylist").appendChild(p);}
+          
                if(Value=== data.user + ': ' + 'audio'){
                  var audioElement = document.getElementsByClassName("myAudioClip")[document.getElementsByClassName("myAudioClip").length-1];
-                  document.getElementById("userslist").appendChild(audioElement);
-                  var spaceme='';
-                  var textspace=document.createTextNode(spaceme);
-                  var spaces=document.createElement("div");
-                  spaces.appendChild(textspace)
-                  spaces.style.height="30px";
-                  document.getElementById("mylist").appendChild(spaces);
+                  
+                  audioElement.style.marginLeft="50%";
+                  document.getElementById("mylist").appendChild(audioElement);
+                  document.getElementById("mylist").appendChild(document.createElement("br"));
+                 
                   }
                   if(Value=== data.user + ': ' + 'image'){
                       p.style.display="none";
                       var imageElement = document.getElementsByClassName("myImage")[document.getElementsByClassName("myImage").length-1];
-                      document.getElementById("userslist").appendChild(imageElement);
-                      imageElement.style.width="150px";
+                     imageElement.style.marginLeft="50%";
+                      document.getElementById("mylist").appendChild(imageElement);
+                      document.getElementById("mylist").appendChild(document.createElement("br"));
+                      imageElement.style.maxWidth="50%";
                   imageElement.style.height="150px";
                   imageElement.style.borderRadius="20px";
-                  var spaceme='';
-                  var textspace=document.createTextNode(spaceme);
-                  var spaces=document.createElement("div");
-                  spaces.appendChild(textspace)
-                  spaces.style.height="70px";
-                  document.getElementById("mylist").appendChild(spaces);
+                 
                       console.log("image sent")
                   }
                   if(Value=== data.user + ': ' + 'profile'){
@@ -313,15 +326,19 @@
            var y=document.createElement("FIGURE");
            li.appendChild(y);
            //ftiaxnw th hover photo
+           
           var imgf=document.createElement("IMG");
           imgf.setAttribute("id",data);
-          imgf.src= src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAANlBMVEX////Fx8nBw8Xd3uDi4+TGyMr6+vry8/PLzc/t7u7k5ebg4eL39/jo6erJy8309PXY2dvR09QXDCJbAAAEXElEQVR4nO2d2XarMAxFy1CmMOX/f/ZC4FKSUIJtCR26zn7qQxdlL8uyLWz364sQQgghhBBCLkWWN9UtSZJb1eSZ9ctIkzV9EQ9EE+OPRd/8Gc0uaRe3NXHcJp31ywlQtVt2i2VbWb9gGFm/pzdL9teN1iN+l3ZMj/k9HFPrl/Wg2+1/b4rt5XLOzcXv4XizfmU3ClfBQbGwfmkHame9idr6xY+Suzfg3Iyl9asfo/QVvIpigOA1FL1DdFbMrQU+kYUJDoro6eY7UHDAWmGfe7hgdLeW2KMKjdER5ElqcCecFXG7YiEiGEWw87dGpgmHRkRd+Av5jYrWKtvc5AyjxFpmE6kYHYFsxFRQELMRRQURZzZBS4p34sZa6A2J+doavDFRtgmHRkSroYqN9gtoo750kOItMcSbEG1IDKxdbBpilWwqccEowlom9gqGWB1RamW45tta6gn5bgiWaoTKFy+GSMWMWsUQqTisMFiADRfCC4vZEGl5QUMa0tCev59LdcZDqC02KoZQdQwFQax5qUIRA63aligY9tZST8iX2rAGC5XlE9Ti6UtkD8Yr1kovyHdErG6oMG+DmtE8EBYEGw1HpMMULUjFp6ZQRZoZ2ZIp1oRmQjTXgA33M62gIVa9+z+CjYjZhJILDMReOCKWTrFW92sSIUW8sXBBJtlgppkJkTjFjdERgW3QyJugRw4eqtwB6+P2BqGTN9SBYkVYtkHOMgshipcQDFFsrV/9KHe/dHOlU6ReGTUGnsq841EhRl1P/EbtdFh9PK4OVgA+gNN59audVZ/IDiec+A71qdCB/JBjXADW1Q7z2TG+X9lvJEt3ck78nV41Pp+o0/vGJUNxXKTXy5+/k1d98bgf6kFU9NXVg3ObrK67uv4TgUkIIYQQQsCp87KpqtSdqmrKHHu1sVo/HFjab6wWodcdZVJ4em27FgnUvrayF7T7sexBJDsNvUXS/ntw6XHLpZNkYduQpWNl28uxtXPslNtvcSyMYjX8k/1xR4vPUuVpehOnh6rU9qfDxCffq3RSD3xSPPMLse89waGcNmlVOU95hLM2f5sJnqXY2Qmes6tP5QoMB0X9jx4KR7icUN81pXFY1A3lvYsO/9FBC93LTVVOpbuievRS47IkdxQnNwqnfX1Q3B9mrbagJSh5jW4YWnvEMGJ0ROmAqciF6zIojRjWs5k1KjMblVt2fFE56a1xNaI/GqUppCZUyTVQQaoSphr3s4QgX3rDmJL+ID85xQpShY5oWH7aRrwoBTShmRBfYKAlGvlUY1+feUW6XoOWSuWTqbXPBsKGaIlGfrig4fnQkIY0tIeGNKShPTSkIQ3toSENafjy13yPyXx45t5DTzWsygHhD6jx+My9zR9nGk7lZ2nD8Zl72wRpSEMa0pCGNKQhDWlIQxrSkIY0pCENaUhDGtKQhjSkIQ1pSEMa0pCGNKTh74aygucbJnvUH3/Dg4fhp18ghBBCCCGEkJP4B3ymXHSpa16yAAAAAElFTkSuQmCC";
+         
+          imgf.src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAANlBMVEX////Fx8nBw8Xd3uDi4+TGyMr6+vry8/PLzc/t7u7k5ebg4eL39/jo6erJy8309PXY2dvR09QXDCJbAAAEXElEQVR4nO2d2XarMAxFy1CmMOX/f/ZC4FKSUIJtCR26zn7qQxdlL8uyLWz364sQQgghhBBCLkWWN9UtSZJb1eSZ9ctIkzV9EQ9EE+OPRd/8Gc0uaRe3NXHcJp31ywlQtVt2i2VbWb9gGFm/pzdL9teN1iN+l3ZMj/k9HFPrl/Wg2+1/b4rt5XLOzcXv4XizfmU3ClfBQbGwfmkHame9idr6xY+Suzfg3Iyl9asfo/QVvIpigOA1FL1DdFbMrQU+kYUJDoro6eY7UHDAWmGfe7hgdLeW2KMKjdER5ElqcCecFXG7YiEiGEWw87dGpgmHRkRd+Av5jYrWKtvc5AyjxFpmE6kYHYFsxFRQELMRRQURZzZBS4p34sZa6A2J+doavDFRtgmHRkSroYqN9gtoo750kOItMcSbEG1IDKxdbBpilWwqccEowlom9gqGWB1RamW45tta6gn5bgiWaoTKFy+GSMWMWsUQqTisMFiADRfCC4vZEGl5QUMa0tCev59LdcZDqC02KoZQdQwFQax5qUIRA63aligY9tZST8iX2rAGC5XlE9Ti6UtkD8Yr1kovyHdErG6oMG+DmtE8EBYEGw1HpMMULUjFp6ZQRZoZ2ZIp1oRmQjTXgA33M62gIVa9+z+CjYjZhJILDMReOCKWTrFW92sSIUW8sXBBJtlgppkJkTjFjdERgW3QyJugRw4eqtwB6+P2BqGTN9SBYkVYtkHOMgshipcQDFFsrV/9KHe/dHOlU6ReGTUGnsq841EhRl1P/EbtdFh9PK4OVgA+gNN59audVZ/IDiec+A71qdCB/JBjXADW1Q7z2TG+X9lvJEt3ck78nV41Pp+o0/vGJUNxXKTXy5+/k1d98bgf6kFU9NXVg3ObrK67uv4TgUkIIYQQQsCp87KpqtSdqmrKHHu1sVo/HFjab6wWodcdZVJ4em27FgnUvrayF7T7sexBJDsNvUXS/ntw6XHLpZNkYduQpWNl28uxtXPslNtvcSyMYjX8k/1xR4vPUuVpehOnh6rU9qfDxCffq3RSD3xSPPMLse89waGcNmlVOU95hLM2f5sJnqXY2Qmes6tP5QoMB0X9jx4KR7icUN81pXFY1A3lvYsO/9FBC93LTVVOpbuievRS47IkdxQnNwqnfX1Q3B9mrbagJSh5jW4YWnvEMGJ0ROmAqciF6zIojRjWs5k1KjMblVt2fFE56a1xNaI/GqUppCZUyTVQQaoSphr3s4QgX3rDmJL+ID85xQpShY5oWH7aRrwoBTShmRBfYKAlGvlUY1+feUW6XoOWSuWTqbXPBsKGaIlGfrig4fnQkIY0tIeGNKShPTSkIQ3toSENafjy13yPyXx45t5DTzWsygHhD6jx+My9zR9nGk7lZ2nD8Zl72wRpSEMa0pCGNKQhDWlIQxrSkIY0pCENaUhDGtKQhjSkIQ1pSEMa0pCGNKTh74aygucbJnvUH3/Dg4fhp18ghBBCCCGEkJP4B3ymXHSpa16yAAAAAElFTkSuQmCC";
+         //imgf.src=document.getElementById("photoimage").src;
+          
           imgf.setAttribute("class","hoverPhoto")
           imgf.style.height="150px";
           imgf.style.width="150px";
           y.appendChild(imgf);
-          var divinity=document.createElement("div");
-          
+         
+         
           
           document.getElementById("usersonline").appendChild(li); 
   
@@ -341,7 +358,7 @@
                    var list = document.getElementsByTagName("UL")[0];
                    for(i=0; i< list.getElementsByTagName("LI").length; i++){
                        
-                       if(list.getElementsByTagName("LI")[i].innerHTML===data.user){
+                       if(list.getElementsByTagName("LI")[i].innerText===data.user){
                           
                            list.getElementsByTagName("LI")[i].style.opacity="0.4";
                        }
@@ -354,7 +371,7 @@
                    var list = document.getElementsByTagName("UL")[0];
                    for(i=0; i< list.getElementsByTagName("LI").length; i++){
                        
-                       if(list.getElementsByTagName("LI")[i].innerHTML===data.user){
+                       if(list.getElementsByTagName("LI")[i].innerText===data.user){
                            
                            list.getElementsByTagName("LI")[i].style.opacity="1";
                        }
@@ -411,12 +428,13 @@
           var image = document.createElement("IMG"); 
           console.log(blob.image)
           image.src = blob.image;
+          /*kainourgio*/
+          
           document.getElementById("imagelist").appendChild(image);
       
           image.setAttribute("class", "myImage") 
-          document.getElementById("imagelist").style.display="none";
-     
-      
+          document.getElementById("imagelist").style.display="none"; 
+   
         })
   
         socket.on('profimage', function(blob){
@@ -445,7 +463,7 @@
              }
          }
           
-          
+            
           
       
         })
@@ -464,6 +482,7 @@
              var online=document.getElementById("onlineFriends");
              var messagebox=document.getElementById("messageExchange");
              var user=document.getElementById("user");
+           
              var files=document.getElementById("Files");
              var photos=document.getElementById("Photos");
              var record=document.getElementById("record");
@@ -498,6 +517,7 @@
                          
                                      
                               }
+                 
                   settings.style.backgroundColor="#9e7bb0";
                   call.style.backgroundColor="#9e7bb0";
                   videocall.style.backgroundColor="#9e7bb0";
@@ -582,4 +602,26 @@
                        
                    } })
                
+                  
+
+                   
+
+                  
+                   
+                 /*  function saveInfo(){
+                       
+                    var form=document.getElementsByClassName("info-form")[0];
+                    document.getElementById("information").appendChild(form);
+                    var gender=document.getElementsByClassName("gender")[0].value;
+                    var age=document.getElementsByName("age")[0].value;
+                    var country=document.getElementsByName("country")[0].value;
+                    var study=document.getElementsByName("study")[0].value;
+                    var interests=document.getElementsByName("interests")[0].value;
+                    
+                    document.getElementById("information").innerHTML= '<p style="font-weight:500;"> Gender: </p> <%= gender %> '   
+                    + '<br>' +'<p style="font-weight:500; margin-top:10px;">  Age:</p>' + '<b>' + age + '</b>' + '<br>'+' <p style="font-weight:500;  margin-top:10px;">  I come from:</p>' 
+                    + '<b>' + country + '</b>' + '<br>' + '<p style="font-weight:500;  margin-top:10px;"> Study/Work:</p>'
+                    + '<b>' + study + '</b>' + '<br>' + '<p style="font-weight:500;  margin-top:10px;"> Interests/Hobbies:</p>' + '<b>' + interests + '</b>';
+                   
+                   }*/
                  
