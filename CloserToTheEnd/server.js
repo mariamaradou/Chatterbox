@@ -44,10 +44,58 @@ app.use(methodOverride('_method'));
 
 app.get('/', checkAuthenticated, (req, res) => {
   main=true;
-  res.render('index.ejs', { name: req.user.name })
+  res.render('index.ejs', { name: req.user.name})
   console.log(req.user.name)
-//req.Flash('username' ,req.user.name )
- // users = [];
+  
+
+  
+
+}); 
+
+
+var profileImage;
+
+app.post('/', checkAuthenticated, async (req, res) => {
+  try {
+   
+    //Θα αντικατασταθεί από την επόμενη εντολή
+    req.user.age=req.body.age;
+    req.user.country=req.body.country;
+    req.user.gender=req.body.Gender;
+    req.user.study=req.body.study;
+    req.user.interests=req.body.interests;
+  
+   req.user.profile=profileImage;
+      /*age: req.body.age,
+      country: req.body.country,
+      gender: req.body.Gender,
+      study: req.body.study,
+      interests:req.body.interests*/
+      
+    
+
+
+  console.log(req.body.interests)
+  console.log(req.body.age)
+  console.log(req.user)
+  
+  res.redirect('/me')
+} catch {
+  res.redirect('/')
+
+    
+   
+  } 
+})
+
+app.get('/me', checkAuthenticated, (req, res) => {
+  main=true;
+ 
+  res.render('me.ejs', { name: req.user.name, gender: req.user.gender, age:req.user.age, country: req.user.country, study: req.user.study, interests: req.user.interests,
+  profileimage:  req.user.profile })
+  
+
+
   
 
 }); 
@@ -86,6 +134,11 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 })
 
 app.delete('/logout', (req, res) => {
+  req.logOut()
+  res.redirect('/login')
+});
+
+app.get('/logout', (req, res) => {
   req.logOut()
   res.redirect('/login')
 });
@@ -217,11 +270,7 @@ socket.on('image', function(blob) {
    console.log(blob)
 })
 
-socket.on('profile', function(blob) {
-   io.sockets.emit('profimage', blob);
-   console.log(blob)
-   
-})
+
 
  socket.on('disconnect', function(data) {
    console.log('A user disconnected'); 
