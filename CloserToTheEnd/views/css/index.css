@@ -26,8 +26,10 @@
                       max-height:120px;
                       margin-top: 10px;}
 
-  .AboutMe { height: 420px; 
+  .AboutMe { height: 455px; 
               word-wrap: break-word;}
+
+  .info-form {height: 400px;}
 
   div.buttonsup { position: static;
               margin-left: 3px;
@@ -37,8 +39,9 @@
 
                .text { display: inline-block;
       display: flex;
-      border: inset #098792;
-      margin-top: 47px;
+      border: hidden;
+      background-color: #c2c9d291;
+      margin-top: 60px;
       padding: 0px 0px 30px 10px;
       border-radius: 20px;
       }
@@ -85,7 +88,7 @@
   #Messagebox { height: 359px; 
   overflow: scroll;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto;
   
   
   }
@@ -171,18 +174,25 @@ height: 30px;}
          #mylist> audio,  #userslist> audio { min-height:20px;
           color:azure;
          word-wrap: break-word;
-         max-width:60%;
+         max-width:50%;
          
        
         }
-      #userslist>p, #userslist>p {min-height: 20px;
-      
+      #mylist>p, #userslist>p {min-height: 20px;
+        width:50%;
       max-width:720px;
       word-wrap: break-word;
-        max-width: 100%;
+     max-width: 360px;
+     
+        
       }
 
-      h2{font-family: 'Delius', cursive;
+     #mylist, #userslist {word-wrap: break-word;
+
+      width: 100%;
+    }
+
+      h2{font-family: 'Cabin', sans-serif;
       font-weight: bold;}
 
 
@@ -265,7 +275,14 @@ top: 7px;
 left: 50%;
 
 border-radius: 1em;
-} }
+
+}
+#user, #messageExchange, #onlineFriends{ height:100%;}} 
+
+@media (max-width: 1125px) {
+ 
+#user, #messageExchange, #onlineFriends{ height:640px;}}
+
 
 ul li img {
 display: block;
@@ -279,5 +296,10 @@ ul li:hover figure {
 display: block;
 }
 
-          
- 
+.info-form > p, #information>p { margin-bottom: 0px;}    
+
+#age, #study, #interests, #country, #Gender {border:hidden;
+      border-radius: 10px;}
+
+
+
