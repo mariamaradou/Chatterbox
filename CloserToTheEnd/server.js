@@ -12,13 +12,18 @@ const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
+const fileUpload = require('express-fileupload');
 var os = require('os');
 var nodeStatic = require('node-static');
 var fileServer = new(nodeStatic.Server)();
 var Flash = require('connect-flash');
+const assert = require('assert');
+//const taskListController = require('./controller/task-list-controller');
 var smt=false;
 var main=false;
-var userName;
+var id;
+var image;
+id=0;
 app.use(express.static('views'));
 
 const initializePassport = require('./passport-config')
@@ -42,11 +47,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride('_method'));
 
-app.get('/', checkAuthenticated, (req, res) => {
+app.get('/', checkAuthenticated,  (req, res) => {
   main=true;
   res.render('index.ejs', { name: req.user.name})
   console.log(req.user.name)
-  
+  userName=req.user.name;
 
   
 
@@ -80,6 +85,7 @@ app.post('/', checkAuthenticated, async (req, res) => {
   console.log(req.user)
   
   res.redirect('/me')
+
 } catch {
   res.redirect('/')
 
@@ -152,6 +158,13 @@ function checkAuthenticated(req, res, next) {
 
 }
 
+
+var files=[];
+app.use(fileUpload());
+
+
+
+
 function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return res.redirect('/');
@@ -160,11 +173,12 @@ function checkNotAuthenticated(req, res, next) {
 }
 
 Users=[];
+var userId;
  io.on('connection', function(socket) {
    //if(smt==true){
     
    console.log('A user connected');
-   var userId;
+   
    socket.on('setUsername', function(data) {
       
       console.log(data);
@@ -183,7 +197,49 @@ Users=[];
  
   //}
  
-
+ 
+  app.post('/upload', function(req, res) {
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send('No files were uploaded.');
+    }
+  
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    let sampleFile = req.files.photofile;
+    image=req.files.photofile.data;
+ 
+  files.push(req.files.photofile.data)
+    // Use the mv() method to place the file somewhere on your server
+    sampleFile.mv('filename.jpg', function(err) {
+      if (err)
+        return res.status(500).send(err);
+       io.sockets.emit('fileimage',req.files.photofile.data );
+      res.send('File uploaded!');
+      console.log(files)
+     
+      
+    });
+  });
+  
+  app.post('/profile', function(req, res) {
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send('No files were uploaded.');
+    }
+  
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    let sampleFile = req.files.photofile;
+    image=req.files.photofile.data;
+  files.push(req.files.photofile.data)
+  
+    // Use the mv() method to place the file somewhere on your server
+    sampleFile.mv('views' + '/' + userId + '.'+ 'jpg', function(err) {
+      if (err)
+        return res.status(500).send(err);
+       io.sockets.emit('fileimage',req.files.photofile.data );
+       res.redirect('/')
+      console.log(files)
+      id=id+1;
+    });
+  });
  
    function log() {
       var array = ['Message from server:'];
@@ -265,17 +321,17 @@ socket.on('radio', function(blob) {
    console.log(blob)
 });
 
-socket.on('image', function(blob) {
+/*socket.on('image', function(blob) {
    io.sockets.emit('fileimage', blob);
    console.log(blob)
-})
+})*/
 
 
 
  socket.on('disconnect', function(data) {
    console.log('A user disconnected'); 
 
-   io.sockets.emit('disconnection', userId);
+   io.sockets.emit('disconnection');
   })
 
 }); 
