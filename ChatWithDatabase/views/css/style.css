@@ -1,14 +1,23 @@
 
   
-  
+  body,html {background-repeat: no-repeat;
+    background-color: #303c6c;
+    background-size: cover;
+    background-position: center;
+    
+    
+    
+  }
   
   
   .messages {
-    position: relative;
-    list-style: none;
-    padding: 20px 10px 0 10px;
-    margin: 0;
+
     
+    
+    list-style: none;
+    padding: 0px 0px 0 0px;
+    margin: 0;
+    word-wrap: break-word;
    
   }
   .messages .message {
@@ -99,10 +108,13 @@
   
   .messages > li {
     font-size: 15px;
-    color: rgb(13, 223, 153);
-    background: #f7a30675;
-    border-radius: 5px;
-    width: fit-content;
+    color: white;
+    background: #157e7875;
+    border-radius: 10px;
+   /*width: fit-content; */
+    width:50%;
+    padding-left:5px;
+    word-wrap: break-word;
   }
   
   .messages > span {
@@ -110,16 +122,18 @@
     font-style: italic;
   }
 
-  
-
-  body,html {background-repeat: no-repeat;
-    background-color: #303c6c;
-    background-size: cover;
-    background-position: center;
-    
-    
-    
+  #message {
+    display: flex;
+    border: hidden;
+    background-color: #c2c9d291;
+    margin-top: 60px;
+    padding: 0px 0px 30px 10px;
+    border-radius: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+    overflow: scroll;
   }
+  
 
   video {
     max-width: 100%;
@@ -165,7 +179,7 @@ height: 28px;
 
 
 
-.inputfile, .photofile, .voice, .settings, .call, .videocall, .send { 
+.inputfile, .photofile, .voice, .settings, .call, .videocall { 
 
 opacity: 1;
 overflow: visible;
@@ -180,10 +194,20 @@ label.status {font-family: Arial, Helvetica, sans-serif;
        
         font-size: 18px;
         }
+        .send_message{opacity: 1;
+          overflow: visible;
+          position: absolute;
+          width: 15px;
+          visibility: hidden; }
 
-
-
-.inputfile + label, .voice + label, .settings + label, .call + label, .videocall + label, .send + label, .photofile + label {
+        .send_message + label{ border-radius: 5px;
+          font-weight: 0;
+          color: black;
+          background-color: #098792;
+          display: inline-block;
+       margin-left: 95%;}
+       
+.inputfile + label, .voice + label, .settings + label, .call + label, .videocall + label, .photofile + label {
 
 border-radius: 5px;
 font-weight: 0;
@@ -193,14 +217,15 @@ display: inline-block;
 }
 
 
-.inputfile + label:hover,.send + label:hover, .photofile + label:hover, .voice + label:hover, .settings + label:hover, .call + label:hover, .videocall + label:hover   {
+.inputfile + label:hover,.send_message + label:hover, .photofile + label:hover, .voice + label:hover, .settings + label:hover, .call + label:hover, .videocall + label:hover   {
 background-color: #67e6f1; }
 
 
 #Messagebox { height: 359px; 
 overflow: scroll;
-
+overflow-x: hidden;
 display: grid;
+word-wrap: break-word;
 grid-template-columns: auto;
 
 
@@ -236,7 +261,7 @@ border-width: 1px 0;
 margin-top: 10px;
 margin-bottom: 10px;}
 
-audio{ width:100%;
+audio{ width:50%;
 height: 30px;}
 
 
