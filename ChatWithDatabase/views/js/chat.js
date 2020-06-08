@@ -2,7 +2,12 @@ var socket = io();
 var messages = document.getElementById("messages");
 
 (function() {
-  $("form").submit(function(e) {
+  $("#send_message").submit(function(e) {
+    if($("#message").val()=="") {
+      alert("You must write something")
+      e.preventDefault();
+    }
+    else{
     let li = document.createElement("li");
     e.preventDefault(); // prevents page reloading
     socket.emit("chat message", {message: $("#message").val(), user: user})
@@ -10,14 +15,17 @@ var messages = document.getElementById("messages");
     messages.appendChild(li).append($("#message").val());
     let span = document.createElement("span");
     messages.appendChild(span).append("by " + document.getElementById("username").innerHTML + ": " + "just now");
-
+    
     $("#message").val("");
+    
     $(document).ready(function() { 
            
-      $(Messagebox).scrollTop($(messages).height()); });
+      $(Messagebox).scrollTop($(messages).height());  }); 
 
-    return false;
+    return false; }
   });
+
+
 
   socket.on("received", data => {
     let li = document.createElement("li");
@@ -26,9 +34,11 @@ var messages = document.getElementById("messages");
     messages.appendChild(li).append(data.message);
     messages.appendChild(span).append("by " + data.sender + ": " + "just now");
     console.log("Hello bingo!");
+    li.style.marginLeft="50%";
+    span.style.marginLeft="50%";
     $(document).ready(function() { 
            
-      $(Messagebox).scrollTop($(Messagebpx).height()); 
+      $(Messagebox).scrollTop($(messages).height()); 
     });
   });
 })();
@@ -41,6 +51,9 @@ var messages = document.getElementById("messages");
       json.map(data => {
         let li = document.createElement("li");
         let span = document.createElement("span");
+        if(data.sender!==document.getElementById("username").innerHTML){
+        li.style.marginLeft="50%";
+        span.style.marginLeft="50%";}
         messages.appendChild(li).append(data.message);
         messages.appendChild(span).append("by " + data.sender + ": " + formatTimeAgo(data.createdAt));
         $(document).ready(function() { 
@@ -51,28 +64,4 @@ var messages = document.getElementById("messages");
       
     });
 })();
-
-//is typing...
-/*
-let messageInput = document.getElementById("message");
-let typing = document.getElementById("typing");
-
-//isTyping event
-messageInput.addEventListener("keypress", () => {
-  socket.emit("typing", { user: "Someone", message: "is typing..." });
-});
-
-socket.on("notifyTyping", data => {
-  typing.innerText = data.user + " " + data.message;
-  console.log(data.user + data.message);
-});
-
-//stop typing
-messageInput.addEventListener("keyup", () => {
-  socket.emit("stopTyping", "");
-});
-
-socket.on("notifyStopTyping", () => {
-  typing.innerText = "";
-}); */
 
