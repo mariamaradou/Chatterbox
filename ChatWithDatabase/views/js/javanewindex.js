@@ -43,7 +43,7 @@
         
        }
   
-     function sendMessage() {
+    /* function sendMessage() {
         
         var msg = document.getElementById('typewrite').value;
         if(msg==="") {
@@ -51,7 +51,7 @@
         }
         else {  socket.emit('msg', {message: msg, user: user}); 
         document.getElementById('typewrite').value="";}
-     }
+     } */
   
   
   
@@ -59,21 +59,22 @@
     
   
   
-     function typing() {
+     //function typing()
+     document.getElementById("message").addEventListener("keydown", () => {
        
          var typingInfo="yes";
          socket.emit('typingInfo', {typingNow: typingInfo, user: user});
-     }
+     })
   
-     function notTyping () {
+     document.getElementById("message").addEventListener("keyup", () => {
        
        var typingInfo="no";
        socket.emit('typingInfo', {typingNow: typingInfo, user: user});
        
-     }
+     })
   
      socket.on('typing',function(data){
-       var list = document.getElementsByTagName("UL")[0];
+       var list = document.getElementsByTagName("UL")[1];
        console.log(user)
        console.log(data.user)
        console.log(user)
@@ -133,13 +134,18 @@
       }, 6000);
   });
   }
+
+ 
   // When the client receives a voice message it will play the sound
   socket.on('voice', function(arrayBuffer) {
       var blob = new Blob([arrayBuffer], { 'type' : 'audio/ogg; codecs=opus' });
       var audio = document.createElement('audio');
       audio.src = window.URL.createObjectURL(blob);
-      document.getElementById("audiolist").appendChild(audio);
-      
+     // document.getElementById("audiolist").appendChild(audio);
+     let li = document.createElement("li");
+     document.getElementById("messages").appendChild(li).appendChild(audio);
+     let span = document.createElement("span");
+     document.getElementById("messages").appendChild(span).append("by " + document.getElementById("username").innerHTML + ": " + "just now");
      audio.setAttribute("class", "myAudioClip")
       
       
@@ -150,7 +156,7 @@
   
       
   
-     function enterMessage() {
+     document.getElementById("message").addEventListener("keypress", () => {
   var key = window.event.keyCode;
   
   // If the user has pressed enter
@@ -168,7 +174,7 @@
   else {
      return true;
   }
-  }
+  })
   
    //listening with socket.on
      socket.on('newmsg', function(data) {
@@ -349,40 +355,7 @@
            })
            
                   
-           socket.on('statusnew',function(data){
-               if(user){
-                   if(data.currentStatus==="offline"){
-                   
-                   
-                   var list = document.getElementsByTagName("UL")[0];
-                   for(i=0; i< list.getElementsByTagName("LI").length; i++){
-                       
-                       if(list.getElementsByTagName("LI")[i].innerText===data.user){
-                          
-                           list.getElementsByTagName("LI")[i].style.opacity="0.4";
-                       }
-                       
-                   }
-                   console.log(data.currentStatus)  }
-               
-               
-                   else { 
-                   var list = document.getElementsByTagName("UL")[0];
-                   for(i=0; i< list.getElementsByTagName("LI").length; i++){
-                       
-                       if(list.getElementsByTagName("LI")[i].innerText===data.user){
-                           
-                           list.getElementsByTagName("LI")[i].style.opacity="1";
-                       }
-                       
-                   }
-               
-                   console.log(data.currentStatus)  
-                       
-                   }
-  
-               }
-               })
+          
                
            function setOffline() {
         
@@ -399,6 +372,43 @@
                
   
         }
+
+        socket.on('statusnew',function(data) {
+            console.log("status")
+               if(user){
+                console.log(data.currentStatus)
+                if(data.currentStatus==="offline"){
+                   
+                   
+                    var list = document.getElementsByTagName("UL")[1];
+                    for(i=0; i< list.getElementsByTagName("LI").length; i++){
+                        
+                        if(list.getElementsByTagName("LI")[i].innerText===data.user){
+                           
+                            list.getElementsByTagName("LI")[i].style.opacity="0.4";
+                        }
+                        
+                    }
+                   console.log(data.currentStatus)  }
+               
+               
+                   else { 
+                   var list = document.getElementsByTagName("UL")[1];
+                   for(i=0; i< list.getElementsByTagName("LI").length; i++){
+                       
+                       if(list.getElementsByTagName("LI")[i].innerText===data.user){
+                           
+                           list.getElementsByTagName("LI")[i].style.opacity="1";
+                       }
+                       
+                   }
+               
+                   console.log(data.currentStatus)  
+                       
+                   }
+  
+               }
+               })
         
         var getImage = function(event) {
   
@@ -424,19 +434,22 @@
 
      
   
-        /*socket.on('fileimage', function(blob){
+        socket.on('fileimage', function(id){
           
-          var image = document.createElement("IMG"); 
-          console.log(blob.image)
-          image.src = blob.image;
+         /* var image = document.createElement("IMG"); 
+          console.log(blob)
+          image.src = blob
           
           
           document.getElementById("imagelist").appendChild(image);
       
           image.setAttribute("class", "myImage") 
-          document.getElementById("imagelist").style.display="none"; 
-   
-        })*/
+          document.getElementById("imagelist").style.display="none"; */
+          var image = document.createElement("IMG"); 
+        image.setAttribute("src", id + document.getElementsByTagName("h2")[0].innerHTML + "." + "jpg")
+          document.getElementById("imagelist").appendChild(image);
+          document.getElementById("imagelist").style.display="none";
+        }) 
 
 
   
@@ -512,7 +525,7 @@
                           text[i].style.color="black";
                       }
                      }
-                     var list = document.getElementsByTagName("UL")[0];
+                     var list = document.getElementsByTagName("UL")[1];
                      for(i=0; i<list.getElementsByTagName("LI").length; i++){
                       
                           if(checkBox.checked==true){
@@ -552,7 +565,7 @@
                         $(this).css("background-color", "#026670");
                       });
                     });
-                    var list = document.getElementsByTagName("UL")[0];
+                    var list = document.getElementsByTagName("UL")[1];
                      for(i=0; i<list.getElementsByTagName("LI").length; i++){
                       
                           
@@ -595,7 +608,7 @@
            socket.on('disconnection',function(data){ 
                console.log(data + "disconnection")
                
-               var list = document.getElementsByTagName("UL")[0];
+               var list = document.getElementsByTagName("UL")[1];
                 for(i=0; i< list.getElementsByTagName("LI").length; i++){
                        
                        if(list.getElementsByTagName("LI")[i].innerText=== data){
@@ -612,20 +625,4 @@
 
                   
                    
-                 /*  function saveInfo(){
-                       
-                    var form=document.getElementsByClassName("info-form")[0];
-                    document.getElementById("information").appendChild(form);
-                    var gender=document.getElementsByClassName("gender")[0].value;
-                    var age=document.getElementsByName("age")[0].value;
-                    var country=document.getElementsByName("country")[0].value;
-                    var study=document.getElementsByName("study")[0].value;
-                    var interests=document.getElementsByName("interests")[0].value;
-                    
-                    document.getElementById("information").innerHTML= '<p style="font-weight:500;"> Gender: </p> <%= gender %> '   
-                    + '<br>' +'<p style="font-weight:500; margin-top:10px;">  Age:</p>' + '<b>' + age + '</b>' + '<br>'+' <p style="font-weight:500;  margin-top:10px;">  I come from:</p>' 
-                    + '<b>' + country + '</b>' + '<br>' + '<p style="font-weight:500;  margin-top:10px;"> Study/Work:</p>'
-                    + '<b>' + study + '</b>' + '<br>' + '<p style="font-weight:500;  margin-top:10px;"> Interests/Hobbies:</p>' + '<b>' + interests + '</b>';
-                   
-                   }*/
-                 
+               
