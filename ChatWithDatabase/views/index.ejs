@@ -1,13 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  
-
-<!--<script src="call.js"></script>-->
-
-   
 
   <head>
-    <title>Anonymouse Real-time chat</title>
+    <title>Chatterbox</title>
     <meta charset="UTF-8">
     <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -22,7 +17,7 @@
     
     <link rel="stylesheet" type="text/css" href="css/style.css">  
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-    <script src="scripts/main.js"></script>
+    
   </head>
   <body>
 
@@ -36,7 +31,7 @@
   <div class="row">
     <div class="col-sm-2" id="user" >
       <h2 id="username" class="text-center"><%= name%></h2>
-      <script src="js/javanewindex.js"></script>
+      
       <hr>
       <div class="AboutMe">
       
@@ -107,10 +102,7 @@
           
           <input type="button" class="settings" id="Settings" value="Settings" >
           <label for="Settings" id="SETTINGS" class="Label"><i class="material-icons"  data-toggle="modal" data-target="#myModal">settings</i></label>
-          <input type="button" class="call" id="Call" value="Call">
-          <label for="Call" id="CALL" class="Label"><i class="material-icons" onclick="voicecall()" data-toggle="modal" data-target="#myCall">call</i></label>
-          <input type="button" class="videocall" id="Videocall" value="Videocall">
-          <label for="Videocall" id="VIDEOCALL" class="Label" onclick="videocall()" data-toggle="modal" data-target="#myVideo"><i class="material-icons">video_call</i></label>
+         
       </div>  
       <audio id="myAudio" src="https://actions.google.com/sounds/v1/cartoon/pop.ogg" type="audio/ogg">
          
@@ -122,17 +114,36 @@
              
          </ul>
         </div>
-        <form id="form">
-             <div class="message_input_wrapper">
-                 <input id="message" class="message_input" placeholder="Type your message here..." />
-             </div>
-             <button class="send_message">
-                Send
-             </button>
-           </form>
+        <form id="send_message" >
+            
+                 <input id="message" class="message_input"  placeholder="Type your message here..." />
+            
+             <button class="send_message" id="sendMessage">Send</button>
+             <label for="sendMessage" id="Send" class="Label"><i class="material-icons" >send</i></label>
+            
+            </form>
+             <div class="buttonsdown"> 
+              <form ref='uploadForm' 
+              id='uploadForm' 
+              action='http://localhost:3003/upload' 
+              method='post' 
+              encType="multipart/form-data">
+            <!--<input type="file" name="file" id="files" class="inputfile" />
+                <label for="files" class="Label" id="Files"><i class="material-icons">attach_file</i></label>-->
+                <input type="file" name="photofile" class="photofile" id="Photo" value="Photo"  ><!--accept="image/*"onchange="sendImage(event)"-->
+                 <label for="Photo" class="Label" id="Photos" > <i class="material-icons">photo</i></label>
+                
+                <input type="button"   class="voice" id="voice" value="Voice">
+                <label for="voice" class="Label" id="record" onmouseup="mouseUp()" onmousedown="mouseDown()"> <i class="material-icons">mic</i></label>
+               
+                <input type='submit' id="imageupload" value='Upload' />
+              </form>
+            </div>
+           
          
      
          <script src="/js/socket.js"></script>
+         <script src="js/javanewindex.js"></script>
          <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/rexeze/formatTimeStamp/src/index-cdn.js"></script>
          <script src="/js/chat.js"></script>
@@ -146,70 +157,10 @@
             
           </div>
           
-          
-         
-          <!--VIDEOKLHSH-->
-         
-         
-
-          <div class="modal fade" id="myVideo" role="dialog">
-            <div class="modal-dialog">
-            
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">VideoCall</h4>
-                </div>
-                <div class="modal-body">
-                  <div id="videos">
-                    <video id="video1" playsinline autoplay muted></video>
-                    <video id="video2" playsinline autoplay></video>
-                    <video id="video3" playsinline autoplay></video>
-                
-                    <div>
-                        <button id="startButton">Start</button>
-                        <button id="callButton">Call</button>
-                        <button id="hangupButton">Hang Up</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" id="videoClose"   class="btn btn-default" data-dismiss="modal">End VideoCall</button>
-                </div>
-              </div>
-              
-            </div>
-          </div>
                   
+  
+          <!---->
           
-         
-          <!---->
-          <!--VOICECALL-->
-          <div class="modal fade" id="myCall" role="dialog">
-            <div class="modal-dialog">
-            
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">VoiceCall</h4>
-                </div>
-                <div class="modal-body">
-                  <div id="videos">
-                  <video id="localVoice" autoplay muted></video>
-                   
-                  <video id="remoteVoice" autoplay></video>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" id="voiceCall"   class="btn btn-default" data-dismiss="modal">End VoiceCall</button>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-          <!---->
     </div>
     
     <div class="col-sm-2" id="onlineFriends" >
