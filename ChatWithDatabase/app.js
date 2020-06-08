@@ -185,13 +185,16 @@ socket = io(http);
 const Chat = require("./models/Chat");
 const connect = require("./dbconnect");
 
+var files=[];
+
+
 //setup event listener
 socket.on("connection", socket => {
   console.log("user connected");
 
   socket.on("disconnect", function() {
     console.log("user disconnected");
-  });
+  }); 
   socket.on('setUsername', function(data) {
       
     console.log(data);
@@ -204,15 +207,62 @@ socket.on("connection", socket => {
        Users.push(data);
        socket.emit('userSet', {username: data});
        //send username to everyone
-       socket.broadcast.emit('newuser',data)
+     socket.broadcast.emit('newuser',data)
     }
  });
 
+ socket.on('status',function(data){
+  socket.broadcast.emit('statusnew',data);
+  console.log(data)
+  
+})
 
+
+ app.post('/upload', function(req, res) {
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+
+  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+  let sampleFile = req.files.photofile;
+ 
+
+files.push(req.files.photofile.data)
+  // Use the mv() method to place the file somewhere on your server
+  sampleFile.mv('views' + '/' + id +  userId + '.'+ 'jpg', function(err) {
+    if (err)
+      return res.status(500).send(err);
+      socket.broadcast.emit('fileimage',id );
+     res.redirect('/')
+    
+    id=id+1;
+  });
+});
+
+app.post('/profile', function(req, res) {
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+
+  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+  let sampleFile = req.files.photofile;
+ 
+files.push(req.files.photofile.data)
+
+  // Use the mv() method to place the file somewhere on your server
+  sampleFile.mv('views' + '/' + userId + '.'+ 'jpg', function(err) {
+    if (err)
+      return res.status(500).send(err);
+      socket.broadcast.emit('profimage',req.files.photofile.data );
+     res.redirect('/')
+    console.log(req.files.photofile.data)
+    
+  });
+});
   socket.on("chat message", function(data) {
     console.log("message: " + data.message);
 
-    //broadcast message to everyone in port:5000 except yourself.
+    
     socket.broadcast.emit("received", { message:data.message , sender:data.user }); 
 
     //save chat to the database
@@ -223,7 +273,20 @@ socket.on("connection", socket => {
       chatMessage.save();
     });
   });
+  socket.on('typingInfo',function(data) {
+    socket.broadcast.emit('typing',data);
+ })
+ 
+ 
+ socket.on('radio', function(blob) {
+  // can choose to broadcast it to whoever you want
+  socket.broadcast.emit('voice', blob);
+  
+  console.log(blob)
+ });
+  
 });
+
 
 http.listen(3003, () => {
   console.log("Running on Port: " +3003);
