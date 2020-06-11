@@ -37,8 +37,8 @@
       
           <div class="profileimage text-center" >
               
-            <form 
-            action='/profile' 
+           <form 
+            action='/prof' 
             method='post' 
             encType="multipart/form-data">
           <label for="filephoto" style="cursor: pointer;">
@@ -51,11 +51,11 @@
               </form> 
           </div> 
          
-          <form id="submitProfile" >
+          <form class="info-form" action="/" method="POST" >
             <div id="information">
           <p style="font-weight:500;"> Gender: </p>
         
-            <input type="text" class="gender"  id="Gender" list="genders" />
+            <input type="text" class="gender" name="Gender"  id="Gender" list="genders" />
             <datalist id="genders" >
             <option>Man</option>
             <option>Woman</option>
@@ -63,16 +63,16 @@
             
             </datalist>
           <p style="font-weight:500;">  Age:</p>
-          <input type="number" id="age"  min="1" max="99">
+          <input type="number" id="age" name="age" min="1" max="99">
           <!--<input type="submit">-->
           <p style="font-weight:500;">  I come from:</p>
-          <input type="text"  id="country" >
+          <input type="text"  id="country" name="country">
           <p style="font-weight:500;"> Study/Work:</p>
-          <textarea rows="2" cols="20" wrap="hard" id="study"  style="width: 100%;" ></textarea>
+          <textarea rows="2" cols="20" wrap="hard" id="study" name="study"  style="width: 100%;" ></textarea>
           <p style="font-weight:500;"> Interests/Hobbies:</p>
-          <textarea rows="2" cols="20" wrap="hard"  id="interests" style="width: 100%;" ></textarea>
+          <textarea rows="2" cols="20" wrap="hard"  id="interests" name="interests" style="width: 100%;" ></textarea>
         <!-- <input type="button" value="Save" onclick="saveInfo();">-->
-         <br><button id="submitInfo"  >Submit</button><br></div>
+         <br><input id="submitInfo" class="btn btn4" type="submit"  onclick=" return showProfile()" value="Submit" ><br></div>
         </form>
           
           
