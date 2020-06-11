@@ -9,6 +9,7 @@ var messages = document.getElementById("messages");
     }
     else{
     let li = document.createElement("li");
+    li.setAttribute("class","msg")
     e.preventDefault(); // prevents page reloading
     socket.emit("chat message", {message: $("#message").val(), user: user})
 
@@ -24,19 +25,7 @@ var messages = document.getElementById("messages");
 
     return false; }
 
-    $("#submit_profile").submit(function(e) {
-  
     
-      e.preventDefault(); // prevents page reloading
-      socket.emit("profileInfo", {gender: $("#Gender").val(), age: $("#age").val(), country: $("#country").val(), study: $("#study").val(), interests:$("#interests").val() })
-      document.getElementById("information").innerHTML= "<p> Gender:   </p>  <p>  Age  :   </p> <p>  I come from  :   </p> <p>  Study/Work :   </p> <p>  Interests/Hobbies  :   </p>" ;
-      
-      return false;
-    });
-  
-    socket.on("myProfile", data => {
-      console.log(data)
-    });
   });
 
 
@@ -44,6 +33,13 @@ var messages = document.getElementById("messages");
   socket.on("received", data => {
     let li = document.createElement("li");
     let span = document.createElement("span");
+    li.setAttribute("class","msg")
+  /*  if(data.message==='profile'){
+      li.style.display="none";}
+      else if(data.message=='undefined' ){
+        li.style.display="none";
+       }
+      else{*/
     var messages = document.getElementById("messages");
     messages.appendChild(li).append(data.message);
     messages.appendChild(span).append("by " + data.sender + ": " + "just now");
@@ -53,9 +49,10 @@ var messages = document.getElementById("messages");
     $(document).ready(function() { 
            
       $(Messagebox).scrollTop($(messages).height()); 
-    });
+    }); //}
   });
 })();
+
 
 // fetching initial chat messages from the database
 
@@ -64,24 +61,23 @@ var messages = document.getElementById("messages");
     })
     .then(json => {
       json.map(data => {
-      
+       
       
         let li = document.createElement("li");
         let span = document.createElement("span");
-        if(data.message=='profile'){
-         li.style.display="none";
-        }
-        else{
+      li.setAttribute("class","msg")
         if(data.sender!==document.getElementById("username").innerHTML){
         li.style.marginLeft="50%";
         span.style.marginLeft="50%";}
         messages.appendChild(li).append(data.message);
-        messages.appendChild(span).append("by " + data.sender + ": " + formatTimeAgo(data.createdAt));}
+        messages.appendChild(span).append("by " + data.sender + ": " + formatTimeAgo(data.createdAt));
         
         
         $(document).ready(function() { 
            
           $(Messagebox).scrollTop($(messages).height()); 
+
+          
         });
       });
       
