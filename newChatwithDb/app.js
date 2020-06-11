@@ -42,14 +42,20 @@ app.use((req, res, next) => {
     app.locals.signupMessage = req.flash('signupMessage');
     app.locals.signinMessage = req.flash('signinMessage');
     app.locals.user = req.user;
+    
     next();
 });
 
+
+
 const connect = require("./dbconnect");
 const Chat = require("./models/Chat");
+ 
+
 // Routes
 app.use('/', require('./routes/index'));
- users=[];
+ 
+//users=[];
  
 socket.on("connection", socket => {
     console.log("user connected");
@@ -61,16 +67,12 @@ socket.on("connection", socket => {
         
       console.log(data);
       userId=data;
-      if(users.indexOf(data) > -1) {
-         //send data with socket.emit
-         socket.emit('userExists', data + ' username is taken! Try some other username.');
-         
-      } else {
-         users.push(data);
+      
+        // users.push(data);
          socket.emit('userSet', {username: data});
          //send username to everyone
        socket.broadcast.emit('newuser',data)
-      }
+      
    });
   
    socket.on('status',function(data){
@@ -108,8 +110,10 @@ socket.on("connection", socket => {
     });
     id=id+1;
   });
+
   
-  app.post('/profile', function(req, res) {
+ 
+  app.post('/prof', function(req, res) {
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send('No files were uploaded.');
     }
@@ -148,9 +152,11 @@ socket.on("connection", socket => {
    })
   
    socket.on('profileInfo', function(data){
-  console.log(data)
-  socket.broadcast.emit("received", { message:'profile' , sender:data.user }); 
-    socket.broadcast.emit('myProfile', {gender:data.gender, age: data.age, country:data.country, study:data.study, interests:data.interests})
+  
+    socket.broadcast.emit('myProfile', {user: data.user,gender:data.gender, gender:data.gender, age: data.age, country: data.country, study: data.study, interests:data.interests})
+    
+    
+    
    })
    
    
