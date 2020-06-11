@@ -8,6 +8,13 @@
     
     
   }
+
+  #identity{ font-size: 20px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid black;
+
+  }
   
   
   .messages {
@@ -107,7 +114,7 @@
   }
   
   .messages > li {
-    font-size: 15px;
+    font-size: 15px; 
     color: white;
     background: #157e7875;
     border-radius: 10px;
@@ -399,7 +406,8 @@ border-radius: 50%;
 ul figure {
 display: none;
 position: absolute;
-top: 7px;
+top: 65px;
+
 right: 95%;
 
 border-radius: 1em;
