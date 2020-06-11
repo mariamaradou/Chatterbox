@@ -26,6 +26,11 @@ passport.use('local-signup', new LocalStrategy({
         newUser.name = req.body.name;
         newUser.email = email;
         newUser.password = newUser.encryptPassword(password);
+        newUser.gender = "";
+        newUser.age = "";
+        newUser.country = "";
+        newUser.study = "";
+        newUser.interests = "";
         await newUser.save();
         done(null, newUser);
     }
@@ -39,7 +44,7 @@ passport.use('local-signin', new LocalStrategy({
     
     const user = await User.findOne({email:email});
     if(!user) {
-        return done(null, false, req.flash('signinMessage', 'No User found'));
+        return done(null, false, req.flash('signinMessage', 'The user does not exist'));
     }
     if(!user.comparePassword(password)) {
         return done(null, false, req.flash('signinMessage', 'Incorrect Password'));
