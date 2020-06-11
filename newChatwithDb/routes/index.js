@@ -2,28 +2,75 @@ const express = require('express');
 const router = express.Router();
 const app = express();
 const passport = require('passport');
-
-router.get('/',  (req, res, next) => {
+const User = require('../models/user');
+const connect = require("../dbconnect");
+router.get('/', isAuthenticated, (req, res, next) => {
     res.render('index');
 });
+
+
 
 router.get('/signup', (req, res, next) => {
     res.render('signup');
 });
 
 router.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/profile', 
+    successRedirect: '/', 
     failureRedirect: '/signup',
     passReqToCallback: true
     
 }));
+
+router.get('/me',isAuthenticated,  (req, res, next) => {
+    
+   
+    res.render('me')
+;})
+
+router.post('/', async (req, res) => {
+    try {
+     console.log("heeeere")
+      //Θα αντικατασταθεί από την επόμενη εντολή
+      req.user.age=req.body.age;
+      req.user.country=req.body.country;
+      req.user.gender=req.body.Gender;
+      req.user.study=req.body.study;
+      req.user.interests=req.body.interests;
+      connect.then(db =>  {
+       
+        
+       User.updateOne({'name' : req.user.name}, 
+        { $set: {'age': req.user.age,'country': req.user.country, 'gender': req.user.gender, 'study': req.user.study,'interests': req.user.interests  } }, function(err, result) { 
+          if(err) { throw err; } 
+          
+      
+          
+       
+        }); 
+      });
+    
+     
+     
+     
+    console.log(req.user)
+    
+    
+    res.redirect('/me')
+  
+  } catch {
+    res.redirect('/')
+  
+      
+     
+    } 
+  }) 
 
 router.get('/signin', (req, res, next) => {
     res.render('signin');
 });
 
 router.post('/signin', passport.authenticate('local-signin', {
-    successRedirect: '/profile', 
+    successRedirect: '/me', 
     failureRedirect: '/signin',
     passReqToCallback: true   
 }));
