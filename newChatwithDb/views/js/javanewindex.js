@@ -166,7 +166,7 @@
   
      
 
-     document.getElementById("message").addEventListener("keypress", () => {
+    /* document.getElementById("message").addEventListener("keypress", () => {
   var key = window.event.keyCode;
   
   // If the user has pressed enter
@@ -323,7 +323,9 @@
    }); }
           
            }
-            })
+            }) */
+
+
   
   
            socket.on('newuser', function(data) {
@@ -338,11 +340,11 @@
            var userlist=document.createTextNode(nameOfUser); //apothikeuw to text
          
            li.appendChild(userlist);
-           var y=document.createElement("FIGURE");
+         /*  var y=document.createElement("FIGURE");
            li.appendChild(y);
            //ftiaxnw th hover photo
            
-          var imgf=document.createElement("IMG");
+        /*  var imgf=document.createElement("IMG");
           imgf.setAttribute("id",data);
          
          // imgf.src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAANlBMVEX////Fx8nBw8Xd3uDi4+TGyMr6+vry8/PLzc/t7u7k5ebg4eL39/jo6erJy8309PXY2dvR09QXDCJbAAAEXElEQVR4nO2d2XarMAxFy1CmMOX/f/ZC4FKSUIJtCR26zn7qQxdlL8uyLWz364sQQgghhBBCLkWWN9UtSZJb1eSZ9ctIkzV9EQ9EE+OPRd/8Gc0uaRe3NXHcJp31ywlQtVt2i2VbWb9gGFm/pzdL9teN1iN+l3ZMj/k9HFPrl/Wg2+1/b4rt5XLOzcXv4XizfmU3ClfBQbGwfmkHame9idr6xY+Suzfg3Iyl9asfo/QVvIpigOA1FL1DdFbMrQU+kYUJDoro6eY7UHDAWmGfe7hgdLeW2KMKjdER5ElqcCecFXG7YiEiGEWw87dGpgmHRkRd+Av5jYrWKtvc5AyjxFpmE6kYHYFsxFRQELMRRQURZzZBS4p34sZa6A2J+doavDFRtgmHRkSroYqN9gtoo750kOItMcSbEG1IDKxdbBpilWwqccEowlom9gqGWB1RamW45tta6gn5bgiWaoTKFy+GSMWMWsUQqTisMFiADRfCC4vZEGl5QUMa0tCev59LdcZDqC02KoZQdQwFQax5qUIRA63aligY9tZST8iX2rAGC5XlE9Ti6UtkD8Yr1kovyHdErG6oMG+DmtE8EBYEGw1HpMMULUjFp6ZQRZoZ2ZIp1oRmQjTXgA33M62gIVa9+z+CjYjZhJILDMReOCKWTrFW92sSIUW8sXBBJtlgppkJkTjFjdERgW3QyJugRw4eqtwB6+P2BqGTN9SBYkVYtkHOMgshipcQDFFsrV/9KHe/dHOlU6ReGTUGnsq841EhRl1P/EbtdFh9PK4OVgA+gNN59audVZ/IDiec+A71qdCB/JBjXADW1Q7z2TG+X9lvJEt3ck78nV41Pp+o0/vGJUNxXKTXy5+/k1d98bgf6kFU9NXVg3ObrK67uv4TgUkIIYQQQsCp87KpqtSdqmrKHHu1sVo/HFjab6wWodcdZVJ4em27FgnUvrayF7T7sexBJDsNvUXS/ntw6XHLpZNkYduQpWNl28uxtXPslNtvcSyMYjX8k/1xR4vPUuVpehOnh6rU9qfDxCffq3RSD3xSPPMLse89waGcNmlVOU95hLM2f5sJnqXY2Qmes6tP5QoMB0X9jx4KR7icUN81pXFY1A3lvYsO/9FBC93LTVVOpbuievRS47IkdxQnNwqnfX1Q3B9mrbagJSh5jW4YWnvEMGJ0ROmAqciF6zIojRjWs5k1KjMblVt2fFE56a1xNaI/GqUppCZUyTVQQaoSphr3s4QgX3rDmJL+ID85xQpShY5oWH7aRrwoBTShmRBfYKAlGvlUY1+feUW6XoOWSuWTqbXPBsKGaIlGfrig4fnQkIY0tIeGNKShPTSkIQ3toSENafjy13yPyXx45t5DTzWsygHhD6jx+My9zR9nGk7lZ2nD8Zl72wRpSEMa0pCGNKQhDWlIQxrSkIY0pCENaUhDGtKQhjSkIQ1pSEMa0pCGNKTh74aygucbJnvUH3/Dg4fhp18ghBBCCCGEkJP4B3ymXHSpa16yAAAAAElFTkSuQmCC";
@@ -509,12 +511,20 @@
         
           
   
-           function setSmall(){ var n=document.getElementById("Messagebox"); 
-                                  n.style.fontSize="14px"}
-           function setMedium(){ var n=document.getElementById("Messagebox"); 
-                              n.style.fontSize="18px"}
-           function setLarge(){ var n=document.getElementById("Messagebox"); 
-                              n.style.fontSize="23px"}
+           function setSmall(){ var n=document.getElementsByClassName("msg"); 
+                            for (var i=0; i<document.getElementsByClassName("msg").length; i++) {
+                                document.getElementsByClassName("msg")[i].style.fontSize = "14px";
+        }
+                                }
+           function setMedium(){ var n=document.getElementsByClassName("msg"); 
+           for (var i=0; i<document.getElementsByClassName("msg").length; i++) {
+            document.getElementsByClassName("msg")[i].style.fontSize = "18px";
+}
+                             }
+           function setLarge(){ var n=document.getElementsByClassName("msg"); 
+           for (var i=0; i<document.getElementsByClassName("msg").length; i++) {
+            document.getElementsByClassName("msg")[i].style.fontSize = "23px";
+}}
   
               function nightMode() { 
               var checkBox = document.getElementById("checkBox");
@@ -522,14 +532,14 @@
              var messagebox=document.getElementById("messageExchange");
              var user=document.getElementById("user");
            
-             var files=document.getElementById("Files");
+             //var files=document.getElementById("Files");
              var photos=document.getElementById("Photos");
              var record=document.getElementById("record");
              var send=document.getElementById("Send");
              var settings=document.getElementById("SETTINGS");
-             var call=document.getElementById("CALL");
-             var videocall=document.getElementById("VIDEOCALL");
-             var typewrite=document.getElementById("typewrite");
+            // var call=document.getElementById("CALL");
+            //var videocall=document.getElementById("VIDEOCALL");
+             var typewrite=document.getElementById("message");
              
              var li=document.getElementById("usersonline");
              
@@ -558,10 +568,10 @@
                               }
                  
                   settings.style.backgroundColor="#9e7bb0";
-                  call.style.backgroundColor="#9e7bb0";
-                  videocall.style.backgroundColor="#9e7bb0";
+                //  call.style.backgroundColor="#9e7bb0";
+                 // videocall.style.backgroundColor="#9e7bb0";
                   typewrite.style.borderColor="#9e7bb0";
-                  files.style.backgroundColor="#9e7bb0";
+                 // files.style.backgroundColor="#9e7bb0";
                   photos.style.backgroundColor="#9e7bb0";
                   record.style.backgroundColor="#9e7bb0";
                   send.style.backgroundColor="#9e7bb0";
@@ -609,9 +619,9 @@
                       
                      }
                   
-                  call.style.backgroundColor="#026670";
-                  videocall.style.backgroundColor="#026670";
-                  files.style.backgroundColor="#026670";
+                 // call.style.backgroundColor="#026670";
+                  //videocall.style.backgroundColor="#026670";
+                 // files.style.backgroundColor="#026670";
                   photos.style.backgroundColor="#026670";
                   record.style.backgroundColor="#026670";
                   send.style.backgroundColor="#026670";
@@ -627,7 +637,114 @@
                   document.getElementsByTagName("audio")[0].muted=true;}
                   else{document.getElementsByTagName("audio")[0].muted=false;}
               }
+
+                function showProfile(){
+                    console.log("pressed")
+                    var gender=document.getElementById('Gender').value;
+                    var age=document.getElementById('age').value;
+                    var country=document.getElementById('country').value;
+                    var study=document.getElementById('study').value;
+                    var interests=document.getElementById('interests').value;
+              socket.emit('profileInfo', {user:document.getElementsByTagName("h2")[0].innerHTML, gender:gender, age: age, country: country, study: study, interests:interests})}
        
+              socket.on('myProfile', function(data){
+           console.log(data)
+           console.log(user)
+           
+           var y=document.createElement("FIGURE");
+           for(i=0; i<document.getElementsByTagName("ul")[1].getElementsByTagName("li").length; i++){
+               if(document.getElementsByTagName("ul")[1].getElementsByTagName("li")[i].innerText===data.user){
+                if(document.getElementsByTagName("figure")[i]===undefined){
+                document.getElementsByTagName("ul")[1].getElementsByTagName("li")[i].appendChild(y);
+              
+              var divprof=document.createElement("div");
+              divprof.setAttribute("id", "identity");
+              
+              divprof.innerHTML="<p>" + "Gender" + ": " + "</p>" +
+              "<p>" + "<b>" + data.gender + "</b>" + "</p>" +
+             "<p>" + "Age" + ": " + "</p>" +
+             "<p>" + "<b>" + data.age + "</b>" + "</p>" + 
+             
+              "<p>" + "I come from" + ": " + "</p>" +
+              "<p>" + "<b>" + data.country + "</b>" + "</p>" + 
+              "<p>" + "Study/Work" + ": " + "</p>" +
+              "<p>" + "<b>" + data.study + "</b>" + "</p>" + 
+              "<p>" + "Interests/Hobbies" + ": " + "</p>" +
+              "<p>" + "<b>" + data.interests + "</b>" + "</p>" 
+             y.appendChild(divprof);}
+                   else{document.getElementsByTagName("figure")[i].getElementsByTagName("div")[0].innerHTML="<p>" + "Gender" + ": " + "</p>" +
+                   "<p>" + "<b>" + data.gender + "</b>" + "</p>" +
+                  "<p>" + "Age" + ": " + "</p>" +
+                  "<p>" + "<b>" + data.age + "</b>" + "</p>" + 
+                  
+                   "<p>" + "I come from" + ": " + "</p>" +
+                   "<p>" + "<b>" + data.country + "</b>" + "</p>" + 
+                   "<p>" + "Study/Work" + ": " + "</p>" +
+                   "<p>" + "<b>" + data.study + "</b>" + "</p>" + 
+                   "<p>" + "Interests/Hobbies" + ": " + "</p>" +
+                   "<p>" + "<b>" + data.interests + "</b>" + "</p>" 
+                   
+
+                   }
+               }
+           }
+
+              })
+
+             /* (function() {
+                fetch("/chats").then(data => { return data.json();
+                  })
+                  .then(json => {
+                    json.map(data => { 
+                        for(i=0; i<document.getElementsByTagName('ul')[0].getElementsByTagName('li').length;i++){
+                        if(document.getElementsByTagName('ul')[0].getElementsByTagName('li')[i].innerText=='undefined'){
+                            document.getElementsByTagName('ul')[0].getElementsByTagName('li')[i].style.display="none"
+                        }}
+                        var y=document.createElement("FIGURE");
+                    for(i=0; i<document.getElementsByTagName("ul")[1].getElementsByTagName("li").length; i++){
+                        if(document.getElementsByTagName("ul")[1].getElementsByTagName("li")[i].innerText===data.user){
+                         if(document.getElementsByTagName("figure")[i]===undefined){
+                         document.getElementsByTagName("ul")[1].getElementsByTagName("li")[i].appendChild(y);
+                       
+                       var divprof=document.createElement("div");
+                       divprof.setAttribute("id", "identity");
+                       
+                       divprof.innerHTML="<p>" + "Gender" + ": " + "</p>" +
+                       "<p>" + "<b>" + data.gender + "</b>" + "</p>" +
+                      "<p>" + "Age" + ": " + "</p>" +
+                      "<p>" + "<b>" + data.age + "</b>" + "</p>" + 
+                      
+                       "<p>" + "I come from" + ": " + "</p>" +
+                       "<p>" + "<b>" + data.country + "</b>" + "</p>" + 
+                       "<p>" + "Study/Work" + ": " + "</p>" +
+                       "<p>" + "<b>" + data.study + "</b>" + "</p>" + 
+                       "<p>" + "Interests/Hobbies" + ": " + "</p>" 
+                       "<p>" + "<b>" + data.interests + "</b>" + "</p>" 
+                      y.appendChild(divprof);}
+                            else{document.getElementsByTagName("figure")[i].getElementsByTagName("div")[0].innerHTML="<p>" + "Gender" + ": " + "</p>" +
+                            "<p>" + "<b>" + data.gender + "</b>" + "</p>" +
+                           "<p>" + "Age" + ": " + "</p>" +
+                           "<p>" + "<b>" + data.age + "</b>" + "</p>" + 
+                           
+                            "<p>" + "I come from" + ": " + "</p>" +
+                            "<p>" + "<b>" + data.country + "</b>" + "</p>" + 
+                            "<p>" + "Study/Work" + ": " + "</p>" +
+                            "<p>" + "<b>" + data.study + "</b>" + "</p>" + 
+                            "<p>" + "Interests/Hobbies" + ": " + "</p>" 
+                            "<p>" + "<b>" + data.interests + "</b>" + "</p>" 
+                            
+         
+                            }
+                        }}
+                    
+                    
+                   
+                    });
+                    
+                  });
+              })(); */
+
+
            socket.on('disconnection',function(data){ 
                console.log(data + "disconnection")
                
