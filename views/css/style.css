@@ -9,7 +9,7 @@ body {
 
   #identity{
     font-size: 20px;
-    background-color: rgb(100,149,237);
+    /*background-color: rgb(100,149,237);*/
     background-color: #F5AF02;
     border-radius: 10px;
     border: .2em solid black;
