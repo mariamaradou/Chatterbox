@@ -7,15 +7,18 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const dateTime = require("simple-datetime-formater");
 const chatRouter = require("./route/chatroute");
+const onlineRouter = require("./route/onlineroute");
 const fileUpload = require('express-fileupload');
-
-
+var MongoStore = require('connect-mongo')(session);
+var mongoose = require('mongoose');
+var cookieParser = require('cookie-parser');
 // Initializations
 const app = express();
 const http = require("http").Server(app);
 const io = require("socket.io");
 socket = io(http);
 app.use("/chats", chatRouter);
+app.use("/online", onlineRouter);
 require('./database');
 require('./passport/local-auth');
 
@@ -29,10 +32,20 @@ app.set('port', process.env.PORT || 3000);
 // middlewares
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
-app.use(session({
+/*app.use(session({
     secret: 'mysecretsession',
     resave: false,
     saveUninitialized: false
+}));*/
+
+app.use(session({
+  secret: 'iamtired',
+  saveUninitialized: false, // don't create session until something stored
+  resave: false, //don't save session if unmodified
+  store: new MongoStore({
+      url: "mongodb+srv://MariaMaradou:Maria8132024@cluster0-jrach.azure.mongodb.net/<dbname>?retryWrites=true&w=majority",
+      touchAfter: 24 * 3600 // time period in seconds
+  })
 }));
 app.use(flash());
 app.use(passport.initialize());
@@ -50,30 +63,64 @@ app.use((req, res, next) => {
 
 const connect = require("./dbconnect");
 const Chat = require("./models/Chat");
+const onlineUsers = require("./models/online");
  
 
 // Routes
 app.use('/', require('./routes/index'));
  
-//users=[];
- 
+var users = [];
+
 socket.on("connection", socket => {
     console.log("user connected");
-  
-    socket.on("disconnect", function() {
-      console.log("user disconnected");
-    }); 
+   
+    
+    var userId;
     socket.on('setUsername', function(data) {
-        
+      connect.then(db => {
+        console.log("connected correctly to the server");
+        let newUser = new onlineUsers({ name: data });
+  
+        newUser.save();
+      });
       console.log(data);
+      users.push(data);
+      users.push(socket.id)
       userId=data;
       
-        // users.push(data);
+     
+         
+         console.log(users + "users")
          socket.emit('userSet', {username: data});
          //send username to everyone
        socket.broadcast.emit('newuser',data)
       
    });
+   socket.on("disconnect", function() {
+     
+    var remove_id = users.indexOf(socket.id)-1;
+    console.log(users[remove_id] + " " + " id")
+   // users.splice(remove_id, 2);
+    socket.broadcast.emit('disconnected',users[remove_id])
+
+     connect.then(db =>  {
+       
+        
+     onlineUsers.findOneAndRemove({
+       name: users[remove_id]
+       }, (err, user) => {
+        if(err) {
+         console.log(err)
+        } else {
+         console.log(user);
+        
+       }
+     }) });
+   
+  
+ 
+    console.log("user disconnected" );
+  }); 
   
    socket.on('status',function(data){
     socket.broadcast.emit('statusnew',data);
