@@ -15,7 +15,23 @@
             <h1>Εγγραφείτε στο Chatterbox!</h1>
             <h3 class="logo">Λογότυπο</h3> <!--Να προστεθεί η εικόνα-->
             <hr>
-            
+            <div class="container" style="border: hidden">
+                <% if (signupMessage.length > 0) { %>
+                    <div class="alert alert-danger">
+                        <%= signupMessage %>
+                    </div>
+                        
+                <% } %>
+                
+                <% if (signinMessage.length > 0) { %>
+                    <div class="alert alert-danger">
+                        <%= signinMessage %>
+                    </div>
+                        
+                <% } %>
+                    
+               
+            </div>
             <form class="register-form" action="/signup" method="POST">
                 <!--<input class="text" type="text" size="30" maxlength=50 name="onoma" placeholder="Όνοματεπώνυμο" required><br>
                 <input class="text" type="text" size="30" maxlength=50 id="name" name="name" placeholder="Όνομα χρήστη" required><br>
