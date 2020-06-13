@@ -7,7 +7,7 @@
     var once=false;
     var user;
     var date;
-       
+       var disconnect;
 
        console.log(document.getElementsByTagName("h2")[0].innerHTML)
     socket.emit('setUsername', document.getElementsByTagName("h2")[0].innerHTML);
@@ -17,6 +17,66 @@
         user = data.username;
        
   
+     });
+
+               
+     fetch("/online").then(data => { return data.json();
+     })
+     .then(json => {
+       json.map(data => {
+        
+       
+         let li = document.createElement("li");
+        
+         document.getElementById("usersonline").appendChild(li).append(data.name);
+         var y=document.createElement("FIGURE");
+         for(i=0; i<document.getElementsByTagName("ul")[1].getElementsByTagName("li").length; i++){
+             if(document.getElementsByTagName("ul")[1].getElementsByTagName("li")[i].innerText===data.name){
+                
+              if(document.getElementsByTagName("figure")[i]===undefined){
+              document.getElementsByTagName("ul")[1].getElementsByTagName("li")[i].appendChild(y);
+            
+            var divprof=document.createElement("div");
+            divprof.setAttribute("id", "identity");
+          
+            divprof.innerHTML="<p>" + "Gender" + ": " + "</p>" +
+            "<p>" + "<b>" + data.gender + "</b>" + "</p>" +
+           "<p>" + "Age" + ": " + "</p>" +
+           "<p>" + "<b>" + data.age + "</b>" + "</p>" + 
+           
+            "<p>" + "I come from" + ": " + "</p>" +
+            "<p>" + "<b>" + data.country + "</b>" + "</p>" + 
+            "<p>" + "Study/Work" + ": " + "</p>" +
+            "<p>" + "<b>" + data.study + "</b>" + "</p>" + 
+            "<p>" + "Interests/Hobbies" + ": " + "</p>" +
+            "<p>" + "<b>" + data.interests + "</b>" + "</p>" 
+           y.appendChild(divprof);}
+                 else{document.getElementsByTagName("figure")[i].getElementsByTagName("div")[0].innerHTML="<p>" + "Gender" + ": " + "</p>" +
+                 "<p>" + "<b>" + data.gender + "</b>" + "</p>" +
+                "<p>" + "Age" + ": " + "</p>" +
+                "<p>" + "<b>" + data.age + "</b>" + "</p>" + 
+                
+                 "<p>" + "I come from" + ": " + "</p>" +
+                 "<p>" + "<b>" + data.country + "</b>" + "</p>" + 
+                 "<p>" + "Study/Work" + ": " + "</p>" +
+                 "<p>" + "<b>" + data.study + "</b>" + "</p>" + 
+                 "<p>" + "Interests/Hobbies" + ": " + "</p>" +
+                 "<p>" + "<b>" + data.interests + "</b>" + "</p>" 
+                 
+
+                 }
+             }
+         }
+
+         
+         $(document).ready(function() { 
+            
+           $(OnlineUsers).scrollTop($(usersonline).height()); 
+ 
+           
+         });
+       });
+       
      });
   
      function getDate(){
@@ -43,20 +103,6 @@
         
        }
   
-    /* function sendMessage() {
-        
-        var msg = document.getElementById('typewrite').value;
-        if(msg==="") {
-           alert("You didn't type anything!");
-        }
-        else {  socket.emit('msg', {message: msg, user: user}); 
-        document.getElementById('typewrite').value="";}
-     } */
-  
-  
-  
-  
-    
   
   
      //function typing()
@@ -354,20 +400,7 @@
           imgf.style.height="150px";
           imgf.style.width="150px";
           y.appendChild(imgf);
-         //ftiaxnw to div gia to profile
-        /* var divprof=document.createElement("div");
-         divprof.innerHTML="<p>" + "Gender" + ": " + "</p>" +
-         //"<p>" + "<b>" +  + "</b>" + "</p>" + "<br>" +
-        "<p>" + "Age" + ": " + "</p>" +
-     
-        
-         "<p>" + "I come from" + ": " + "</p>" +
-         
-         "<p>" + "Study/Work" + ": " + "</p>" +
-        
-         "<p>" + "Interests/Hobbies" + ": " + "</p>" 
-        
-         y.appendChild(divprof);*/
+       */
          
           
           document.getElementById("usersonline").appendChild(li); 
@@ -691,61 +724,13 @@
 
               })
 
-             /* (function() {
-                fetch("/chats").then(data => { return data.json();
-                  })
-                  .then(json => {
-                    json.map(data => { 
-                        for(i=0; i<document.getElementsByTagName('ul')[0].getElementsByTagName('li').length;i++){
-                        if(document.getElementsByTagName('ul')[0].getElementsByTagName('li')[i].innerText=='undefined'){
-                            document.getElementsByTagName('ul')[0].getElementsByTagName('li')[i].style.display="none"
-                        }}
-                        var y=document.createElement("FIGURE");
-                    for(i=0; i<document.getElementsByTagName("ul")[1].getElementsByTagName("li").length; i++){
-                        if(document.getElementsByTagName("ul")[1].getElementsByTagName("li")[i].innerText===data.user){
-                         if(document.getElementsByTagName("figure")[i]===undefined){
-                         document.getElementsByTagName("ul")[1].getElementsByTagName("li")[i].appendChild(y);
-                       
-                       var divprof=document.createElement("div");
-                       divprof.setAttribute("id", "identity");
-                       
-                       divprof.innerHTML="<p>" + "Gender" + ": " + "</p>" +
-                       "<p>" + "<b>" + data.gender + "</b>" + "</p>" +
-                      "<p>" + "Age" + ": " + "</p>" +
-                      "<p>" + "<b>" + data.age + "</b>" + "</p>" + 
-                      
-                       "<p>" + "I come from" + ": " + "</p>" +
-                       "<p>" + "<b>" + data.country + "</b>" + "</p>" + 
-                       "<p>" + "Study/Work" + ": " + "</p>" +
-                       "<p>" + "<b>" + data.study + "</b>" + "</p>" + 
-                       "<p>" + "Interests/Hobbies" + ": " + "</p>" 
-                       "<p>" + "<b>" + data.interests + "</b>" + "</p>" 
-                      y.appendChild(divprof);}
-                            else{document.getElementsByTagName("figure")[i].getElementsByTagName("div")[0].innerHTML="<p>" + "Gender" + ": " + "</p>" +
-                            "<p>" + "<b>" + data.gender + "</b>" + "</p>" +
-                           "<p>" + "Age" + ": " + "</p>" +
-                           "<p>" + "<b>" + data.age + "</b>" + "</p>" + 
-                           
-                            "<p>" + "I come from" + ": " + "</p>" +
-                            "<p>" + "<b>" + data.country + "</b>" + "</p>" + 
-                            "<p>" + "Study/Work" + ": " + "</p>" +
-                            "<p>" + "<b>" + data.study + "</b>" + "</p>" + 
-                            "<p>" + "Interests/Hobbies" + ": " + "</p>" 
-                            "<p>" + "<b>" + data.interests + "</b>" + "</p>" 
-                            
-         
-                            }
-                        }}
-                    
-                    
-                   
-                    });
-                    
-                  });
-              })(); */
+        
+             
+            
+                  
 
 
-           socket.on('disconnection',function(data){ 
+           socket.on('disconnected',function(data){ 
                console.log(data + "disconnection")
                
                var list = document.getElementsByTagName("UL")[1];
