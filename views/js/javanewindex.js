@@ -640,7 +640,7 @@
                                      
                               
                   typewrite.style.borderColor="#026670";
-                  settings.style.backgroundColor="#026670";
+                  settings.style.backgroundColor="transparent";
                   if(textmessage==true){
                       li.style.color="black";
                       for (var i = 0; i < text.length; i++) {
@@ -655,14 +655,14 @@
                  // call.style.backgroundColor="#026670";
                   //videocall.style.backgroundColor="#026670";
                  // files.style.backgroundColor="#026670";
-                  photos.style.backgroundColor="#026670";
-                  record.style.backgroundColor="#026670";
-                  send.style.backgroundColor="#026670";
+                  photos.style.backgroundColor="transparent";
+                  record.style.backgroundColor="transparent";
+                  send.style.backgroundColor="transparent";
                   user.style.color="black";
                   online.style.color="black";
-                  user.style.backgroundColor="#FCE181";
-                  online.style.backgroundColor="#9fedd7";
-                  messagebox.style.backgroundColor="#FEF9C7";
+                  user.style.backgroundColor="transparent";
+                  online.style.backgroundColor="transparent";
+                  messagebox.style.backgroundColor="transparent";
               }}
   
               function soundOnOff(){
