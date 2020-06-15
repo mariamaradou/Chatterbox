@@ -71,7 +71,7 @@
          
           <p style="font-weight:500;" title="I come from"> Καταγωγή:</p>
           <input type="text"  id="country" maxlength="20" name="country">
-          <p style="font-weight:500;" title="Study/work"> Σπουδές/Εργασία:</p>
+          <p  style="font-weight:500;  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="Study/work"> Σπουδές/Εργασία:</p>
           <textarea rows="1" cols="20" maxlength="54" wrap="hard" id="study" name="study"  style="width: 100%;"  ></textarea>
           <p style="font-weight:500;" title="Interests"> Ενδιαφέροντα:</p>
           <textarea rows="2" cols="20" maxlength="54" wrap="hard"  id="interests" name="interests" style="width: 100%;" ></textarea>
@@ -87,7 +87,7 @@
           <label for="online" class="status" style="font-family: 'Open Sans', sans-serif;" title="Available">Διαθέσιμος</label></div>
           <div class="offline"><input type="radio" id="offline" class="offline" name="status" value="offline" onclick="setOffline()"> 
           <label for="offline" class="status" id="busy" style="font-family: 'Open Sans', sans-serif; " title="Busy">Απασχολημένος</label></div>
-          <a  href="/logout">Αποσύνδεση</a>
+          <a  href="/logout" onclick="return ensure()">Αποσύνδεση</a>
       </div>
      
     </div>
