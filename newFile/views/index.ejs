@@ -51,12 +51,13 @@
               </label>
               
               <input id="filephoto"  name="photofile" type="file" style="display: none;"  />
-              <input type="submit" value="submit" > 
+              <input type="submit" value="submit"  style="color:black"> 
               </form> 
           </div> 
          
           <form class="info-form" action="/me" method="POST" >
             <div id="information">
+              
           <p style="font-weight:500;" title="Gender"> Φύλο: </p>
         
             <input type="text" class="gender" name="Gender"  id="Gender" list="genders" />
@@ -76,7 +77,8 @@
           <p style="font-weight:500;" title="Interests"> Ενδιαφέροντα:</p>
           <textarea rows="2" cols="20" maxlength="54" wrap="hard"  id="interests" name="interests" style="width: 100%;" ></textarea>
        
-         <br><input id="submitInfo" class="btn btn4" type="submit"  onclick=" return showProfile()" value="Submit" ><br></div>
+         <br><input id="submitInfo" class="btn btn4" type="submit" style="color:black" onclick=" return showProfile()" value="Submit" ><br></div>
+        
         </form>
    
       
@@ -173,10 +175,11 @@
 <button type="button" class="close" data-dismiss="modal">&times;</button>
 <h4 class="modal-title">Settings</h4>
 </div>
+<div id="opacity">
 <div class="modal-body">
 <b>Text size:</b>
-<input type="radio" id="small" name="size" onclick="setSmall()" checked>Small      
-<input type="radio" id="medium" name="size" onclick="setMedium()">Medium    
+<input type="radio" id="small" name="size" onclick="setSmall()" >Small      
+<input type="radio" id="medium" name="size" onclick="setMedium()" checked>Medium    
 <input type="radio" id="large" name="size" onclick="setLarge()">Large    
 <br><br>
 <b>Nightmode:</b> <label class="switch">
@@ -190,6 +193,7 @@
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
 </div>
 </div>
 
