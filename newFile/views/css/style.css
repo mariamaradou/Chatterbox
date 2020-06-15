@@ -10,9 +10,12 @@
   }
 
   #identity{ font-size: 20px;
-    background-color: white;
-    border-radius: 10px;
-    
+ padding-bottom: 2px;
+    border-radius: 1rem;
+    background-color:  #005e75;
+    box-shadow: 3px 2px 20px  rgb(46, 45, 45) inset;
+background-image: url("https://www.transparenttextures.com/patterns/white-sand.png");
+padding: 2px 0px 2px 3px;
     color: black;
 
   }
@@ -31,7 +34,7 @@
  
   
   .messages > li {
-    font-size: 15px; 
+    font-size: 18px; 
     color: white;
     background: #4682b4;
     border-radius: 10px;
@@ -242,9 +245,10 @@ height: 30px;}
 
        ul li { font-family: 'Cabin', sans-serif;
               font-size: 23px;
-              font-weight: bold;
+            /*  font-weight: bold;*/
               margin-top: 7px;
               opacity: initial;
+             
               
 
               }
@@ -346,11 +350,21 @@ ul figure {
 display: none;
 position: absolute;
 top: 65px;
-
 right: 95%;
-
+background-color: transparent;
 border-radius: 1em;
+
 }
+
+#identity > p:nth-child(2n+1){ font-weight: 150px; 
+  font-size: smaller;
+  color: rgba(255, 253, 253, 0.836);
+  text-shadow: none
+ }
+
+#identity> p {  color: rgba(255, 255, 255, 0.836);
+  text-shadow: 1px 1px  rgba(37, 36, 36, 0.836);
+  }
 
 @media (max-width: 768px) {
 ul figure {
@@ -404,6 +418,7 @@ display: block;
 
 
 #information {
+  
   background-color: #d1d6ee;
   border-radius: 6px;
   padding-bottom: 3px;
@@ -420,3 +435,10 @@ display: block;
       width: 100%
   }
 
+
+
+.modal-content {background-image: url("settings.png");
+background-position: center;}
+
+#opacity {opacity:0.93;
+background-color: white;}
