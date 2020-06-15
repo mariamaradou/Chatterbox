@@ -79,7 +79,7 @@
                     max-height:120px;
                     margin-top: 10px;}
 
-.AboutMe { height: 455px; 
+.AboutMe { 
             word-wrap: break-word;}
 
 .info-form {height: 400px;}
@@ -120,7 +120,7 @@ visibility: hidden;
 
 label.status {font-family: Arial, Helvetica, sans-serif;
        
-        font-size: 18px;
+        font-size:14px;
         }
         .send_message{opacity: 1;
           overflow: visible;
@@ -360,9 +360,9 @@ border-radius: 1em;
 }
 #user, #messageExchange, #onlineFriends{ height:100%;}} 
 
-@media (max-width: 1125px) {
+/*@media (max-width: 1125px) {
 
-#user, #messageExchange, #onlineFriends{ height:640px;}}
+#user, #messageExchange, #onlineFriends{ height:640px;}}*/
 
 
 ul li img {
@@ -372,10 +372,28 @@ border-radius: 0.8em;
 
 }
 
-ul li:focus figure,
+
+@media screen and  (min-width: 768px) and (max-width: 900px) {
+  label.status {
+    font-size: 10px;
+  margin-bottom: 0px;
+ 
+  }
+  a{font-size: 12px}
+#busy {padding-bottom: 3px;
+  margin-bottom: 3px;
+}
+.offline {margin-bottom: 0px;}
+  
+}
+
+
+
 ul li:hover figure {
 display: block;
 }
+
+
 
 #information {
   background-color: #d1d6ee;
