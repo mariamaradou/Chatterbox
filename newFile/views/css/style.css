@@ -82,7 +82,7 @@
 .AboutMe { 
             word-wrap: break-word;}
 
-.info-form {height: 400px;}
+.info-form {height: auto;}
 
 div.buttonsup { position: static;
             margin-left: 3px;
@@ -257,6 +257,10 @@ height: 30px;}
        
      
       }
+
+      #myname {white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;}
     #mylist>p, #userslist>p {min-height: 20px;
       width:50%;
     max-width:720px;
@@ -358,7 +362,11 @@ left: 50%;
 border-radius: 1em;
 
 }
-#user, #messageExchange, #onlineFriends{ height:100%;}} 
+#user, #messageExchange, #onlineFriends{ height:100%;}
+
+input[type="text" i] {
+  width: 100%;
+}} 
 
 /*@media (max-width: 1125px) {
 
@@ -398,7 +406,7 @@ display: block;
 #information {
   background-color: #d1d6ee;
   border-radius: 6px;
-  padding-bottom: 7px;
+  padding-bottom: 3px;
   padding-left: 2px;
   padding-right: 3px;
 }
@@ -408,5 +416,7 @@ display: block;
 #age, #study, #interests, #country, #Gender {border:hidden;
     border-radius: 10px;}
 
-
+    input[type="text" i] {
+      width: 100%
+  }
 
