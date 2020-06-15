@@ -164,7 +164,7 @@ grid-template-columns: auto;
 #typewrite {margin-right: 10px;
 }
 
-#OnlineUsers {height: 502px; 
+#OnlineUsers {min-height: 502px; 
   
 }
 
@@ -173,12 +173,12 @@ grid-template-columns: auto;
   background-image: linear-gradient(to right, white ,#c4d1e6);
   border-left: solid 1px #ebeaea;
   border-right: solid 1px #bcc9dd;
-  height:610px;
+  min-height:610px;
 }
 
 #user {background-color:#e8f3fc;
   border-radius: 3px;
- /* height: 610px;*/
+ min-height: 610px;
 
 
     
