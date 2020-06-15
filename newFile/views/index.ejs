@@ -83,12 +83,11 @@
       </div>
           <hr>
           <div class="status">
-            <a  href="/logout">Logout</a>
           <div class="online"><input type="radio" id="online" class="online" name="status" value="online" onclick="setOnline()" checked> 
-          <label for="online" class="status" style="font-family: 'Open Sans', sans-serif;">Available</label></div>
+          <label for="online" class="status" style="font-family: 'Open Sans', sans-serif;" title="Available">Διαθέσιμος</label></div>
           <div class="offline"><input type="radio" id="offline" class="offline" name="status" value="offline" onclick="setOffline()"> 
-          <label for="offline" class="status" style="font-family: 'Open Sans', sans-serif; ">Busy</label></div>
-          
+          <label for="offline" class="status" id="busy" style="font-family: 'Open Sans', sans-serif; padding-bottom: 20px" title="Busy">Απασχολημένος</label></div>
+          <a  href="/logout">Logout</a>
       </div>
      
     </div>
@@ -197,7 +196,7 @@
 </div>
 </div>
 
-<!--<a  href="/logout">Logout</a>-->
+
 
    
   </body>
