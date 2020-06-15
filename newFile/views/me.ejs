@@ -54,7 +54,7 @@
             <!--<input type="submit">-->
             <p style="font-weight:500;" title="I come from"> Καταγωγή:</p>
             <p id="country"><b> <%= user.country %></b> </p><br>
-            <p style="font-weight:500;" title="Study/Work"> Σπουδές/Εργασία:</p>
+            <p style="font-weight:500;  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="Study/Work"> Σπουδές/Εργασία:</p>
             <p id="study"><b><%= user.study %></b> </p><br>
             <p style="font-weight:500;" title="Interests"> Ενδιαφέροντα:</p>
             <p id="interests"><b> <%= user.interests %></b> </p>
@@ -69,7 +69,8 @@
           <div class="online"><input type="radio" id="online" class="online" name="status" value="online" onclick="setOnline()" checked> 
           <label for="online" class="status" style="font-family: 'Open Sans', sans-serif;" title="Available">Διαθέσιμος</label></div>
           <div class="offline"><input type="radio" id="offline" class="offline" name="status" value="offline" onclick="setOffline()"> 
-            <label for="offline" class="status" id="busy" style="font-family: 'Open Sans', sans-serif; " title="Busy">Απασχολημένος</label></div>          <a  href="/logout" title="log out">Αποσύνδεση</a>
+            <label for="offline" class="status" id="busy" style="font-family: 'Open Sans', sans-serif; " title="Busy">Απασχολημένος</label></div>          
+            <a  href="/logout" onclick="return ensure()" title="log out">Αποσύνδεση</a>
       </div>
      
     </div>
