@@ -74,9 +74,9 @@
           <p style="font-weight:500;" title="I come from"> Καταγωγή:</p>
           <input type="text"  id="country" maxlength="20" name="country" value="<%= user.country %>">
           <p  style="font-weight:500;  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="Study/work"> Σπουδές/Εργασία:</p>
-          <textarea rows="1" cols="20" maxlength="54" wrap="hard" id="study" name="study"  style="width: 100%;" value="<%= user.study %>" ></textarea>
+          <input type="text" maxlength="54" id="study" name="study"  style="width: 100%;" value="<%= user.study %>" ></textarea>
           <p style="font-weight:500;" title="Interests"> Ενδιαφέροντα:</p>
-          <textarea rows="2" cols="20" maxlength="54" wrap="hard"  id="interests" name="interests" value="<%= user.interests %>" style="width: 100%;" ></textarea>
+          <input type="text"  maxlength="54"  id="interests" name="interests" style="margin-bottom:10px" value="<%= user.interests %>" style="width: 100%;" ></textarea>
        
          <br><input id="submitInfo" class="btn btn4" type="submit" style="color:black" onclick=" return showProfile()" value="Submit" ><br></div>
         
@@ -201,7 +201,7 @@
 </div>
 </div>
 
-<!--<a  href="/logout">Logout</a>-->
+
 
    
   </body>
