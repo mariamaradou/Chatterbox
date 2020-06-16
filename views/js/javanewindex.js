@@ -464,7 +464,7 @@
                   user.style.color="black";
                   online.style.color="black";
                   user.style.backgroundColor="#e8f3fc";
-                  online.style.backgroundColor="#e8f3fc";
+                  online.style.backgroundColor="#98c3aa";
                  
               }}
   
