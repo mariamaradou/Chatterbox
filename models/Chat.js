@@ -8,25 +8,8 @@ const chatSchema = new Schema(
     },
     sender: {
       type: String
-    },
-    img: {
-       data: Buffer, contentType: String 
-    },
-    gender: {
-      type: String
-    },
-    age: {
-      type: String
-    },
-    country: {
-      type: String
-    },
-    study: {
-      type: String
-    },
-    interests: {
-      type: String
     }
+   
   },
   {
     timestamps: true

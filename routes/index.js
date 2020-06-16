@@ -3,16 +3,12 @@ const router = express.Router();
 const app = express();
 const passport = require('passport');
 const User = require('../models/user');
-const usersOnline=require('../models/online')
-const connect = require("../dbconnect");
+
+
 router.get('/', isAuthenticated, (req, res, next) => {
     res.render('me');
-
-    
-     
+  
 });
-
-
 
 router.get('/signup', (req, res, next) => {
     res.render('signup');
@@ -26,9 +22,7 @@ router.post('/signup', passport.authenticate('local-signup', {
 }));
 
 router.get('/me',isAuthenticated,  (req, res, next) => {
-    
-   
-    res.render('index')
+     res.render('index')
 ;})
 
 router.post('/me', isAuthenticated, async (req, res) => {
@@ -40,32 +34,21 @@ router.post('/me', isAuthenticated, async (req, res) => {
       req.user.gender=req.body.Gender;
       req.user.study=req.body.study;
       req.user.interests=req.body.interests;
-      connect.then(db =>  {
-       
-        
-       User.updateOne({'name' : req.user.name}, 
-        { $set: {'age': req.user.age,'country': req.user.country, 'gender': req.user.gender, 'study': req.user.study,'interests': req.user.interests  } }, function(err, result) { 
+    //  connect.then(db =>  {
+      User.updateOne({'name' : req.user.name}, 
+    { $set: {'age': req.user.age,'country': req.user.country, 'gender': req.user.gender, 'study': req.user.study,
+    'interests': req.user.interests  } },
+     function(err, result) { 
           if(err) { throw err; } 
           
-         
-        
-       
-        }); 
+    //    }); 
       });
     
-     
-     
-     
     console.log(req.user)
-    
-    
     res.redirect('/')
-  
   } catch {
     res.redirect('/me')
-  
-      
-     
+   
     } 
   }) 
 
@@ -83,18 +66,21 @@ router.get('/logout', (req, res, next) => {
     req.logOut();
     res.redirect('/signin');
 });
-
-router.get('/profile', isAuthenticated, (req, res, next) => {
-    res.render('profile');
-})
-
-
-
+ 
 function isAuthenticated(req, res, next) {
     if(req.isAuthenticated()) {
         return next();
     }
     res.redirect('/signin');
 }
+
+router.get('/information',  (req, res, next) => {
+  res.render('information')
+;})
+
+router.get('/terms',  (req, res, next) => {
+  res.render('terms')
+;})
+
 
 module.exports = router;

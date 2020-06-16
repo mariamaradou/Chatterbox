@@ -3,12 +3,12 @@ html {
 }
 
 body {
-    background-color: #fff;
+   
     color: #333;
     margin: 0;
     font: 1.8em / 1.8 Arial, Helvetica, sans-serif;
     font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
-    background-image: url(../img/clouds.jpg); /* Set the background image */
+   
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */
@@ -35,33 +35,14 @@ a {
     padding: 45px;
     text-align: center; 
 }
-/*
-form button{
-    font-family: "Roboto", sans-serif;
-    background-color: rgb(223, 104, 24);
-    color: white;
-    text-align: center;
-    padding: 10px 30px;
-    margin: auto;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-}
 
-form button:hover, .form button:active{
-    background-color: rgb(156, 74, 20);
-} */
 
 form .message{
     margin:15px 0 0;
-    color: aliceblue;
+
     font-size: 14px;
 }
 
-
-/*.register-form{
-    display: none;
-}*/
 
 
 hr {
@@ -81,10 +62,12 @@ hr {
     max-width: 980px;
 }
 
- div{
+ div{box-shadow: 1px 2px 10px  rgb(46, 45, 45) ;
+    background-color: #bfccff;
+    background-image: linear-gradient(to right, white ,#c4d1e6);
     margin: auto;
     width: 60%;
-    border: 1px solid #333;
+    border: none;
     padding: 0.5em;
     border-radius: .3em;
 }
@@ -97,6 +80,8 @@ input{
 
 .formlinks{
     margin-top: 20px;
+    box-shadow:none;
+    border: 1px solid #333;
 }
 
 nav {
@@ -108,6 +93,7 @@ nav {
     width: 100%;
     bottom: 0;
 }
+
 
 nav ul {
     margin: 0;
@@ -137,9 +123,12 @@ input[type="radio"]{
     vertical-align: middle;
 }
 
+.container {background: none;
+box-shadow: none;}
 .btn{
+    background-color: #e67e22;
     border: 1px solid #e67e22;
-    background: none;
+    
     padding: 10px 20px;
     font-size: 20px;
     font-family: "montserrat";
@@ -150,6 +139,7 @@ input[type="radio"]{
     overflow: hidden;
     border-radius: .4em;
 }
+
 
 .btn4{
     color: #fff;

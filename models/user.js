@@ -10,8 +10,9 @@ const userSchema = new Schema ({
       age:  String,
       country: String,
       study:  String,
-      interests:  String
-      
+      interests:  String,
+      status: String,
+      state: String
 });
 
 userSchema.methods.encryptPassword = (password) => {
