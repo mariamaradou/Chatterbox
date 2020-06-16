@@ -1,0 +1,61 @@
+<html lang="el">
+
+    <head>
+            <meta charset="utf-8">
+            <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAot4WAMyCMwBcWlkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADMAAAAAAAAAADMAAAAAAAAAMDAAAAMzMzMAAwAAMREREQAAMAMRERERAAADMAEREREAAAMyIAEREQAAAzIiIAERAAADMiIiIAEAAAMyIiIiIAAAAzIiIiIiAAADMiIiIiAAAAMDIiIiAAAAMAAyIiAAAAMAAAMzMzMzMAD/PwAA/88AAP/XAADgGwAAwB0AAIAeAAAAHgAAAB4AAAAeAAAAHgAAAB4AAAAeAAAAPgAAgH0AAMD7AADgBwAA" rel="icon" type="image/x-icon" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Chatterbox!</title>
+            <link rel="stylesheet" type="text/css" href="css/register.css"> 
+            <script src = "/socket.io/socket.io.js"></script>
+        
+    </head>
+    
+    <body>
+        <div class="login-page">
+            <h1>Συνδεθείτε στο Chatterbox!</h1>
+         
+            <h3 class="logo"></h3> 
+            <hr>
+            <div class="container" style="border: hidden">
+                <% if (signupMessage.length > 0) { %>
+                    <div class="alert alert-danger">
+                        <%= signupMessage %>
+                    </div>
+                        
+                <% } %>
+                
+                <% if (signinMessage.length > 0) { %>
+                    <div class="alert alert-danger">
+                        <%= signinMessage %>
+                    </div>
+                        
+                <% } %>
+                    
+               
+            </div>
+            <form class="login-form" action="/signin" method="POST">
+
+
+                <input class="text" type="email" id="email" name="email" placeholder="Email" required><br>
+                <input class="text" type="password" id="password" name="password" placeholder="Κωδικός πρόσβασης" required><br>
+    
+                <br><button class="btn btn4" type="submit"  >Σύνδεση</button><br><br>
+               
+                
+                <div class="formlinks">
+                <p class="message">Δεν έχετε λογαριασμό; <a href="/signup">Εγγραφή</a></p>
+                </div>
+            </form>
+
+        </div>
+
+        <nav class="navbar">
+            <ul>
+                <li class="listi"><a href="/information">Πληροφορίες</a></li> <!--Να προστεθεί το link-->
+                <li class="listi"><a href="/terms">Όροι χρήσης</a></li> <!--Να προστεθεί το link-->
+            </ul>
+        </nav>
+      
+
+    </body>
+</html>

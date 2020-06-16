@@ -1,0 +1,21 @@
+body {
+   
+    color: #333;
+    margin: 0;
+    font: 1.8em / 1.8 Arial, Helvetica, sans-serif;
+    font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    text-align: center;
+}
+
+div{ box-shadow: 1px 2px 10px  rgb(46, 45, 45) ;
+    background-color: #bfccff;
+    background-image: linear-gradient(to right, white ,#c4d1e6);
+    margin: auto;
+    margin-top: 10%;
+    width: 60%;
+    border: none;
+    padding: 0.5em;
+    border-radius: .3em;}
