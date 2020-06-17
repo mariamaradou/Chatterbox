@@ -184,7 +184,7 @@ display: inline-block;
 background-color: #93b7d4; }
 
 
-#Messagebox { height: 80vh; 
+#Messagebox { height: 70vh; 
   margin-top:20px;
 overflow: scroll;
 overflow-x: hidden;
