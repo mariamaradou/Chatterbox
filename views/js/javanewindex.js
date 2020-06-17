@@ -356,7 +356,7 @@
              var messagebox=document.getElementById("messageExchange");
              var user=document.getElementById("user");
            var listMessages=document.getElementById("messages")
-             var record=document.getElementById("record");
+             
              var send=document.getElementById("Send");
              var settings=document.getElementById("SETTINGS");
              var typewrite=document.getElementById("message");
@@ -394,7 +394,7 @@
                      typewrite.style.borderColor="#abc0d491";
                   listMessages.style.color="rgb(194, 199, 204)";
                   settings.style.backgroundColor="#4682b4";
-                   record.style.backgroundColor="#4682b4";
+                  
                   send.style.backgroundColor="#4682b4";
                   user.style.backgroundColor="#1d2936"
                 online.style.backgroundColor="#1d2936"
@@ -459,7 +459,7 @@
                   
                      messagebox.style.backgroundImage="linear-gradient(to right, white ,#c4d1e6)"
                   listMessages.style.color="#333";
-                  record.style.backgroundColor="#4682b4";
+                 
                   send.style.backgroundColor="#4682b4";
                   user.style.color="black";
                   online.style.color="black";
