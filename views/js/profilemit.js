@@ -8,6 +8,7 @@ var socket = io();
     var country=document.getElementById("country").innerText
     var study=document.getElementById("study").innerText
     var interests=document.getElementById("interests").innerText
+    var relationship=document.getElementById("relationship").innerText
 socket.emit('profileInfo', {user:document.getElementsByTagName("h2")[0].innerHTML, gender:gender, age: age, country: country, study: study, interests:interests})
 
 socket.emit('profilePhoto',  {user:document.getElementsByTagName("h2")[0].innerHTML, gender:gender, age: age, country: country, study: study, interests:interests} )
@@ -43,7 +44,9 @@ socket.emit('profilePhoto',  {user:document.getElementsByTagName("h2")[0].innerH
    "<p>" + "Study/Work" + ": " + "</p>" +
    "<p>" + "<b>" + data.study + "</b>" + "</p>" + 
    "<p>" + "Interests/Hobbies" + ": " + "</p>" +
-   "<p>" + "<b>" + data.interests + "</b>" + "</p>" 
+   "<p>" + "<b>" + data.interests + "</b>" + "</p>" +
+   "<p>" + "Προσωπική κατάσταση" + ": " + "</p>" +
+   "<p>" + "<b>" + data.relationship + "</b>" + "</p>"
    document.getElementsByTagName("figure")[i].appendChild(divi);
                 document.getElementsByTagName("figure")[i].marginTop="150px"}
             }
@@ -74,7 +77,9 @@ divprof.innerHTML="<p>" + "Φύλο" + ": " + "</p>" +
 "<p>" + "Σπουδές/Εργασία" + ": " + "</p>" +
 "<p>" + "<b>" + data.study + "</b>" + "</p>" + 
 "<p>" + "Ενδιαφέροντα" + ": " + "</p>"  +
-"<p>" + "<b>" + data.interests + "</b>" + "</p>" 
+"<p>" + "<b>" + data.interests + "</b>" + "</p>" +
+"<p>" + "Προσωπική κατάσταση" + ": " + "</p>" +
+"<p>" + "<b>" + data.relationship + "</b>" + "</p>"
 y.appendChild(divprof);}
    else{document.getElementsByTagName("figure")[i].getElementsByTagName("div")[0].innerHTML="<p>" + "Φύλο" + ": " + "</p>" +
    "<p>" + "<b>" + data.gender + "</b>" + "</p>" +
@@ -86,7 +91,9 @@ y.appendChild(divprof);}
    "<p>" + "Σπουδές/Εργασία" + ": " + "</p>" +
    "<p>" + "<b>" + data.study + "</b>" + "</p>" + 
    "<p>" + "Ενδιαφέροντα" + ": " + "</p>" +
-   "<p>" + "<b>" + data.interests + "</b>" + "</p>" 
+   "<p>" + "<b>" + data.interests + "</b>" + "</p>" +
+   "<p>" + "Προσωπική κατάσταση" + ": " + "</p>" +
+   "<p>" + "<b>" + data.relationship + "</b>" + "</p>"
    
 
    }
