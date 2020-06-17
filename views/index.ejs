@@ -61,7 +61,7 @@
               
           <p style="font-weight:500;" title="Gender"> Φύλο: </p>
         
-            <input type="text" class="gender" name="Gender"  id="Gender" list="genders" value="<%= user.gender %>" />
+            <input type="text" class="gender" style="margin-bottom:10px" maxlength="54" name="Gender"  id="Gender" list="genders" value="<%= user.gender %>" />
             <datalist id="genders" >
             <option>Γυναίκα</option>
             <option>Άνδρας</option>
@@ -71,13 +71,21 @@
           <p style="font-weight:500;" title="Age"> Ηλικία:</p>
           <input type="number" id="age" name="age" min="1" max="99" value="<%= user.age %>">
          
-          <p style="font-weight:500;" title="I come from"> Καταγωγή:</p>
-          <input type="text"  id="country" maxlength="20" name="country" value="<%= user.country %>">
+          <p style="font-weight:500;" title="I live in"> Τόπος Διαμονής:</p>
+          <input type="text"  id="country" maxlength="20" name="country" style="margin-bottom:10px" value="<%= user.country %>">
           <p  style="font-weight:500;  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="Study/work"> Σπουδές/Εργασία:</p>
-          <input type="text" maxlength="54" id="study" name="study"  style="width: 100%;" value="<%= user.study %>" ></textarea>
+          <input type="text" maxlength="54" id="study" name="study"  style="width: 100%;" style="margin-bottom:10px" value="<%= user.study %>" >
           <p style="font-weight:500;" title="Interests"> Ενδιαφέροντα:</p>
-          <input type="text"  maxlength="54"  id="interests" name="interests" style="margin-bottom:10px" value="<%= user.interests %>" style="width: 100%;" ></textarea>
-       
+          <input type="text"  maxlength="54"  id="interests" name="interests" style="margin-bottom:10px" value="<%= user.interests %>" style="width: 100%;" >
+          <p style="font-weight:500;" title="Relationship Status"> Προσωπική κατάσταση:</p>
+          <input type="text" class="relationship" maxlength="54" name="relationship" style="margin-bottom:10px"  id="relationship" list="relstatus" value="<%= user.relationship %>" />
+            <datalist id="relstatus" >
+            <option>Ελεύθερος</option>
+            <option>Σε σχέση</option>
+            <option>Παντρεμένος</option>
+            <option>Άλλο</option>
+            
+            </datalist>
          <br><input id="submitInfo" class="btn btn4" type="submit" style="color:black" onclick=" return showProfile()" value="Submit" ><br></div>
         
         </form>
