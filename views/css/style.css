@@ -405,7 +405,11 @@ right: 40%;
 border-radius: 1em;
 
 }
-#user, #messageExchange, #onlineFriends{ height:100%;}
+/*#user, #messageExchange, #onlineFriends{ height:100%;}*/
+
+#Messagebox{
+  height: 80vh;
+}
 
 input[type="text"] {
   width: 100%;
@@ -474,3 +478,9 @@ background-position: center;}
 
 #opacity {opacity:0.93;
 background-color: white;}
+
+
+.status{
+  position: ;
+  bottom: 10px;
+}
