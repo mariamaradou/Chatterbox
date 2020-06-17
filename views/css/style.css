@@ -59,7 +59,7 @@ padding: 2px 0px 2px 3px;
     border: solid 1px #abc0d491;
     background-color: #a6c0d891;
   
-    padding: 0px 0px 10px 30px;
+    padding: 0px 0px 0px 30px;
     border-radius: 30px;
     width: 90%;
     flex-wrap: wrap;
@@ -479,4 +479,5 @@ background-position: center;}
 #opacity {opacity:0.93;
 background-color: white;}
 
-
+input {outline: none;}
+#submitInfo{ outline: none;}
