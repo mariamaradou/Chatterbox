@@ -163,7 +163,7 @@ label.status {font-family: Arial, Helvetica, sans-serif;
       } 
        .voice + label{ position: absolute;
         display: inline-block;
-     
+        background:none;
         margin: 38px 0px 5px 7px;
 
        }
@@ -407,9 +407,9 @@ border-radius: 1em;
 }
 #user, #messageExchange, #onlineFriends{ height:100%;}
 
-input[type="text" i] {
+input[type="text"] {
   width: 100%;
-}} 
+}}   
 
 
 
