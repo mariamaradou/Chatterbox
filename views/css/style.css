@@ -184,7 +184,7 @@ display: inline-block;
 background-color: #93b7d4; }
 
 
-#Messagebox { height: 420px; 
+#Messagebox { height: 80vh; 
   margin-top:20px;
 overflow: scroll;
 overflow-x: hidden;
@@ -200,7 +200,7 @@ grid-template-columns: auto;
 #typewrite {margin-right: 10px;
 }
 
-#OnlineUsers {min-height: 502px; 
+#OnlineUsers {height: 100vh; 
   width: 100%;
   
 }
@@ -214,12 +214,12 @@ grid-template-columns: auto;
   background-image: linear-gradient(to right, white ,#c4d1e6);
   border-left: solid 1px #ebeaea;
   border-right: solid 1px #bcc9dd;
-  min-height:610px;
+  height:100vh;
 }
 
 #user {background-color:#e8f3fc;
   border-radius: 3px;
- min-height: 610px;
+ min-height: 100vh;
 
 
     
@@ -227,7 +227,7 @@ grid-template-columns: auto;
 
 #onlineFriends {background-color:#98c3aa;
   border-radius: 3px;
-height: 610px; }
+height: 100vh; }
 
 hr{display:none}
 
