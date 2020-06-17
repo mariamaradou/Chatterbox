@@ -34,14 +34,15 @@ router.post('/me', isAuthenticated, async (req, res) => {
       req.user.gender=req.body.Gender;
       req.user.study=req.body.study;
       req.user.interests=req.body.interests;
-    //  connect.then(db =>  {
+      req.user.relationship=req.body.relationship;
+    
       User.updateOne({'name' : req.user.name}, 
     { $set: {'age': req.user.age,'country': req.user.country, 'gender': req.user.gender, 'study': req.user.study,
-    'interests': req.user.interests  } },
+    'interests': req.user.interests, 'relationship':req.user.relationship  } },
      function(err, result) { 
           if(err) { throw err; } 
           
-    //    }); 
+   
       });
     
     console.log(req.user)
