@@ -61,7 +61,7 @@
               
           <p style="font-weight:500;" title="Gender"> Φύλο: </p>
         
-            <input type="text" class="gender" style="margin-bottom:10px" maxlength="54" name="Gender"  id="Gender" list="genders" value="<%= user.gender %>" />
+            <input type="text" class="gender"  maxlength="54" name="Gender"  id="Gender" list="genders" value="<%= user.gender %>" />
             <datalist id="genders" >
             <option>Γυναίκα</option>
             <option>Άνδρας</option>
@@ -72,11 +72,11 @@
           <input type="number" id="age" name="age" min="1" max="99" value="<%= user.age %>">
          
           <p style="font-weight:500;" title="I live in"> Τόπος Διαμονής:</p>
-          <input type="text"  id="country" maxlength="20" name="country" style="margin-bottom:10px" value="<%= user.country %>">
+          <input type="text"  id="country" maxlength="20" name="country"  value="<%= user.country %>">
           <p  style="font-weight:500;  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="Study/work"> Σπουδές/Εργασία:</p>
-          <input type="text" maxlength="54" id="study" name="study"  style="width: 100%;" style="margin-bottom:10px" value="<%= user.study %>" >
+          <input type="text" maxlength="54" id="study" name="study"  style="width: 100%;"  value="<%= user.study %>" >
           <p style="font-weight:500;" title="Interests"> Ενδιαφέροντα:</p>
-          <input type="text"  maxlength="54"  id="interests" name="interests" style="margin-bottom:10px" value="<%= user.interests %>" style="width: 100%;" >
+          <input type="text"  maxlength="54"  id="interests" name="interests"  value="<%= user.interests %>" style="width: 100%;" >
           <p style="font-weight:500;" title="Relationship Status"> Προσωπική κατάσταση:</p>
           <input type="text" class="relationship" maxlength="54" name="relationship" style="margin-bottom:10px"  id="relationship" list="relstatus" value="<%= user.relationship %>" />
             <datalist id="relstatus" >
