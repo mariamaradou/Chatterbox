@@ -431,7 +431,7 @@ border-radius: 0.8em;
   margin-bottom: 0px;
  
   }
-  a{font-size: 12px}
+ 
 #busy {padding-bottom: 3px;
   margin-bottom: 3px;
 }
@@ -464,7 +464,7 @@ margin-top:15px;
 .info-form > p, #information>p { margin-bottom: 0px;}   
 #information> p {margin-left: 3px;} 
 
-#age, #study, #interests, #country, #Gender {border:hidden;
+#age, #study, #interests, #country, #Gender, #relationship {border:hidden;
     border-radius: 10px;}
 
     input[type="text" i] {
