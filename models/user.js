@@ -11,6 +11,7 @@ const userSchema = new Schema ({
       country: String,
       study:  String,
       interests:  String,
+      relationship: String,
       status: String,
       state: String
 });
