@@ -85,7 +85,7 @@
       
       </div>
           <hr>
-          <div class="status">
+          <div class="status" style="margin-top: 35%;">
           <div class="online"><input type="radio" id="online" class="online" name="status" value="online" onclick="setOnline()" checked> 
           <label for="online" class="status" style="font-family: 'Open Sans', sans-serif;" title="Available">Διαθέσιμος</label></div>
           <div class="offline"><input type="radio" id="offline" class="offline" name="status" value="offline" onclick="setOffline()"> 
@@ -114,21 +114,19 @@
          </ul>
         </div>
         <form id="send_message" >
+          <div id="message_wrap">
+            <div class="buttonsdown">  
+              <input type="button"   class="voice" id="voice" value="Voice">
+              <label for="voice" class="Label" id="record" title="Record something for 5 seconds" onclick="mouseDown()"> <i class="material-icons">mic</i></label>
+          </div>
             
                  <input id="message" class="message_input"  placeholder="Type your message here..." />
             
              <button class="send_message" id="sendMessage">Send</button>
              <label for="sendMessage" id="Send" class="Label"><i class="material-icons" >send</i></label>
-            
-            </form>
-             <div class="buttonsdown"> 
-           
-                
-                <input type="button"   class="voice" id="voice" value="Voice">
-                <label for="voice" class="Label" id="record" title="Record something for 5 sec" onclick="mouseDown()"> <i class="material-icons">mic</i></label>
-               
-           
             </div>
+            </form>
+            
            
          
      
@@ -201,7 +199,7 @@
 </div>
 </div>
 
-
+<!--<a  href="/logout">Logout</a>-->
 
    
   </body>
