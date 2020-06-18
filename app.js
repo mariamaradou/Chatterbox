@@ -172,12 +172,12 @@ socket.on("connection", socket => {
    //stelnw stoixeia profil xrhsth
    socket.on('profileInfo', function(data){
     socket.broadcast.emit('myProfile', {user: data.user,gender:data.gender, gender:data.gender,
-       age: data.age, country: data.country, study: data.study, interests:data.interests})
+       age: data.age, country: data.country, study: data.study, interests:data.interests, relationship: data.relationship})
      })
 //stelnw fwto profil ston xristi
    socket.on('profilePhoto', function(data){
      socket.broadcast.emit('myPhoto',{user: data.user,gender:data.gender, gender:data.gender,
-       age: data.age, country: data.country, study: data.study, interests:data.interests})
+       age: data.age, country: data.country, study: data.study, interests:data.interests, relationship:data.relationship})
    })
    
    //stelnw hxhtiko
