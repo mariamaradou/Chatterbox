@@ -75,6 +75,13 @@ padding: 2px 0px 2px 3px;
   }
   
 
+ 
+
+  video {
+    max-width: 100%;
+    width: 320px;
+  }
+
 .profileimage >input {display: none;}
 
 #photoimage {width: 9em;
@@ -225,6 +232,10 @@ height: 100vh; }
 hr{display:none}
 
 
+audio{ width:100%;
+height: 30px;}
+
+
 
            
 
@@ -367,7 +378,7 @@ ul figure {
   box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 display: none;
 position: absolute;
-top: 18px;
+top: 65px;
 right: 95%;
 background-color: transparent;
 border-radius: 1em;
@@ -385,24 +396,29 @@ border-radius: 1em;
   }
 
 @media (max-width: 768px) {
-ul figure {
-display: none;
-position: absolute;
-top: 7px;
-left: 30%;
-right: 40%;
-border-radius: 1em;
-
-}
+  ul figure {
+    display: none;
+    position: absolute;
+    top: 7px;
+    left: 30%;
+    right: 40%;
+    border-radius: 1em;
+  }
 /*#user, #messageExchange, #onlineFriends{ height:100%;}*/
 
-#Messagebox{
-  height: 80vh;
-}
+  #Messagebox{
+    height: 80vh;
+  }
 
-input[type="text"] {
-  width: 100%;
-}}   
+  input[type="text"] {
+    width: 100%;
+  }
+
+  #photoimage{
+    width: 0.1em;
+  }
+
+}   
 
 
 
@@ -449,6 +465,8 @@ margin-top:15px;
   padding-bottom: 3px;
   padding-left: 2px;
   padding-right: 3px;
+  max-height: 45vh;
+  overflow: auto;
 }
 .info-form > p, #information>p { margin-bottom: 0px;}   
 #information> p {margin-left: 3px;} 

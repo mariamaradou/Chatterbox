@@ -13,13 +13,19 @@ body {
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */
     text-align: center;
+    background-color: #bfccff;
+    /*background-image: linear-gradient(to right, white ,#c4d1e6);*/
+    background-image:  url("../img/box-1472804_960_720.png");
 }
 
 .login-page{
     max-width: 500px;
     margin-top: .5em;
-    margin-bottom: 80px;
+    margin-bottom: .5em;
     min-width: 250px;
+    min-height: 85vh;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.87);
 }
 
 a {
@@ -62,9 +68,13 @@ hr {
     max-width: 980px;
 }
 
- div{box-shadow: 1px 2px 10px  rgb(46, 45, 45) ;
+ div{
+    box-shadow: 1px 2px 10px  rgb(46, 45, 45) ;
+    /*
     background-color: #bfccff;
     background-image: linear-gradient(to right, white ,#c4d1e6);
+    */
+    /*background-color: rgba(255, 255, 255, 0.95);*/
     margin: auto;
     width: 60%;
     border: none;
@@ -176,4 +186,19 @@ box-shadow: none;}
         /*visibility: hidden;
         display: none; */
     }
+  }
+
+  @media screen and (max-height: 580px){
+      .navbar{
+          visibility: hidden;
+      }
+      .login-page{
+          height: 90vh;
+      }
+      .btn{
+          margin: 4px;
+      }
+      .btn4{
+          margin: 4px;
+      }
   }
