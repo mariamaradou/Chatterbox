@@ -37,6 +37,7 @@ passport.use('local-signup', new LocalStrategy({
         newUser.country = "";
         newUser.study = "";
         newUser.interests = "";
+        newUser.relationship="";
         newUser.status="";
         newUser.state="online";
         await newUser.save();
