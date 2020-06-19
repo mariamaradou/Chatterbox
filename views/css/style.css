@@ -59,12 +59,12 @@ padding: 2px 0px 2px 3px;
     border: solid 1px #abc0d491;
     background-color: #a6c0d891;
   
-    padding: 0px 0px 0px 30px;
+    padding: 10px 0px 10px 30px;
     border-radius: 30px;
     width: 90%;
     flex-wrap: wrap;
     overflow: scroll;
-   
+   overflow-x: hidden;
   }
 
   #message_wrap {width:100%;
@@ -250,6 +250,20 @@ height: 30px;}
             border-radius: 20px;
             background:  #677990;;
         }
+
+        
+        #information::-webkit-scrollbar {
+          width: 8px;
+          padding-top: 10px;
+      }
+
+     #information::-webkit-scrollbar-thumb {
+          
+          border-radius: 20px;
+          background:  #677990;;
+      }
+
+        
         ul.onusers::-webkit-scrollbar {
             width: 8px;
             height: 5px;
@@ -467,6 +481,7 @@ margin-top:15px;
   padding-right: 3px;
   max-height: 45vh;
   overflow: auto;
+  overflow-x: hidden;
 }
 .info-form > p, #information>p { margin-bottom: 0px;}   
 #information> p {margin-left: 3px;} 
