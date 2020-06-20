@@ -1,6 +1,6 @@
 var socket = io();
 var messages = document.getElementById("messages");
-var checkBox = document.getElementById("checkBox");
+
 
 //jquery gia na mh kanei reload h selida
 (function() {
@@ -27,7 +27,9 @@ var checkBox = document.getElementById("checkBox");
        
       }
     }
-   
+    if (document.getElementById("checkBox").checked == true){
+      li.style.color="black";
+    }
     messages.appendChild(li).append($("#message").val());
     let span = document.createElement("span");
     messages.appendChild(span).append("by " + document.getElementById("username").innerHTML + ": " + "just now");
@@ -48,7 +50,7 @@ var checkBox = document.getElementById("checkBox");
     let li = document.createElement("li");
     li.style.opacity=0;
     let span = document.createElement("span");
-    span.style.opacity=0;
+   
     li.setAttribute("class","msg")
     var messagesound= document.getElementById("myAudio"); 
     messagesound.play();
@@ -68,7 +70,9 @@ var checkBox = document.getElementById("checkBox");
     messages.appendChild(li).append(data.message);
     messages.appendChild(span).append("by " + data.sender + ": " + "just now");
     li.style.backgroundColor="#157e7875";
-
+    if (document.getElementById("checkBox").checked == true){
+      li.style.color="black";
+    }
     li.style.marginLeft="50%";
     span.style.marginLeft="50%";
     li.style.backgroundColor="#94b8b8"
